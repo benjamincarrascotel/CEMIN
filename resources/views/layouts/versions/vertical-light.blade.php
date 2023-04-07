@@ -8,9 +8,10 @@
 		<meta content="Azea – Laravel Admin & Dashboard Template" name="description">
 		<meta content="Spruko Private Limited" name="author">
 		<meta name="keywords" content="laravel ui admin template, laravel admin template, laravel dashboard template,laravel ui template, laravel ui, livewire, laravel, laravel admin panel, laravel admin panel template, laravel blade, laravel bootstrap5, bootstrap admin template, admin, dashboard, admin template">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
 		<!-- Title -->
-		<title>Azea – Laravel Admin & Dashboard Template</title>
+		<title>CEMIN</title>
 
         @include('layouts.vertical.styles')
 
@@ -36,7 +37,13 @@
 				<div class="app-content main-content">
 					<div class="side-app">
 
+                        @yield('form_open')
+                        @include('flash::message')
+						@yield('title')
                         @yield('content')
+						@stack('cards')
+						@yield('down_cards')
+						@yield('form_close')
 
 					</div>
 				</div>
@@ -52,4 +59,12 @@
         @include('layouts.vertical.scripts')
 
 	</body>
+
+	<script>
+		$.ajaxSetup({
+                 headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+	</script>
 </html>

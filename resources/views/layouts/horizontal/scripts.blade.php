@@ -2,7 +2,7 @@
 		<a href="#top" id="back-to-top"><i class="fe fe-chevron-up"></i></a>
 
 		<!-- Jquery js-->
-		<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+		{{-- <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script> --}}
 
 		<!-- Bootstrap5 js-->
 		<script src="{{asset('assets/plugins/bootstrap/popper.min.js')}}"></script>
