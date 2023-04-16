@@ -24,9 +24,7 @@ class Insertion extends Seeder
                 [        'nombre_tipo' => 'Operación',    ],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
-        }
+        } 
 
 
         //SUPERADMIN
@@ -55,9 +53,7 @@ class Insertion extends Seeder
                 ],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
-        }
+        } 
 
         // ACCIONES
         if(DB::table('accion_contratos')->count() == 0){
@@ -67,8 +63,6 @@ class Insertion extends Seeder
                 [        'nombre_accion' => 'Renovar',    ],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         // SERVICIOS Y  BIENES
@@ -512,8 +506,6 @@ class Insertion extends Seeder
             ]);
             
          
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         if(DB::table('proveedores')->count() == 0){
@@ -816,8 +808,6 @@ class Insertion extends Seeder
                 ],
                 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
         
         // CLASIFICACIONES
@@ -830,8 +820,6 @@ class Insertion extends Seeder
                 [        'nombre_clasificacion' => 'Rutinarios',    ],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         // FAENAS
@@ -851,8 +839,6 @@ class Insertion extends Seeder
                 [        'nombre_faena' => 'Santiago',    ],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         // AREAS
@@ -884,8 +870,6 @@ class Insertion extends Seeder
                 [        'nombre_area' => 'TICA',    ],
         
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         // GESTIONADORES
@@ -920,8 +904,6 @@ class Insertion extends Seeder
                 ['nombre' => 'TEscobedo'],
 
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
         // CENTROS
@@ -946,8 +928,6 @@ class Insertion extends Seeder
                 'nombre_centro' => 'UV01',
                 ],
             ]);
-        } else { 
-            echo "\e[31mTable is not empty, therefore NOT "; 
         }
 
 
