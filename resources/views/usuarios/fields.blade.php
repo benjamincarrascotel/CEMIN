@@ -1,4 +1,3 @@
-<!--TODO ADMINISTRADORES -->
 <div class="mb-3 row">
     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">

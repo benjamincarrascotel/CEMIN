@@ -48,7 +48,7 @@
     @section('down_cards')
     <div class="row">
         <div class="col">
-            <a href="" class='btn btn-primary'>Opción 1</a>
+            <a href="{{route('contrato.create')}}" class='btn btn-primary'>Crear Contrato</a>
         </div>
     </div>
     @endsection

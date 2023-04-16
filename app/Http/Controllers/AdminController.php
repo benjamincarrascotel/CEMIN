@@ -10,9 +10,7 @@ class AdminController extends Controller
 {
 
     public function index()
-    {                                   
-        //TODO ADMINISTRADORES
-
+    {   
         return view('admin.index');
     }
 

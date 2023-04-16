@@ -13,7 +13,6 @@ class AddAdminToUsers extends Migration
      */
     public function up()
     {
-        //TODO ADMINISTRADORES
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('admin')->nullable();
             $table->boolean('superadmin')->nullable();

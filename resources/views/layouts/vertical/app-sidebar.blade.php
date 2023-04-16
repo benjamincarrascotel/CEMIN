@@ -12,7 +12,7 @@
 							<img src="{{asset('assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="Azea logo">
 						</a>
 					</div>
-					<!--TODO ADMINISTRADORES -->
+
 					<ul class="side-menu app-sidebar3">
 						<li class="side-item side-item-category">Principal</li>
 
@@ -31,8 +31,6 @@
 						@endif
 
 						
-						
-						<!--TODO ADMINISTRADORES -->
 						@if(auth()->user()->superadmin)
 						<li class="side-item side-item-category">Administracion</li>
 						<li class="slide">

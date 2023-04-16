@@ -18,10 +18,14 @@ Auth::routes(['register' => false]);
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'HomeController@index')->name('index');
-    //TODO ADMINISTRADORES
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin.index');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    //CONTRATO
+    Route::get('/contrato/create', 'ContratoController@create')->name('contrato.create');
+    Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
+
 
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

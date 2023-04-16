@@ -8,11 +8,7 @@ class HomeController extends Controller
 {
     public function index(){
         $this->middleware('auth');
-        // dd(auth()->user()->jefe_local);
-
-        //TODO ADMINISTRADORES
-
-        
+        // dd(auth()->user()->jefe_local);        
 
         if(auth()->user()->admin && auth()->user()->superadmin){
             

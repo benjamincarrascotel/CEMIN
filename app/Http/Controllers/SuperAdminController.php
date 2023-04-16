@@ -7,7 +7,6 @@ use Carbon\Carbon;
 
 class SuperAdminController extends Controller
 {
-    //TODO ADMINISTRADORES
     public function index()
     {
         return view('superadmin.index');

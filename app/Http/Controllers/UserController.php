@@ -58,10 +58,6 @@ class UserController extends Controller
             $usuario->salt = md5(sprintf("%d%d%d%dGAC%s", random_int(1,9), random_int(1,9), random_int(1,9), random_int(1,9), strtotime(date("Y-m-d H:i:s"))));
             $usuario->password = hash_pbkdf2('haval256,5', $input['password'], $usuario->salt, 5, false, false);
 
-            // $usuario->view = false;
-
-            //TODO cambiar ADMINISTRADORES
-
             if(isset($input['superadmin'])){
                 $usuario->superadmin = true;
             } else {

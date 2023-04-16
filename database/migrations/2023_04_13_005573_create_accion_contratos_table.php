@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CreateAccionContratosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,14 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('accion_contratos', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('rut');
-            $table->string('rut_dv');
-            $table->string('nombre');
-            $table->string('apellido1');
-            $table->string('apellido2');
+            $table->string('nombre_accion')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -34,6 +29,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('accion_contratos');
     }
 }

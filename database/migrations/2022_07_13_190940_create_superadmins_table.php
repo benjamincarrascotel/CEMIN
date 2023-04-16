@@ -13,7 +13,6 @@ class CreateSuperAdminsTable extends Migration
      */
     public function up()
     {
-        //TODO ADMINISTRADORES
         Schema::create('superadmins', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
