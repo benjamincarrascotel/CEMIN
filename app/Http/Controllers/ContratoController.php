@@ -74,6 +74,15 @@ class ContratoController extends Controller
     {
         //TODO incorporar validator
         $input = $request->all();
+
+        if(!isset($input['kpi'])){
+            $input['kpi'] = null;
+        }
+        if(!isset($input['polinomio'])){
+            $input['polinomio'] = null;
+        }
+
+
         //dd($input);
         $contrato = Contrato::create([
             'clasificacion_id' => $input['clasificacion_id'],
