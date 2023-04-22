@@ -16,6 +16,41 @@ class Insertion extends Seeder
      */
     public function run()
     {
+
+        // ADMIN DE CONTRATOS
+        if(DB::table('admin_contratos')->count() == 0){
+            DB::table('admin_contratos')->insert([
+                ['nombre' => 'Abastecimiento'],
+                ['nombre' => 'ACarreño'],
+                ['nombre' => 'AContreras'],
+                ['nombre' => 'Administración Faena'],
+                ['nombre' => 'ALagos'],
+                ['nombre' => 'AOlivares '],
+                ['nombre' => 'Bodega'],
+                ['nombre' => 'CHGamboa'],
+                ['nombre' => 'Comercial Stgo'],
+                ['nombre' => 'Ecespedes'],
+                ['nombre' => 'GCespedes'],
+                ['nombre' => 'HVilchez'],
+                ['nombre' => 'JBahamondes'],
+                ['nombre' => 'JBorroni'],
+                ['nombre' => 'JOlivares'],
+                ['nombre' => 'KMuñoz'],
+                ['nombre' => 'Lab y Calidad'],
+                ['nombre' => 'LMartinez'],
+                ['nombre' => 'Mantenimiento Holding'],
+                ['nombre' => 'MCubillos'],
+                ['nombre' => 'NMarin'],
+                ['nombre' => 'No Existe'],
+                ['nombre' => 'Ops Mina UVA'],
+                ['nombre' => 'Ops Planta Amalia'],
+                ['nombre' => 'Operaciones'],
+                ['nombre' => 'SHerrera'],
+                ['nombre' => 'TEscobedo'],
+
+            ]);
+        }
+        
         // TIPO CONTRATOS
         if(DB::table('tipo_contratos')->count() == 0){
             DB::table('tipo_contratos')->insert([
@@ -869,40 +904,6 @@ class Insertion extends Seeder
                 [        'nombre_area' => 'Seguridad Holding',    ],
                 [        'nombre_area' => 'TICA',    ],
         
-            ]);
-        }
-
-        // GESTIONADORES
-        if(DB::table('gestionadores')->count() == 0){
-            DB::table('gestionadores')->insert([
-                ['nombre' => 'Abastecimiento'],
-                ['nombre' => 'ACarreño'],
-                ['nombre' => 'AContreras'],
-                ['nombre' => 'Administración Faena'],
-                ['nombre' => 'ALagos'],
-                ['nombre' => 'AOlivares '],
-                ['nombre' => 'Bodega'],
-                ['nombre' => 'CHGamboa'],
-                ['nombre' => 'Comercial Stgo'],
-                ['nombre' => 'Ecespedes'],
-                ['nombre' => 'GCespedes'],
-                ['nombre' => 'HVilchez'],
-                ['nombre' => 'JBahamondes'],
-                ['nombre' => 'JBorroni'],
-                ['nombre' => 'JOlivares'],
-                ['nombre' => 'KMuñoz'],
-                ['nombre' => 'Lab y Calidad'],
-                ['nombre' => 'LMartinez'],
-                ['nombre' => 'Mantenimiento Holding'],
-                ['nombre' => 'MCubillos'],
-                ['nombre' => 'NMarin'],
-                ['nombre' => 'No Existe'],
-                ['nombre' => 'Ops Mina UVA'],
-                ['nombre' => 'Ops Planta Amalia'],
-                ['nombre' => 'Operaciones'],
-                ['nombre' => 'SHerrera'],
-                ['nombre' => 'TEscobedo'],
-
             ]);
         }
 

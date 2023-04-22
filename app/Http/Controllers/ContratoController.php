@@ -13,7 +13,7 @@ use App\Models\Centro;
 use App\Models\ServicioBien;
 use App\Models\Proveedor;
 use App\Models\Admin;
-use App\Models\Gestionador;
+use App\Models\AdminContrato;
 use App\Models\Accion;
 use App\Models\TipoContrato;
 
@@ -51,16 +51,16 @@ class ContratoController extends Controller
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
         //Proveedores
         $proveedores = Proveedor::pluck('nombre', 'id');
-        //Gestionadores
-        $gestionadores = Gestionador::pluck('nombre', 'id');
-        //Gestionadores
+        //Admin Contratos
+        $admin_contratos = AdminContrato::pluck('nombre', 'id');
+        //Abastecimiento Users
         $abastecimiento_users = Admin::pluck('email', 'id');
         //Acciones
         $acciones = Accion::pluck('nombre_accion', 'id');
         //Tipo de Contratos
         $tipo_contratos = TipoContrato::pluck('nombre_tipo', 'id');
 
-        return view('contrato.create', compact('clasificaciones', 'faenas', 'areas', 'centros', 'servicios_bienes', 'proveedores', 'gestionadores', 'abastecimiento_users', 'acciones', 'tipo_contratos', 'selectedID'));
+        return view('contrato.create', compact('clasificaciones', 'faenas', 'areas', 'centros', 'servicios_bienes', 'proveedores', 'admin_contratos', 'abastecimiento_users', 'acciones', 'tipo_contratos', 'selectedID'));
 
     }
 
@@ -94,8 +94,8 @@ class ContratoController extends Controller
             //'categoria_id' => 1, 
             'proveedor_id' => $input['proveedor_id'],
             'contrato_sap' => $input['contrato_sap'],
-            'gestionador' => $input['gestionador_id'],
-            'usuario' => $input['gestionador_id'],
+            'admin_contrato_id' => $input['admin_contrato_id'],
+            'usuario' => $input['admin_contrato_id'],
             'abastecimiento_user_id' => $input['abastecimiento_user_id'],
             'descripcion' => $input['descripcion'],
             'estado_contrato' => 1, //"Estado dummy"

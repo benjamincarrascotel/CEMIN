@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Gestionador extends Model
+class AdminContrato extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    public $table = 'gestionadores';
+    public $table = 'admin_contratos';
 
     /**
      * The attributes that are mass assignable.

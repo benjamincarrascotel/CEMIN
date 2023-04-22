@@ -145,15 +145,15 @@
     </div>
 </div>
 
-<!-- Gestionador -->
+<!-- Admin Contratos -->
 <div class="mb-3 row">
-    <label for="gestionador_id" class="col-sm-2 col-form-label">Gestionador</label>
+    <label for="admin_contrato_id" class="col-sm-2 col-form-label">Admin del Contrato</label>
     <div class="col-sm-10">
-        <select class="form-control block mt-1 w-full" name="gestionador_id">        
+        <select class="form-control block mt-1 w-full" name="admin_contrato_id">        
             <option value="0" >                
                 Seleccione alguna de las opciones                 
             </option>   
-            @foreach ($gestionadores as $key => $value)              
+            @foreach ($admin_contratos as $key => $value)              
                 <option value="{{ $key }}" {{ ( $key == $selectedID) ? 'selected' : '' }}>                
                     {{ $value }}                 
                 </option>
