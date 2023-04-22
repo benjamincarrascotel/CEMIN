@@ -16,6 +16,10 @@ use App\Models\Admin;
 use App\Models\AdminContrato;
 use App\Models\Accion;
 use App\Models\TipoContrato;
+use App\Models\FaseContrato;
+
+use Carbon\Carbon;
+
 
 
 
@@ -83,7 +87,7 @@ class ContratoController extends Controller
         }
 
 
-        //dd($input);
+
         $contrato = Contrato::create([
             'clasificacion_id' => $input['clasificacion_id'],
             'tipo_contrato_general' => $input['tipo_contrato_general'],
@@ -100,6 +104,12 @@ class ContratoController extends Controller
             'descripcion' => $input['descripcion'],
             'estado_contrato' => 1, //"Estado dummy"
             'estatus' => 1, //"SEMAFORO"
+        ]);
+
+        $fase_contrato = FaseContrato::create([
+            'contrato_id' => $contrato->id,
+            'solicitud_de_base' => Carbon::now(),
+            'actual' => 0,
         ]);
 
         $detalle_contrato = DetalleContrato::create([
