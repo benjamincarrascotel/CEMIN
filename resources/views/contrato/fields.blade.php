@@ -162,15 +162,6 @@
     </div>
 </div>
 
-<!-- USUARIO
-<div class="mb-3 row">
-    <label for="usuario" class="col-sm-2 col-form-label">Usuario (Mismo que "gestionador") </label>
-    <div class="col-sm-10">
-        <input name="usuario" id='usuario' type="text" class="form-control"  required>
-    </div>
-</div>
--->
-
 <!-- Abastecimiento User -->
 <div class="mb-3 row">
     <label for="abastecimiento_user_id" class="col-sm-2 col-form-label">Usuario de Abastecimiento</label>
@@ -188,6 +179,7 @@
     </div>
 </div>
 
+<!--TODO cambiar formato de entrada a campo de texto grande -->
 <div class="mb-3 row">
     <label for="descripcion" class="col-sm-2 col-form-label">Descripcion </label>
     <div class="col-sm-10">
@@ -226,23 +218,42 @@
 </div>
 
 <div class="mb-3 row">
+    <label for="monto_factible" class="col-sm-2 col-form-label">Monto Factible </label>
+    <div class="col-sm-10">
+        <input name="monto_factible" id='monto_factible' type="text" class="form-control"  required>
+    </div>
+</div>
+
+<div class="mb-3 row">
     <label for="puntos_FM" class="col-sm-2 col-form-label">Puntos FM (Integer) </label>
     <div class="col-sm-10">
-        <input name="puntos_FM" id='puntos_FM' type="text" class="form-control"  required>
+        <select class="form-control block mt-1 w-full" name="puntos_FM" id="puntos_FM" > 
+            <option value="0" type="integer">                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="0" type="integer">                
+                0                 
+            </option>
+            <option value="3" type="integer">                
+                3                 
+            </option>   
+            <option value="5" type="integer">                
+                5                 
+            </option> 
+            <option value="7" type="integer">                
+                7                 
+            </option> 
+            <option value="10" type="integer">                
+                10                 
+            </option>                      
+        </select>
     </div>
 </div>
 
 <div class="mb-3 row">
     <label for="dotacion" class="col-sm-2 col-form-label">Dotacion (Integer) </label>
     <div class="col-sm-10">
-        <input name="dotacion" id='dotacion' type="text" class="form-control"  required>
-    </div>
-</div>
-
-<div class="mb-3 row">
-    <label for="puntos_DOT" class="col-sm-2 col-form-label">Puntos Dotacion (Integer) </label>
-    <div class="col-sm-10">
-        <input name="puntos_DOT" id='puntos_DOT' type="text" class="form-control"  required>
+        <input name="dotacion" id='dotacion' type="integer" class="form-control"  required>
     </div>
 </div>
 
@@ -268,13 +279,6 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="dotacion" class="col-sm-2 col-form-label">Puntos Interferencia (Integer) </label>
-    <div class="col-sm-10">
-        <input name="dotacion" id='dotacion' type="text" class="form-control"  required>
-    </div>
-</div>
-
-<div class="mb-3 row">
     <label for="duracion" class="col-sm-2 col-form-label">Duracion (Integer) </label>
     <div class="col-sm-10">
         <input name="duracion" id='duracion' type="text" class="form-control"  required>
@@ -282,44 +286,85 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="puntos_duracion" class="col-sm-2 col-form-label">Puntos Duracion (Integer) </label>
+    <label for="riesgo_negocio" class="col-sm-2 col-form-label">Riesgo Negocio</label>
     <div class="col-sm-10">
-        <input name="puntos_duracion" id='puntos_duracion' type="text" class="form-control"  required>
+        <select class="form-control block mt-1 w-full" name="riesgo_negocio" id="riesgo_negocio" > 
+            <option value="0" >                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="0" >                
+                0                 
+            </option>
+            <option value="5" >                
+                5                 
+            </option>
+            <option value="10" >                
+                10                 
+            </option>                      
+        </select>
     </div>
 </div>
 
+<!-- Criticidad Ops -->
 <div class="mb-3 row">
-    <label for="puntos_tipo_contrato" class="col-sm-2 col-form-label">Puntos Tipo Contrato (Integer) </label>
+    <label for="criticidad_ops" class="col-sm-2 col-form-label">Criticidad Ops</label>
     <div class="col-sm-10">
-        <input name="puntos_tipo_contrato" id='puntos_tipo_contrato' type="text" class="form-control"  required>
+        <select class="form-control block mt-1 w-full" name="criticidad_ops" id="criticidad_ops" > 
+            <option value="0" >                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="Alta" >                
+                Alta                 
+            </option>
+            <option value="Media" >                
+                Media                 
+            </option>       
+            <option value="Baja" >                
+                Baja                 
+            </option>                         
+        </select>
     </div>
 </div>
 
+<!-- Criticidad Personas -->
 <div class="mb-3 row">
-    <label for="riesgo_negocio" class="col-sm-2 col-form-label">Riesgo Negocio (Integer) </label>
+    <label for="criticidad_personas" class="col-sm-2 col-form-label">Criticidad Personas</label>
     <div class="col-sm-10">
-        <input name="riesgo_negocio" id='riesgo_negocio' type="text" class="form-control"  required>
+        <select class="form-control block mt-1 w-full" name="criticidad_personas" id="criticidad_personas" > 
+            <option value="0" >                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="Alta" >                
+                Alta                 
+            </option>
+            <option value="Media" >                
+                Media                 
+            </option>       
+            <option value="Baja" >                
+                Baja                 
+            </option>                         
+        </select>
     </div>
 </div>
 
+<!-- Cantidad áreas involucradas -->
 <div class="mb-3 row">
-    <label for="criticidad_ops" class="col-sm-2 col-form-label">Criticidad Ops (Integer) </label>
+    <label for="cantidad_areas_invo" class="col-sm-2 col-form-label">Cantidad Areas Involucradas</label>
     <div class="col-sm-10">
-        <input name="criticidad_ops" id='criticidad_ops' type="text" class="form-control"  required>
-    </div>
-</div>
-
-<div class="mb-3 row">
-    <label for="criticidad_personas" class="col-sm-2 col-form-label">Criticidad Personas (Integer) </label>
-    <div class="col-sm-10">
-        <input name="criticidad_personas" id='criticidad_personas' type="text" class="form-control"  required>
-    </div>
-</div>
-
-<div class="mb-3 row">
-    <label for="cantidad_areas_invo" class="col-sm-2 col-form-label">Cantidad Areas Involucradas (Integer) </label>
-    <div class="col-sm-10">
-        <input name="cantidad_areas_invo" id='cantidad_areas_invo' type="text" class="form-control"  required>
+        <select class="form-control block mt-1 w-full" name="cantidad_areas_invo" id="cantidad_areas_invo" > 
+            <option value="0" >                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="Todas" >                
+                Todas                 
+            </option>
+            <option value="Media" >                
+                Media                 
+            </option>       
+            <option value="Una" >                
+                Una                 
+            </option>                         
+        </select>
     </div>
 </div>
 
@@ -331,15 +376,15 @@
             <option value="0" >                
                 Seleccione alguna de las opciones                 
             </option>                  
-            <option value="MED" >                
-                MED                 
-            </option>
             <option value="SI" >                
                 SI                
             </option>       
             <option value="NO" >                
                 NO                 
-            </option>                         
+            </option>    
+            <option value="MED" >                
+                MED                 
+            </option>                     
         </select>
     </div>
 </div>

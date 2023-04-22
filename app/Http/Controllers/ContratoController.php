@@ -86,6 +86,99 @@ class ContratoController extends Controller
             $input['polinomio'] = null;
         }
 
+        // Cálculo de puntos y demaces
+
+        $monto_factible = $input['monto_factible'];
+        // PUNTOS FM
+        $puntos_FM = (int)$input['puntos_FM'];
+        // PUNTOS DOT
+        if($input['dotacion']>40){
+            $puntos_DOT = 10;
+        }else if($input['dotacion']>= 15 && $input['dotacion']<=40){
+            $puntos_DOT = 5;
+        }else if($input['dotacion']<15){
+            $puntos_DOT = 1;
+        }else{
+            $puntos_DOT = 0;
+        }
+        // PUNTOS INTERFERENCIA
+        if($input['interferencia_ops']== 'Alta'){
+            $puntos_interf = 10;
+        }else if($input['dotacion']== 'Media'){
+            $puntos_interf = 5;
+        }else if($input['dotacion'] == 'Baja'){
+            $puntos_interf = 1;
+        }else{
+            $puntos_interf = 0;
+        }
+        // PUNTOS DURACION
+        if($input['duracion']>36){
+            $puntos_duracion = 10;
+        }else if($input['duracion']>= 24 && $input['duracion']<=36){
+            $puntos_duracion = 7;
+        }else if($input['duracion']>= 12 && $input['duracion']<=24){
+            $puntos_duracion = 5;
+        }else if($input['duracion']<12){
+            $puntos_duracion = 1;
+        }else{
+            $puntos_duracion = 0;
+        }
+        // PUNTOS TIPO DE CONTRATO
+        $tipo = TipoContrato::where('id',$input['tipo_contrato_id'])->first()->nombre_tipo;
+        if($tipo == 'Operación'){
+            $puntos_tipo_contrato = 10;
+        }else if($tipo == 'Inversión'){
+            $puntos_tipo_contrato = 5;
+        }else if($tipo == 'Asesoria'){
+            $puntos_tipo_contrato = 1;
+        }else{
+            $puntos_tipo_contrato = 0;
+        }
+
+        $porcentaje_1 = ($puntos_DOT*0.23 + $puntos_FM*0.23 + $puntos_interf*0.23 + $puntos_duracion*0.2 + $puntos_tipo_contrato*0.11)/10;
+
+        // RIESGO NEGOCIO
+        if($input['riesgo_negocio'] == '10'){
+            $riesgo_negocio = 10;
+        }else if($input['riesgo_negocio'] == '5'){
+            $riesgo_negocio = 5;
+        }else if($input['riesgo_negocio'] == '1'){
+            $riesgo_negocio = 1;
+        }else{
+            $riesgo_negocio = 0;
+        }
+        // CRITICIDAD OPS
+        if($input['criticidad_ops'] == 'Alta'){
+            $criticidad_ops = 10;
+        }else if($input['criticidad_ops'] == 'Media'){
+            $criticidad_ops = 5;
+        }else if($input['criticidad_ops'] == 'Baja'){
+            $criticidad_ops = 1;
+        }else{
+            $criticidad_ops = 0;
+        }
+        // CRITICIDAD Personas
+        if($input['criticidad_personas'] == 'Alta'){
+            $criticidad_personas = 10;
+        }else if($input['criticidad_personas'] == 'Media'){
+            $criticidad_personas = 5;
+        }else if($input['criticidad_personas'] == 'Baja'){
+            $criticidad_personas = 1;
+        }else{
+            $criticidad_personas = 0;
+        }
+        // CANTIDAD ÁREAS INVOLUCRADAS
+        if($input['cantidad_areas_invo'] == 'Todas'){
+            $cantidad_areas_invo = 10;
+        }else if($input['cantidad_areas_invo'] == 'Media'){
+            $cantidad_areas_invo = 5;
+        }else if($input['cantidad_areas_invo'] == 'Una'){
+            $cantidad_areas_invo = 1;
+        }else{
+            $cantidad_areas_invo = 0;
+        }
+
+        $porcentaje_2 = ($riesgo_negocio*0.35 + $criticidad_ops*0.25 + $criticidad_personas*0.25 + $cantidad_areas_invo*0.15)/10;
 
 
         $contrato = Contrato::create([
@@ -102,8 +195,8 @@ class ContratoController extends Controller
             'usuario' => $input['admin_contrato_id'],
             'abastecimiento_user_id' => $input['abastecimiento_user_id'],
             'descripcion' => $input['descripcion'],
-            'estado_contrato' => 1, //"Estado dummy"
-            'estatus' => 1, //"SEMAFORO"
+            'estado_contrato' => 0, //"Estado dummy"
+            'estatus' => 0, //"SEMAFORO"
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -118,23 +211,23 @@ class ContratoController extends Controller
             'fecha_inicio' => $input['fecha_inicio'],
             'fecha_termino' => $input['fecha_termino'],
             'facturacion_mensual' => $input['facturacion_mensual'],
-            'monto_factible' => 2, //CALCULABLE
+            'monto_factible' => $monto_factible, //CALCULABLE
             //'categoria_id' => 1, 
-            'puntos_FM' => $input['puntos_FM'], //Verrificar cálculo
+            'puntos_FM' => $puntos_FM, //Verrificar cálculo
             'dotacion' => $input['dotacion'],
-            'puntos_DOT' => $input['puntos_DOT'], //Verrificar cálculo
+            'puntos_DOT' => $puntos_DOT, //Verrificar cálculo
             'interferencia_ops' => $input['interferencia_ops'],
-            'puntos_interf' => 3, //Verrificar cálculo
+            'puntos_interf' => $puntos_interf, //Verrificar cálculo
             'duracion' => $input['duracion'],
-            'puntos_duracion' => 1, //calculable
+            'puntos_duracion' => $puntos_duracion, //calculable
             'tipo_contrato_id' => $input['tipo_contrato_id'],
-            'puntos_tipo_contrato' => $input['puntos_tipo_contrato'], 
-            'porcentaje_1' => 2, //CALCULABLE
+            'puntos_tipo_contrato' => $puntos_tipo_contrato, //calculable
+            'porcentaje_1' => $porcentaje_1, //CALCULABLE
             'riesgo_negocio' => $input['riesgo_negocio'], 
             'criticidad_ops' => $input['criticidad_ops'], 
             'criticidad_personas' => $input['criticidad_personas'], 
             'cantidad_areas_invo' => $input['cantidad_areas_invo'], 
-            'porcentaje_2' => 2, //CALCULABLE 
+            'porcentaje_2' => $porcentaje_2, //CALCULABLE 
             'transversal' => $input['transversal'], 
             'accion_id' => $input['accion_id'], 
             'kpi' => $input['kpi'], //boolean
