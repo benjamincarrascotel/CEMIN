@@ -239,6 +239,39 @@ class ContratoController extends Controller
 
     }
 
+
+    // Vistas de Power BI
+
+    public function detalles()
+    {
+        return view('contrato.detalles');
+    }
+
+    public function plan()
+    {
+        return view('contrato.plan');
+    }
+
+    public function fechas()
+    {
+        return view('contrato.fechas');
+    }
+
+    public function cronograma()
+    {
+        return view('contrato.cronograma');
+    }
+
+    public function kpis()
+    {
+        return view('contrato.kpis');
+    }
+
+
+
+
+
+
     /**
      * Display the specified resource.
      *
