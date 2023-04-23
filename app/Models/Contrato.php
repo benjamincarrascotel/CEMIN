@@ -37,6 +37,9 @@ class Contrato extends Model
     public function admin_contrato(){
         return $this->belongsTo('App\Models\AdminContrato','admin_contrato_id','id');
     }
+    public function abastecimiento_user(){
+        return $this->belongsTo('App\Models\AbastecimientoUser','abastecimiento_user_id','id');
+    }
     public function tipo_contrato(){
         return $this->belongsTo('App\Models\TipoContrato','tipo_contrato_id','id');
     }

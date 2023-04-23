@@ -54,7 +54,7 @@
 
                     <td>
                         <div class="btn-group" role="group">
-                            <a class="btn btn-primary" href="" title="Mostrar Contrato"><i class='fa fa-info'></i></a>
+                            <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='fa fa-info'></i></a>
                             <a class="btn btn-danger" href="" onclick="alert('Esta acción elimina el contrato.\nEs Irreversible')" title="Cancelar Contrato"><i class='fa fa-ban'></i></a>
                             
     

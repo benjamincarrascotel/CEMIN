@@ -18,6 +18,21 @@ class Insertion extends Seeder
     {
 
         // ADMIN DE CONTRATOS
+        if(DB::table('abastecimiento_users')->count() == 0){
+            DB::table('abastecimiento_users')->insert([
+                ['nombre' => 'AChacón'],
+                ['nombre' => 'AGranfer'],
+                ['nombre' => 'AFernandez'],
+                ['nombre' => 'ANTorres'],
+                ['nombre' => 'JBeltran'],
+                ['nombre' => 'MGuzman '],
+                ['nombre' => 'SHerrera'],
+                ['nombre' => 'YGarcia'],
+
+            ]);
+        }
+
+        // ADMIN DE CONTRATOS
         if(DB::table('admin_contratos')->count() == 0){
             DB::table('admin_contratos')->insert([
                 ['nombre' => 'Abastecimiento'],

@@ -202,7 +202,7 @@ class ContratoController extends Controller
             'abastecimiento_user_id' => $input['abastecimiento_user_id'],
             'descripcion' => $input['descripcion'],
             'estado_contrato' => 0, //"Estado dummy"
-            'estatus' => 0, //"SEMAFORO"
+            'estatus' => "Solicitud de base", //"SEMAFORO"
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -286,7 +286,9 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        //
+        $contrato = Contrato::where('id', $id)
+            ->first();
+        return view('contrato.show')->with('contrato', $contrato);
     }
 
     /**

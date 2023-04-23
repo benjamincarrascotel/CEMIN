@@ -16,6 +16,9 @@ class DetalleContrato extends Model
     public function tipo_contrato(){
         return $this->belongsTo('App\Models\TipoContrato','tipo_contrato_id','id');
     }
+    public function accion_contrato(){
+        return $this->belongsTo('App\Models\AccionContrato','accion_id','id');
+    }
 
     /**
      * The attributes that are mass assignable.
