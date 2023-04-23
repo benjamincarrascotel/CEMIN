@@ -11,8 +11,7 @@ class HomeController extends Controller
         // dd(auth()->user()->jefe_local);        
 
         if(auth()->user()->admin && auth()->user()->superadmin){
-            
-            return view('superadmin.index');
+            return redirect()->route('superadmin.index');
         }
         else if(auth()->user()->admin)
             return redirect()->route('admin.index');
