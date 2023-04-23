@@ -124,7 +124,13 @@ class ContratoController extends Controller
             $puntos_duracion = 0;
         }
         // PUNTOS TIPO DE CONTRATO
-        $tipo = TipoContrato::where('id',$input['tipo_contrato_id'])->first()->nombre_tipo;
+        $tipo = TipoContrato::where('id',$input['tipo_contrato_id'])->first();
+        if(isset($tipo->nombre_tipo)){
+            $tipo = $tipo->nombre_tipo;
+        }else{
+            $tipo = null;
+        }
+
         if($tipo == 'Operación'){
             $puntos_tipo_contrato = 10;
         }else if($tipo == 'Inversión'){
