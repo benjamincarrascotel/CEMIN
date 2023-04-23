@@ -1,6 +1,6 @@
 <!-- Clasificaciones -->
 <div class="mb-3 row">
-    <label for="clasificacion_id" class="col-sm-2 col-form-label">Clasificacion</label>
+    <label for="clasificacion_id" class="col-sm-2 col-form-label">Clasificación</label>
     <div class="col-sm-10">
         <select class="form-control block mt-1 w-full" name="clasificacion_id">        
             <option value="0" >                
@@ -139,7 +139,7 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="contrato_sap" class="col-sm-2 col-form-label">Contrato SAP </label>
+    <label for="contrato_sap" class="col-sm-2 col-form-label">Contrato SAP</label>
     <div class="col-sm-10">
         <input name="contrato_sap" id='contrato_sap' type="text" class="form-control"  required>
     </div>
@@ -179,53 +179,53 @@
     </div>
 </div>
 
-<!--TODO cambiar formato de entrada a campo de texto grande -->
 <div class="mb-3 row">
-    <label for="descripcion" class="col-sm-2 col-form-label">Descripcion </label>
+    <label for="descripcion" class="col-sm-2 col-form-label">Descripción </label>
     <div class="col-sm-10">
-        <input name="descripcion" id='descripcion' type="text" class="form-control"  required>
+        <textarea class="form-control mb-4 " name='descripcion' id="descripcion" placeholder="Descripción del contrato" required rows="3" maxlength="249" ></textarea>
+
     </div>
 </div>
 
 <!-- Detalle del contrato -->
 
 <div class="mb-3 row">
-    <label for="gasto_anual" class="col-sm-2 col-form-label">Gasto Anual (Integer) </label>
+    <label for="gasto_anual" class="col-sm-2 col-form-label">Gasto Anual</label>
     <div class="col-sm-10">
         <input name="gasto_anual" id='gasto_anual' type="text" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
-    <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha Inicio (selector de calendario) </label>
+    <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha Inicio</label>
     <div class="col-sm-10">
         <input name="fecha_inicio" id='fecha_inicio' type="date" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
-    <label for="fecha_termino" class="col-sm-2 col-form-label">Fecha Termino (selector de calendario) </label>
+    <label for="fecha_termino" class="col-sm-2 col-form-label">Fecha Termino</label>
     <div class="col-sm-10">
         <input name="fecha_termino" id='fecha_termino' type="date" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
-    <label for="facturacion_mensual" class="col-sm-2 col-form-label">Facturacion Mensual </label>
+    <label for="facturacion_mensual" class="col-sm-2 col-form-label">Facturacion Mensual</label>
     <div class="col-sm-10">
         <input name="facturacion_mensual" id='facturacion_mensual' type="text" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
-    <label for="monto_factible" class="col-sm-2 col-form-label">Monto Factible </label>
+    <label for="monto_factible" class="col-sm-2 col-form-label">Monto Factible</label>
     <div class="col-sm-10">
         <input name="monto_factible" id='monto_factible' type="text" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
-    <label for="puntos_FM" class="col-sm-2 col-form-label">Puntos FM (Integer) </label>
+    <label for="puntos_FM" class="col-sm-2 col-form-label">Puntos FM</label>
     <div class="col-sm-10">
         <select class="form-control block mt-1 w-full" name="puntos_FM" id="puntos_FM" > 
             <option value="0" type="integer">                
@@ -251,7 +251,7 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="dotacion" class="col-sm-2 col-form-label">Dotacion (Integer) </label>
+    <label for="dotacion" class="col-sm-2 col-form-label">Dotación</label>
     <div class="col-sm-10">
         <input name="dotacion" id='dotacion' type="integer" class="form-control"  required>
     </div>
@@ -279,7 +279,7 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="duracion" class="col-sm-2 col-form-label">Duracion (Integer) </label>
+    <label for="duracion" class="col-sm-2 col-form-label">Duración</label>
     <div class="col-sm-10">
         <input name="duracion" id='duracion' type="text" class="form-control"  required>
     </div>

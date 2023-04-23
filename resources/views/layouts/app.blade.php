@@ -18,16 +18,8 @@
 
 
 {{-- DATATABLES --}}
-<!--
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css" rel="stylesheet"/>
 <script type="text/javascript" src="https:////cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
--->
-{{-- <script src="{{asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
-<script src="{{asset('assets/plugins/formwizard/fromwizard.js')}}"></script> --}}
-
-{{-- <script src="{{asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')}}"></script>
-<script src="{{asset('assets/js/form-wizard.js')}}"></script>
-<script src="{{asset('assets/js/form-wizard2.js')}}"></script> --}}
 
 {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> --}}
 

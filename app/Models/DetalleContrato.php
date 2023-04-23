@@ -13,6 +13,10 @@ class DetalleContrato extends Model
 
     public $table = 'detalle_contratos';
 
+    public function tipo_contrato(){
+        return $this->belongsTo('App\Models\TipoContrato','tipo_contrato_id','id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

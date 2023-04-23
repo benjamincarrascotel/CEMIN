@@ -34,11 +34,8 @@ class Contrato extends Model
     public function proveedor(){
         return $this->belongsTo('App\Models\Proveedor','proveedor_id','id');
     }
-    public function abastecimiento_user(){
-        return $this->belongsTo('App\Models\AbastecimientoUser','abastecimiento_user_id','id');
-    }
-    public function estado_contrato(){
-        return $this->belongsTo('App\Models\EstadoContrato','estado_contrato_id','id');
+    public function admin_contrato(){
+        return $this->belongsTo('App\Models\AdminContrato','admin_contrato_id','id');
     }
     public function tipo_contrato(){
         return $this->belongsTo('App\Models\TipoContrato','tipo_contrato_id','id');
@@ -46,8 +43,8 @@ class Contrato extends Model
     public function detalle_contrato(){
         return $this->hasMany('App\Models\DetalleContrato','contrato_id','id');
     }
-    public function trazabilidad_contrato(){
-        return $this->hasMany('App\Models\TrazabilidadContrato','contrato_id','id');
+    public function fase_contrato(){
+        return $this->hasMany('App\Models\FaseContrato','contrato_id','id');
     }
 
     /**
