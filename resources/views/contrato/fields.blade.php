@@ -204,11 +204,61 @@
 </div>
 
 <div class="mb-3 row">
+    <label for="duracion" class="col-sm-2 col-form-label">Duración</label>
+    <div class="col-sm-10">
+        <select class="form-control block mt-1 w-full" name="duracion" id="duracion" > 
+            <option value="0" type="integer">                
+                Seleccione alguna de las opciones                 
+            </option>                  
+            <option value="1" type="integer">                
+                1 [Mes]                 
+            </option>
+            <option value="2" type="integer">                
+                2 [Meses]                 
+            </option>
+            <option value="3" type="integer">                
+                3 [Meses]                 
+            </option>
+            <option value="4" type="integer">                
+                4 [Meses]                 
+            </option>   
+            <option value="5" type="integer">                
+                5 [Meses]                
+            </option>
+            <option value="6" type="integer">                
+                6 [Meses]                 
+            </option> 
+            <option value="7" type="integer">                
+                7 [Meses]              
+            </option>
+            <option value="8" type="integer">                
+                8 [Meses]              
+            </option>
+            <option value="9" type="integer">                
+                9 [Meses]              
+            </option>
+            <option value="10" type="integer">                
+                10 [Meses]              
+            </option>
+            <option value="11" type="integer">                
+                11 [Meses]              
+            </option>
+            <option value="12" type="integer">                
+                12 [Meses]              
+            </option>             
+        </select>
+    </div>
+</div>
+
+
+<!--
+<div class="mb-3 row">
     <label for="fecha_termino" class="col-sm-2 col-form-label">Fecha Termino</label>
     <div class="col-sm-10">
         <input name="fecha_termino" id='fecha_termino' type="date" class="form-control" style="width:10vw" required>
     </div>
 </div>
+-->
 
 <div class="mb-3 row">
     <label for="facturacion_mensual" class="col-sm-2 col-form-label">Facturacion Mensual</label>
@@ -275,13 +325,6 @@
                 Baja                 
             </option>                         
         </select>
-    </div>
-</div>
-
-<div class="mb-3 row">
-    <label for="duracion" class="col-sm-2 col-form-label">Duración</label>
-    <div class="col-sm-10">
-        <input name="duracion" id='duracion' type="text" class="form-control"  required>
     </div>
 </div>
 

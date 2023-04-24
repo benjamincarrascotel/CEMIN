@@ -61,8 +61,8 @@ class DetalleContrato extends Model
      */
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
-        'fecha_inicio' => 'datetime:Y-m-d H:i:s',
-        'fecha_termino' => 'datetime:Y-m-d H:i:s',
+        'fecha_inicio' => 'datetime:Y-m-d',
+        'fecha_termino' => 'datetime:Y-m-d',
 
 
         // 'fecha' => 'datetime:Y-m-d H:i:s'

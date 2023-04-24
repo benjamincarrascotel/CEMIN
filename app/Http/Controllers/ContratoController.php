@@ -14,6 +14,7 @@ use App\Models\ServicioBien;
 use App\Models\Proveedor;
 use App\Models\Admin;
 use App\Models\AdminContrato;
+use App\Models\AbastecimientoUser;
 use App\Models\AccionContrato;
 use App\Models\TipoContrato;
 use App\Models\FaseContrato;
@@ -58,7 +59,7 @@ class ContratoController extends Controller
         //Admin Contratos
         $admin_contratos = AdminContrato::pluck('nombre', 'id');
         //Abastecimiento Users
-        $abastecimiento_users = Admin::pluck('email', 'id');
+        $abastecimiento_users = AbastecimientoUser::pluck('nombre', 'id');
         //Acciones
         $acciones = AccionContrato::pluck('nombre_accion', 'id');
         //Tipo de Contratos
@@ -85,6 +86,11 @@ class ContratoController extends Controller
         if(!isset($input['polinomio'])){
             $input['polinomio'] = null;
         }
+
+        //Cálculo de fecha termino
+
+        $fecha_inicio = Carbon::parse(($input['fecha_inicio']))->format('d-m-Y');
+        $fecha_termino = Carbon::parse(($input['fecha_inicio']))->addMonth($input['duracion'])->format('d-m-Y');
 
         // Cálculo de puntos y demaces
 
@@ -202,7 +208,7 @@ class ContratoController extends Controller
             'abastecimiento_user_id' => $input['abastecimiento_user_id'],
             'descripcion' => $input['descripcion'],
             'estado_contrato' => 0, //"Estado dummy"
-            'estatus' => "Solicitud de base", //"SEMAFORO"
+            'estatus' => 0, //"SEMAFORO"
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -214,8 +220,8 @@ class ContratoController extends Controller
         $detalle_contrato = DetalleContrato::create([
             'contrato_id' => $contrato->id,
             'gasto_anual' => $input['gasto_anual'],
-            'fecha_inicio' => $input['fecha_inicio'],
-            'fecha_termino' => $input['fecha_termino'],
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_termino' => $fecha_termino,
             'facturacion_mensual' => $input['facturacion_mensual'],
             'monto_factible' => $monto_factible, //CALCULABLE
             //'categoria_id' => 1, 

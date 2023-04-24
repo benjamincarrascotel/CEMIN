@@ -72,10 +72,13 @@
 
 
     @section('down_cards')
+    <!-- Botones
     <div class="row">
         <div class="col">
             <a href="" class='btn btn-primary'>Opción 1</a>
         </div>
     </div>
+    -->
     @endsection
+
 @endsection

@@ -5,7 +5,7 @@
     @section('title')
     &nbsp;
     <h3>
-        Contrato N° {{$contrato->id ?? ''}}
+        Contrato ID: {{$contrato->id}} - Código SAP N°{{$contrato->contrato_sap ?? ''}} - Proveedor "{{$contrato->proveedor->nombre}}"
     </h3>
     &nbsp;
     @endsection
@@ -30,7 +30,7 @@
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs shop-des-tabs">
                                         <li class=""><a href="#tab1" class="active" data-bs-toggle="tab">Description General</a></li>
-                                        <li><a href="#tab2" data-bs-toggle="tab">Detalles</a></li>
+                                        <li class=""><a href="#tab2" data-bs-toggle="tab">Detalles</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,144 +93,155 @@
                                             
                                         </ul>
                                     </div>
-                                    <div class="tab-pane  " id="tab2">
+                                    <div class="tab-pane" id="tab2">
                                         <ul>
                                             <li class="row mb-5">
                                                 <div class="col-sm-3 text-muted">
                                                     Gasto anual
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-9">
                                                     {{$contrato->detalle_contrato[0]->gasto_anual}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                            </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Fecha Inicio
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    {{$contrato->detalle_contrato[0]->fecha_inicio}}
+                                                <div class="col-sm-9">
+                                                    {{Carbon\Carbon::parse($contrato->detalle_contrato[0]->fecha_inicio)->format('d-m-Y')}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Fecha Término
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    {{$contrato->detalle_contrato[0]->fecha_termino}}
+                                                    {{Carbon\Carbon::parse($contrato->detalle_contrato[0]->fecha_termino)->format('d-m-Y')}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Facturación Mensual
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->facturacion_mensual}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Monto Factible
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->monto_factible}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Interferencia Ops
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->interferencia_ops}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Duración
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    {{$contrato->detalle_contrato[0]->duracion}}
+                                                    @if($contrato->detalle_contrato[0]->duracion == 1)
+                                                        {{$contrato->detalle_contrato[0]->duracion}} [Mes]
+                                                    @else 
+                                                        {{$contrato->detalle_contrato[0]->duracion}} [Meses]
+                                                    @endif
+
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Porcentaje 1
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->porcentaje_1 *100}}%
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Riesgo Negocio
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->riesgo_negocio}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Criticidad Ops
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->criticidad_ops}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Criticidad Personas
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->criticidad_personas}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Cantidad Áreas Involucradas
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->cantidad_areas_invo}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Procentaje 2
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->porcentaje_2*100}}%
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Transversal
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->transversal}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Acción
                                                 </div>
                                                 <div class="col-sm-3">
                                                     {{$contrato->detalle_contrato[0]->accion_contrato->nombre_accion}}
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     KPI
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    {{$contrato->detalle_contrato[0]->kpi}}
+                                                    @if($contrato->detalle_contrato[0]->kpi)
+                                                        SI
+                                                    @else
+                                                        NO
+                                                    @endif
                                                 </div>
                                             </li>
-                                            <li class="row mb-5 text-muted">
-                                                <div class="col-sm-3">
+                                            <li class="row mb-5">
+                                                <div class="col-sm-3 text-muted">
                                                     Polinomio
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    {{$contrato->detalle_contrato[0]->polinomio}}
+                                                    @if($contrato->detalle_contrato[0]->polinomio)
+                                                        SI
+                                                    @else
+                                                        NO
+                                                    @endif
                                                 </div>
                                             </li>
 
