@@ -199,14 +199,14 @@
 <div class="mb-3 row">
     <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha Inicio</label>
     <div class="col-sm-10">
-        <input name="fecha_inicio" id='fecha_inicio' type="date" class="form-control"  required>
+        <input name="fecha_inicio" id='fecha_inicio' type="date" class="form-control" style="width:10vw"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
     <label for="fecha_termino" class="col-sm-2 col-form-label">Fecha Termino</label>
     <div class="col-sm-10">
-        <input name="fecha_termino" id='fecha_termino' type="date" class="form-control"  required>
+        <input name="fecha_termino" id='fecha_termino' type="date" class="form-control" style="width:10vw" required>
     </div>
 </div>
 

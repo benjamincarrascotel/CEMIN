@@ -19,20 +19,22 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/admin', 'AdminController@index')->name('admin.index');
-    Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin.index');
+    Route::get('/superadmin', 'SuperAdminController@index')->middleware(['superadmin'])->name('superadmin.index');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    //CONTRATO
-    Route::get('/contrato/create', 'ContratoController@create')->name('contrato.create');
-    Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
+    Route::group(['middleware' => ['superadmin']], function () {
+        //CONTRATO
+        Route::get('/contrato/create', 'ContratoController@create')->name('contrato.create');
+        Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
 
-    Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
-    Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
-    Route::get('/contrato/fechas', 'ContratoController@fechas')->name('contrato.fechas');
-    Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
-    Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
-    Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
-
+        Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
+        Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
+        Route::get('/contrato/fechas', 'ContratoController@fechas')->name('contrato.fechas');
+        Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
+        Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
+        Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
+    });
+    
 
 
 

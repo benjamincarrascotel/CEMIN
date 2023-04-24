@@ -1,10 +1,10 @@
 				<!--aside open-->
 				<aside class="app-sidebar">
 					<div class="app-sidebar__logo">
-						@if(auth()->user()->admin)
-							<a class="header-brand" href="{{route('admin.index')}}">
-						@elseif(auth()->user()->superadmin)
+						@if(auth()->user()->superadmin )
 							<a class="header-brand" href="{{route('superadmin.index')}}">
+						@elseif(auth()->user()->admin)
+							<a class="header-brand" href="{{route('admin.index')}}">
 						@endif
 							<img src="{{asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" alt="Azea logo">
 							<img src="{{asset('assets/images/brand/logo1.png')}}" class="header-brand-img dark-logo" alt="Azea logo">

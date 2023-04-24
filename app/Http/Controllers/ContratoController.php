@@ -14,7 +14,7 @@ use App\Models\ServicioBien;
 use App\Models\Proveedor;
 use App\Models\Admin;
 use App\Models\AdminContrato;
-use App\Models\Accion;
+use App\Models\AccionContrato;
 use App\Models\TipoContrato;
 use App\Models\FaseContrato;
 
@@ -60,7 +60,7 @@ class ContratoController extends Controller
         //Abastecimiento Users
         $abastecimiento_users = Admin::pluck('email', 'id');
         //Acciones
-        $acciones = Accion::pluck('nombre_accion', 'id');
+        $acciones = AccionContrato::pluck('nombre_accion', 'id');
         //Tipo de Contratos
         $tipo_contratos = TipoContrato::pluck('nombre_tipo', 'id');
 
