@@ -26,20 +26,16 @@ Route::group(['middleware' => ['auth']], function () {
         //CONTRATO
         Route::get('/contrato/create', 'ContratoController@create')->name('contrato.create');
         Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
+        Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
 
+        //DASHBOARD
         Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
         Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
         Route::get('/contrato/fechas', 'ContratoController@fechas')->name('contrato.fechas');
         Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
         Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
-        Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
     });
     
-
-
-
-
-
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('usuarios', 'UserController')->only([

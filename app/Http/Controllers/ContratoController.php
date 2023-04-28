@@ -43,6 +43,7 @@ class ContratoController extends Controller
      */
     public function create()
     {
+
         $selectedID = 0;
         //Clasificaciones
         $clasificaciones = Clasificacion::pluck('nombre_clasificacion', 'id');
@@ -213,7 +214,7 @@ class ContratoController extends Controller
 
         $fase_contrato = FaseContrato::create([
             'contrato_id' => $contrato->id,
-            'solicitud_de_base' => Carbon::now(),
+            'solicitud_de_base' => Carbon::now(), //TODO asignar a columna "creado"
             'actual' => 0,
         ]);
 
@@ -246,6 +247,10 @@ class ContratoController extends Controller
             'polinomio' => $input['polinomio'], //boolean
         ]);
 
+
+        flash('Contrato creado con éxito', 'success');
+
+        
         return redirect()->intended('/superadmin');
 
 
