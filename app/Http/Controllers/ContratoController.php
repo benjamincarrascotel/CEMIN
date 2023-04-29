@@ -297,9 +297,11 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        $contrato = Contrato::where('id', $id)
-            ->first();
-        return view('contrato.show')->with('contrato', $contrato);
+        $contrato = Contrato::where('id', $id)->first();
+        $fase_actual = $contrato->estado_contrato;
+        return view('contrato.show')
+            ->with('fase_actual', $fase_actual)
+            ->with('contrato', $contrato);
     }
 
     /**
@@ -320,9 +322,11 @@ class ContratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function fase_update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        flash('Cambio de fase en desarrollo', 'success');
+        return redirect()->route('contrato.show', $id);
     }
 
     /**

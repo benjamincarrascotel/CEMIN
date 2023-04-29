@@ -1036,16 +1036,19 @@
                 </div>
             </div>
         </div>
+
+        <form class="container-fluid" action="{!! route('fase.update', $contrato->id) !!}" method="post">
+        @csrf
+        @include('contrato.cambio_fase_fields')
+        <input type="submit" class="btn btn-primary" value="Cambiar de Fase" />
+        </form>
+
         @overwrite
         @include('layouts.card')
     @endpush
 
     @section('down_cards')
-    <div class="row">
-        <div class="col">
-            <a href="" class='btn btn-primary'>Pasar a Fase: "Envio bases primera revisión"</a>
-        </div>
-    </div>
+    
     @endsection
 
 @endsection

@@ -22,6 +22,7 @@ class FaseContrato extends Model
     protected $fillable = [
         'contrato_id',
 
+        //TODO agregar fase creada a DB
         'solicitud_de_base', //0
         'envio_bases_primera_revision', //1
         'primera_revision_bases_por_abastecimiento', //2

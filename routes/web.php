@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
         Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
 
+        Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
+
+
         //DASHBOARD
         Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
         Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
