@@ -141,7 +141,7 @@
 <div class="mb-3 row">
     <label for="contrato_sap" class="col-sm-2 col-form-label">Contrato SAP</label>
     <div class="col-sm-10">
-        <input name="contrato_sap" id='contrato_sap' type="number" min="0" class="form-control"  required>
+        <input name="contrato_sap" id='contrato_sap' type="number" min="0" oninput="validity.valid||(value='');" class="form-control"  required>
     </div>
 </div>
 
@@ -192,7 +192,7 @@
 <div class="mb-3 row">
     <label for="gasto_anual" class="col-sm-2 col-form-label">Gasto Anual</label>
     <div class="col-sm-10">
-        <input name="gasto_anual" id='gasto_anual' type="number" min="0" class="form-control"  required>
+        <input name="gasto_anual" id='gasto_anual' type="number" min="0" oninput="validity.valid||(value='');" class="form-control"  required>
     </div>
 </div>
 
@@ -263,14 +263,14 @@
 <div class="mb-3 row">
     <label for="facturacion_mensual" class="col-sm-2 col-form-label">Facturacion Mensual</label>
     <div class="col-sm-10">
-        <input name="facturacion_mensual" id='facturacion_mensual' type="number" min="0" class="form-control"  required>
+        <input name="facturacion_mensual" id='facturacion_mensual' type="number" min="0" oninput="validity.valid||(value='');" class="form-control"  required>
     </div>
 </div>
 
 <div class="mb-3 row">
     <label for="monto_factible" class="col-sm-2 col-form-label">Monto Factible</label>
     <div class="col-sm-10">
-        <input name="monto_factible" id='monto_factible' type="number" min="0" class="form-control"  required>
+        <input name="monto_factible" id='monto_factible' type="number" min="0" oninput="validity.valid||(value='');" class="form-control"  required>
     </div>
 </div>
 
@@ -303,7 +303,7 @@
 <div class="mb-3 row">
     <label for="dotacion" class="col-sm-2 col-form-label">Dotación</label>
     <div class="col-sm-10">
-        <input name="dotacion" id='dotacion' type="number" min="0" class="form-control"  required>
+        <input name="dotacion" id='dotacion' type="number" min="0" oninput="validity.valid||(value='');" class="form-control"  required>
     </div>
 </div>
 
