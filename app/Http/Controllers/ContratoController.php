@@ -78,8 +78,19 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO incorporar validator
         $input = $request->all();
+        $validator = Validator::make($input, [
+            'contrato_sap' => 'required',
+            'descripcion' => 'required|string',
+            'gasto_anual' => 'required',
+            'facturacion_mensual' => 'required',
+            'monto_factible' => 'required',
+            'dotacion' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         if(!isset($input['kpi'])){
             $input['kpi'] = null;

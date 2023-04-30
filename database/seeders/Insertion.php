@@ -17,7 +17,7 @@ class Insertion extends Seeder
     public function run()
     {
 
-        // ADMIN DE CONTRATOS
+        // ABASTECIMIENTO USERS
         if(DB::table('abastecimiento_users')->count() == 0){
             DB::table('abastecimiento_users')->insert([
                 ['nombre' => 'AChacón'],
