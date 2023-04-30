@@ -65,7 +65,7 @@ class Contrato extends Model
         'categoria_id',
         'proveedor_id',
         'contrato_sap',
-        'admin_contrato_id', //TODO cambiar a admin.contrato
+        'admin_contrato_id', 
         'usuario',
         'abastecimiento_user_id',
         'descripcion',

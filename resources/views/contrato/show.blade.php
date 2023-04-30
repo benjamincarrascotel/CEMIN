@@ -288,14 +288,14 @@
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: {{Carbon\Carbon::parse($contrato->detalle_contrato[0]->fecha_inicio)->format('d-m-Y')}}
+                                        Fecha: <br> {{Carbon\Carbon::parse($contrato->detalle_contrato[0]->fecha_inicio)->format('d-m-Y')}}
                                         <div class="MonthYear">
-                                            Hora: {{Carbon\Carbon::parse('2023-04-24 18:49:08')->format('H:i:s')}}
+                                            Hora: None
                                         </div>
                                     </div>
                                     <!-- Fecha -->
@@ -303,7 +303,7 @@
 
                                 </div>
                                 <div class="eventTitle mt-1">
-                                    Creada
+                                    Creado
                                 </div>
                             </div>
                             <div class="eventAuthor">
@@ -325,15 +325,89 @@
                         <!-- Fase -->
 
                         <!-- AHORA -->
+                        @if($fase_actual == 0)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
+                        <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
                             Sorry, your browser does not support inline SVG.
                         </svg>
-                        <div class="now">
-                            AHORA
-                        </div>  
-                        <!-- AHORA -->
+                        <!-- Linea -->
 
+
+                        <!-- Fase -->
+                        <div class="event2">
+                            <div class="event2Bubble">
+                                <div class="eventTime">
+
+                                    <div class="DayDigit">
+                                        @if($fases_contrato->solicitud_de_base)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
+                                    </div>
+
+                                    <!-- Fecha -->
+                                    <div class="Day">
+                                        @if($fases_contrato->solicitud_de_base)
+                                            Fecha:  <br>  {{Carbon\Carbon::parse($fases_contrato->solicitud_de_base)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->solicitud_de_base)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                        
+                                        @endif
+                                    </div>
+                                    <!-- Fecha -->
+
+
+                                </div>
+                                <div class="eventTitle mt-1">
+                                    Solicitud de base
+                                </div>
+                            </div>
+                            <div class="eventAuthor">
+                                
+                            </div>
+
+                            <!-- Punto -->
+                            <svg height="20" width="20">
+                                <circle cx="10" cy="11" r="5" fill="#004165" />
+                            </svg>
+                            <!-- Punto -->
+
+                            <div class="time">
+                                <!--
+                                9 : 27 AM
+                                -->
+                            </div>
+                        </div>
+                        <!-- Fase -->
+
+                        <!-- AHORA -->
+                        @if($fase_actual == 1)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
 
                         <!-- Linea -->
                         <svg height="5" width="150">
@@ -343,26 +417,37 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->envio_bases_primera_revision)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->envio_bases_primera_revision)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->envio_bases_primera_revision)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->envio_bases_primera_revision)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                       
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
 
                                 </div>
-                                <div class="eventTitle mt-1">
+                                <div class="eventTitle mt-1 ">
                                     Envio bases primera revision
                                 </div>
                             </div>
@@ -384,6 +469,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 2)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -392,20 +489,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->primera_revision_bases_por_abastecimiento)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->primera_revision_bases_por_abastecimiento)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->primera_revision_bases_por_abastecimiento)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->primera_revision_bases_por_abastecimiento)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                      
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -433,6 +541,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 3)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -441,20 +561,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->envio_bases_segunda_revision)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->envio_bases_segunda_revision)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->envio_bases_segunda_revision)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->envio_bases_segunda_revision)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                        
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -482,6 +613,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 4)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -490,20 +633,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->segunda_revision_bases_por_abastecimiento)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->segunda_revision_bases_por_abastecimiento)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->segunda_revision_bases_por_abastecimiento)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->segunda_revision_bases_por_abastecimiento)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                         
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -531,6 +685,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 5)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -539,20 +705,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->recopilacion_de_informacion)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->recopilacion_de_informacion)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->recopilacion_de_informacion)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->recopilacion_de_informacion)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                          
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -580,6 +757,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 6)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -588,20 +777,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->invitacion_a_oferentes)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->invitacion_a_oferentes)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->invitacion_a_oferentes)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->invitacion_a_oferentes)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -629,6 +829,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 7)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -637,20 +849,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->visita_a_terreno)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->visita_a_terreno)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->visita_a_terreno)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->visita_a_terreno)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -678,6 +901,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 8)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -686,20 +921,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->preguntas_y_consultas_proponente)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->preguntas_y_consultas_proponente)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->preguntas_y_consultas_proponente)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->preguntas_y_consultas_proponente)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -727,6 +973,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 9)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -735,20 +993,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->respuestas_del_mandante)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->respuestas_del_mandante)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->respuestas_del_mandante)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->respuestas_del_mandante)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -776,6 +1045,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 10)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -784,20 +1065,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->recepcion_de_ofertas_tecnicas_economicas)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->recepcion_de_ofertas_tecnicas_economicas)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->recepcion_de_ofertas_tecnicas_economicas)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->recepcion_de_ofertas_tecnicas_economicas)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -825,6 +1117,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 11)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -833,20 +1137,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->evaluacion_ofertas_tecnicas)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->evaluacion_ofertas_tecnicas)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->evaluacion_ofertas_tecnicas)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->evaluacion_ofertas_tecnicas)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -874,6 +1189,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 12)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -882,20 +1209,31 @@
                         <!-- Linea -->
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->evaluacion_ofertas_economicas)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->evaluacion_ofertas_economicas)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->evaluacion_ofertas_economicas)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->evaluacion_ofertas_economicas)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -923,6 +1261,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 13)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -932,20 +1282,31 @@
 
 
                         <!-- Fase -->
-                        <div class="event2">
-                            <div class="event2Bubble">
+                        <div class="event1">
+                            <div class="event1Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->comite_de_inversiones)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->comite_de_inversiones)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->comite_de_inversiones)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->comite_de_inversiones)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -973,6 +1334,18 @@
                         </div>
                         <!-- Fase -->
 
+                        <!-- AHORA -->
+                        @if($fase_actual == 14)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                AHORA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
+
                         <!-- Linea -->
                         <svg height="5" width="150">
                             <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
@@ -982,20 +1355,31 @@
 
 
                         <!-- Fase -->
-                        <div class="event1">
-                            <div class="event1Bubble">
+                        <div class="event2">
+                            <div class="event2Bubble">
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="22" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>                                    
+                                        @if($fases_contrato->adjudicacion)
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        @else
+                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                        @endif
                                     </div>
 
                                     <!-- Fecha -->
                                     <div class="Day">
-                                        Fecha: dd-mm-aaaa
-                                        <div class="MonthYear">
-                                            Hora: hh:mm:ss
-                                        </div>
+                                        @if($fases_contrato->adjudicacion)
+                                            Fecha: <br> {{Carbon\Carbon::parse($fases_contrato->adjudicacion)->format('d-m-Y')}}
+                                            <div class="MonthYear">
+                                                Hora: {{Carbon\Carbon::parse($fases_contrato->adjudicacion)->format('H:i:s')}}
+                                            </div>                                        
+                                        @else
+                                            Fecha: None
+                                            <div class="MonthYear">
+                                                Hora: None
+                                            </div>                                           
+                                        @endif
                                     </div>
                                     <!-- Fecha -->
 
@@ -1023,12 +1407,17 @@
                         </div>
                         <!-- Fase -->
 
-                        <!-- Linea -->
-                        <svg height="5" width="230">
-                            <line x1="0" y1="0" x2="0" y2="0" style="stroke:#004165;stroke-width:5" />
-                            Sorry, your browser does not support inline SVG.
-                        </svg>
-                        <!-- Linea -->
+                        <!-- AHORA -->
+                        @if($fase_actual == 15)
+                            <svg height="5" width="150">
+                                <line x1="0" y1="0" x2="200" y2="0" style="stroke:#004165;stroke-width:5" />
+                                Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <div class="now">
+                                TERMINADA
+                            </div>  
+                        @endif
+                        <!-- AHORA -->
                         
                       </div>
 
@@ -1040,7 +1429,6 @@
         <form class="container-fluid" action="{!! route('fase.update', $contrato->id) !!}" method="post">
         @csrf
         @include('contrato.cambio_fase_fields')
-        <input type="submit" class="btn btn-primary" value="Cambiar de Fase" />
         </form>
 
         @overwrite

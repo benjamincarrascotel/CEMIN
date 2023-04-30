@@ -214,7 +214,7 @@ class ContratoController extends Controller
 
         $fase_contrato = FaseContrato::create([
             'contrato_id' => $contrato->id,
-            'solicitud_de_base' => Carbon::now(), //TODO asignar a columna "creado"
+            'creado' => Carbon::now(),
             'actual' => 0,
         ]);
 
@@ -298,8 +298,11 @@ class ContratoController extends Controller
     public function show($id)
     {
         $contrato = Contrato::where('id', $id)->first();
+        $fases_contrato = $contrato->fase_contrato[0];
+        //dd($fases_contrato);
         $fase_actual = $contrato->estado_contrato;
         return view('contrato.show')
+            ->with('fases_contrato', $fases_contrato)
             ->with('fase_actual', $fase_actual)
             ->with('contrato', $contrato);
     }
@@ -324,8 +327,45 @@ class ContratoController extends Controller
      */
     public function fase_update(Request $request, $id)
     {
-        //dd($request->all());
-        flash('Cambio de fase en desarrollo', 'success');
+
+        $fases = collect([
+            'creado', //0
+            'solicitud_de_base', //1
+            'envio_bases_primera_revision', //2
+            'primera_revision_bases_por_abastecimiento', //3
+            'envio_bases_segunda_revision', //4
+            'segunda_revision_bases_por_abastecimiento', //5
+            'recopilacion_de_informacion', //6
+            'invitacion_a_oferentes', //7
+            'visita_a_terreno', //8
+            'preguntas_y_consultas_proponente', //9
+            'respuestas_del_mandante', //10
+            'recepcion_de_ofertas_tecnicas_economicas', //11
+            'evaluacion_ofertas_tecnicas', //12
+            'evaluacion_ofertas_economicas', //13
+            'comite_de_inversiones', //14
+            'adjudicacion', //15
+            'stand_by', //16
+            'adjudicacion_directa', //17
+        ]);
+
+        $input = $request->all();
+        $siguiente_fase_id = $input['siguiente_fase_id'];
+        $nombre_fase = $fases[$siguiente_fase_id];
+        $contrato = Contrato::where('id', $id)->first();
+
+
+        $fases_contrato = FaseContrato::where('contrato_id', $id)->first();
+        $fases_contrato[$nombre_fase] = Carbon::now();
+        $fases_contrato->save();
+
+        $contrato->estado_contrato = $siguiente_fase_id;
+        $contrato->estatus = $siguiente_fase_id; //TODO cambiar a string y guardar nombre de fase
+        $contrato->save();
+
+        
+        flash('Cambio de fase realizado con éxito', 'success');
+
         return redirect()->route('contrato.show', $id);
     }
 
