@@ -20,8 +20,10 @@ use App\Models\TipoContrato;
 use App\Models\FaseContrato;
 
 use Carbon\Carbon;
+use Validator;
 
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportExcel;
 
 
 class ContratoController extends Controller
@@ -299,6 +301,28 @@ class ContratoController extends Controller
 
 
 
+    public function excel(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input,[
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $rows = Excel::toArray(new ImportExcel(), $request->file('file'))[0];
+        $column_list = $rows[0];
+        dd($column_list);
+        //Definir estándar
+        //Ingresar los valores correspondientes de ejemplo
+
+
+        //TODO ingresar entradas como nuevos contratos a la DB
+
+        return back()->with('success', 'El archivo se ha subido correctamente.');
+    }
 
     /**
      * Display the specified resource.

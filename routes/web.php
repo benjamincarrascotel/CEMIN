@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/contrato/{id}', 'ContratoController@show')->name('contrato.show');
 
         Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
+        Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
 
 
         //DASHBOARD

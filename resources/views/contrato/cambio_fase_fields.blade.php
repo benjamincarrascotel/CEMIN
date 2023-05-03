@@ -98,9 +98,9 @@
 
         </div>
     @elseif($fase_actual == 16 && $fase_actual != 17)
-        <h1>Contrato en Fase: <b>STAND BY</b> </h1>
+        <h1>Contrato en Fase: <b>STAND BY   /    Fecha: {{Carbon\Carbon::parse($fases_contrato->stand_by)->format('d-m-Y')}}</b> </h1>
     @elseif($fase_actual == 17)
-        <h1>Contrato en Fase: <b>ADJUDICACION DIRECTA</b> </h1>
+        <h1>Contrato en Fase: <b>ADJUDICACION DIRECTA    /    Fecha: {{Carbon\Carbon::parse($fases_contrato->adjudicacion_directa)->format('d-m-Y')}}</b> </h1>
 
     @endif
 </div>
