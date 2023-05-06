@@ -52,6 +52,10 @@
                                             <div class="col-sm-9">{{$contrato->detalle_contrato[0]->tipo_contrato->nombre_tipo}}</div>
                                         </li>
                                         <li class="row mb-5">
+                                            <div class="col-sm-3 text-muted">Tipo de Renovación</div>
+                                            <div class="col-sm-9">{{$contrato->tipo_renovacion}}</div>
+                                        </li>
+                                        <li class="row mb-5">
                                             <div class="col-sm-3 text-muted">Faena</div>
                                             <div class="col-sm-9">{{$contrato->faena->nombre_faena}}</div>
                                         </li>

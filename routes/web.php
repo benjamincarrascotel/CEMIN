@@ -23,6 +23,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::group(['middleware' => ['superadmin']], function () {
+
+        //DASHBOARD
+        Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
+        Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
+        Route::get('/contrato/fechas', 'ContratoController@fechas')->name('contrato.fechas');
+        Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
+        Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
+
+        
         //CONTRATO
         Route::get('/contrato/create', 'ContratoController@create')->name('contrato.create');
         Route::post('/contrato/store', 'ContratoController@store')->name('contrato.store');
@@ -32,12 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
 
 
-        //DASHBOARD
-        Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
-        Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
-        Route::get('/contrato/fechas', 'ContratoController@fechas')->name('contrato.fechas');
-        Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
-        Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
+        
     });
     
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -51,6 +51,25 @@
     </div>
 </div>
 
+<!-- Tipo de Renovacion -->
+<div class="mb-3 row">
+    <label for="tipo_renovacion" class="col-sm-2 col-form-label">Tipo de renovación </label>
+    <div class="col-sm-10">
+        <select class="form-control block mt-1 w-full" name="tipo_renovacion">        
+            <option value="{{null}}" >                
+                Seleccione alguna de las opciones                 
+            </option>   
+            <option value="Permanente" >                
+                Permanente           
+            </option>  
+            <option value="Spot" >                
+                Spot                
+            </option>  
+                             
+        </select>
+    </div>
+</div>
+
 
 <!-- Faenas -->
 <div class="mb-3 row">
@@ -411,7 +430,7 @@
     </div>
 </div>
 
-<!-- Tipo de Contrato -->
+<!-- Transversal -->
 <div class="mb-3 row">
     <label for="transversal" class="col-sm-2 col-form-label">Transversal</label>
     <div class="col-sm-10">

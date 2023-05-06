@@ -222,6 +222,7 @@ class ContratoController extends Controller
             'abastecimiento_user_id' => $input['abastecimiento_user_id'],
             'descripcion' => $input['descripcion'],
             'estado_contrato' => 0, //"Estado dummy"
+            'tipo_renovacion' => $input['tipo_renovacion'], 
             'estatus' => 0, //"SEMAFORO"
         ]);
 
@@ -284,7 +285,14 @@ class ContratoController extends Controller
 
     public function fechas()
     {
-        return view('contrato.fechas');
+        $contratos = Contrato::all();
+        $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
+        $faenas = Faena::pluck('nombre_faena', 'id');
+
+        return view('contrato.fechas')
+            ->with('contratos', $contratos)
+            ->with('faenas', $faenas)
+            ->with('servicios_bienes' , $servicios_bienes);
     }
 
     public function cronograma()

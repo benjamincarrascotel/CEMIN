@@ -71,6 +71,7 @@ class Contrato extends Model
         'descripcion',
         'estado_contrato',
         'estatus',
+        'tipo_renovacion',
 
     ];
 
