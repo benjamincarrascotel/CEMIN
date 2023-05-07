@@ -275,12 +275,115 @@ class ContratoController extends Controller
 
     public function detalles()
     {
-        return view('contrato.detalles');
+
+        $contratos = Contrato::get();
+        $dataPoints = collect();
+        $dataPoints_aux = collect();
+
+        $estadisticas = collect();
+
+        foreach($contratos as $contrato){
+            //TODO verificar que porcentaje corresponde a cada uno
+            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
+            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
+
+            //Calculamos criticidad para cada contrato
+            $criticidad = 0;
+            if($porcentaje_x >= 50 && $porcentaje_y >= 50) $criticidad = 1;
+            else if($porcentaje_x <= 50 && $porcentaje_y >= 50) $criticidad = 2;
+            else if($porcentaje_x <= 50 && $porcentaje_y <= 50) $criticidad = 3;
+            else if($porcentaje_x >= 50 && $porcentaje_y <= 50) $criticidad = 4;
+
+
+            $dataPoints->push([
+                "transversal" => $contrato->detalle_contrato[0]->transversal,
+                "faena" => $contrato->faena->nombre_faena,
+                "tipo_contrato" => $contrato->tipo_contrato_general,
+                "criticidad" => $criticidad,
+                "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
+                "dotacion" => $contrato->detalle_contrato[0]->dotacion,
+            ]);
+        }
+
+        $suma_criticidad_1 = 0;
+        $suma_criticidad_2 = 0;
+        $suma_criticidad_3 = 0;
+        $suma_criticidad_4 = 0;
+        $counter = 0;
+
+        foreach($dataPoints as $item){
+            $counter +=1;
+            switch ($item['criticidad']) {
+                case '1':
+                    $suma_criticidad_1 +=1;
+                    break;
+                case '2':
+                    $suma_criticidad_2 +=1;
+                    break;
+                case '3':
+                    $suma_criticidad_3 +=1;
+                    break;
+                
+                default:
+                    $suma_criticidad_4 +=1;
+                    break;
+            }
+
+        }
+
+
+        $porcentajes = collect([
+            ["y" => $suma_criticidad_1/$counter*100, "label" => "Alta criticidad"],
+            ["y" => $suma_criticidad_2/$counter*100, "label" => "Criticidad por admin"],
+            ["y" => $suma_criticidad_3/$counter*100, "label" => "Baja criticidad"],
+            ["y" => $suma_criticidad_4/$counter*100, "label" => "Criticidad por impacto"]
+        ]);
+
+
+        $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
+        $faenas = Faena::pluck('nombre_faena', 'id');
+
+        return view('contrato.detalles')
+            ->with('porcentajes', $porcentajes)
+            ->with('dataPoints', $dataPoints)
+            ->with('contratos', $contratos)
+            ->with('faenas', $faenas)
+            ->with('servicios_bienes' , $servicios_bienes);
     }
 
     public function plan()
     {
-        return view('contrato.plan');
+
+        $contratos = Contrato::get();
+        $dataPoints = collect();
+        $dataPoints_aux = collect();
+
+        foreach($contratos as $contrato){
+            //TODO verificar que porcentaje corresponde a cada uno
+            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
+            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
+
+            $dataPoints->push([
+                "transversal" => $contrato->detalle_contrato[0]->transversal,
+                "faena" => $contrato->faena->nombre_faena,
+                "tipo_contrato" => $contrato->tipo_contrato_general,
+                "criticidad" => $contrato->detalle_contrato[0]->criticidad_ops,
+                "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
+                "x" => $porcentaje_x, 
+                "y" => $porcentaje_y,
+            ]);
+        }
+
+
+        $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
+        $faenas = Faena::pluck('nombre_faena', 'id');
+
+        return view('contrato.plan')
+            ->with('dataPoints', $dataPoints)
+
+            ->with('contratos', $contratos)
+            ->with('faenas', $faenas)
+            ->with('servicios_bienes' , $servicios_bienes);
     }
 
     public function fechas()
