@@ -35,9 +35,10 @@
                                             <div class="dropdown">
                                                 <select class="form-control " id="criticidad"  >
                                                     <option value="{{null}}">Todos los contratos</option>
-                                                    <option value="Alta">Alta</option>
-                                                    <option value="Media">Media</option>
-                                                    <option value="Baja">Baja</option>
+                                                    <option value="1">Alta criticidad</option>
+                                                    <option value="2">Criticidad por admin</option>
+                                                    <option value="3">Baja criticidad</option>
+                                                    <option value="4">Criticidad por impacto</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -149,7 +150,7 @@
                                                                 <div class="mb-2 fs-18">
                                                                     Suma de Facturación Mensual
                                                                 </div>
-                                                                <h1 class="font-weight-bold mb-1">45,675</h1>
+                                                                <h1 id="sum_facturacion_mensual" class="font-weight-bold mb-1">{{round($sum_facturacion_mensual, 2)}}</h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -161,7 +162,7 @@
                                                                 <div class="mb-2 fs-18">
                                                                     Suma % Dotación
                                                                 </div>
-                                                                <h1 class="font-weight-bold mb-1">30,175</h1>
+                                                                <h1 id="sum_dotacion" class="font-weight-bold mb-1">{{$sum_dotacion}} %</h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,7 +176,7 @@
                                                                 <div class="mb-2 fs-18">
                                                                     KPI by KPI
                                                                 </div>
-                                                                <h1 class="font-weight-bold mb-1">7,745</h1>
+                                                                <h1 id="kpi_by_kpi" class="font-weight-bold mb-1">{{$kpi_by_kpi}}</h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -187,7 +188,7 @@
                                                                 <div class="mb-2 fs-18">
                                                                     Suma de gasto 12 Meses Móviles
                                                                 </div>
-                                                                <h1 class="font-weight-bold mb-1">7,745</h1>
+                                                                <h1 id="sum_gasto_12_meses_moviles" class="font-weight-bold mb-1">{{$sum_gasto_12_meses_moviles}}</h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -226,6 +227,12 @@
 
     <script type="text/javascript">
 
+    function changeH1Text(id, value)
+    {
+        var heading = document.getElementById(id);
+        heading.innerHTML = value;
+    }
+
     $(document).ready(function(){
 
         var dataPoints = {!! json_encode($dataPoints) !!};
@@ -237,7 +244,6 @@
 
             //Aplicación de los filtros a dataPoints_aux
 
-            console.log($('#faena').val());
             
             if($('#criticidad').val() != ""){
                 dataPoints_aux = dataPoints_aux.filter(function (data){
@@ -265,12 +271,72 @@
                 });
             }
 
-            //TODO recalcular las estadísticas y porcentajes
 
+            //Porcentajes de criticidad
+            var suma_criticidad_1 = 0;
+            var suma_criticidad_2 = 0;
+            var suma_criticidad_3 = 0;
+            var suma_criticidad_4 = 0;
+            var counter = 0;
+
+            //Cálculo de estadísticas
+            var sum_facturacion_mensual = 0;
+            var sum_dotacion = 0;
+            var sum_dotacion_sum = 0;
+            var kpi_by_kpi_sum = 0;
+            var kpi_by_kpi = 0;
+            var sum_gasto_12_meses_moviles = 0;
+
+            Object.values(dataPoints_aux).forEach(val => {
+
+                //Estadísticas
+                sum_facturacion_mensual += val['facturacion_mensual'];
+                sum_dotacion_sum += val['dotacion'];
+                kpi_by_kpi_sum += val['kpi'];
+                sum_gasto_12_meses_moviles += val['gasto_12_meses_moviles'];
+
+                //Porcentajes de Gŕafica
+                switch (val['criticidad']) {
+                    case 1:
+                        suma_criticidad_1 +=1;
+                        break;
+                    case 2:
+                        suma_criticidad_2 +=1;
+                        break;
+                    case 3:
+                        suma_criticidad_3 +=1;
+                        break;
+                    
+                    default:
+                        suma_criticidad_4 +=1;
+                        break;
+                }
+                counter +=1;
+
+            })
+
+            kpi_by_kpi = kpi_by_kpi_sum/counter;
+            sum_dotacion = sum_dotacion_sum/counter;
             
+
+            const porcentajes = [
+                {"y" : suma_criticidad_1/counter*100, "label" : "Alta criticidad"},
+                {"y" : suma_criticidad_2/counter*100, "label" : "Criticidad por admin"},
+                {"y" : suma_criticidad_3/counter*100, "label" : "Baja criticidad"},
+                {"y" : suma_criticidad_4/counter*100, "label" : "Criticidad por impacto"}
+            ];
+
+            console.log(porcentajes);
+
+            changeH1Text("sum_facturacion_mensual", sum_facturacion_mensual.toFixed(2));
+            changeH1Text("sum_dotacion", sum_dotacion);
+            changeH1Text("kpi_by_kpi", kpi_by_kpi);
+            changeH1Text("sum_gasto_12_meses_moviles", sum_gasto_12_meses_moviles);
             
-            chart.options.data[0].dataPoints = dataPoints_aux;
-            chart.render();
+            if(dataPoints_aux.length > 0){
+                chart.options.data[0].dataPoints = porcentajes;
+                chart.render();
+            }
         });
 
 

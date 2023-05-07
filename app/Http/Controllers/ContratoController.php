@@ -282,6 +282,10 @@ class ContratoController extends Controller
 
         $estadisticas = collect();
 
+        // Porcentajes fijos de cada eje
+        $axis_x = 50;
+        $axis_y = 50;
+
         foreach($contratos as $contrato){
             //TODO verificar que porcentaje corresponde a cada uno
             $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
@@ -289,10 +293,17 @@ class ContratoController extends Controller
 
             //Calculamos criticidad para cada contrato
             $criticidad = 0;
-            if($porcentaje_x >= 50 && $porcentaje_y >= 50) $criticidad = 1;
-            else if($porcentaje_x <= 50 && $porcentaje_y >= 50) $criticidad = 2;
-            else if($porcentaje_x <= 50 && $porcentaje_y <= 50) $criticidad = 3;
-            else if($porcentaje_x >= 50 && $porcentaje_y <= 50) $criticidad = 4;
+            if($porcentaje_x >= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 1;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 2;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 3;
+            else if($porcentaje_x >= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 4;
+
+
+            //kpi
+            $kpi=0;
+            if($contrato->detalle_contrato[0]->kpi){
+                $kpi = 1;
+            }
 
 
             $dataPoints->push([
@@ -302,17 +313,39 @@ class ContratoController extends Controller
                 "criticidad" => $criticidad,
                 "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
                 "dotacion" => $contrato->detalle_contrato[0]->dotacion,
+
+                //Estadísticas
+                "facturacion_mensual" => $contrato->detalle_contrato[0]->gasto_anual/$contrato->detalle_contrato[0]->duracion,
+                "dotacion" => $contrato->detalle_contrato[0]->dotacion,
+                "kpi" => $kpi,
+                "gasto_12_meses_moviles" => $contrato->detalle_contrato[0]->facturacion_mensual*12, //TODO verificar
+
             ]);
         }
 
+        //Porcentajes de criticidad
         $suma_criticidad_1 = 0;
         $suma_criticidad_2 = 0;
         $suma_criticidad_3 = 0;
         $suma_criticidad_4 = 0;
         $counter = 0;
 
+        //Cálculo de estadísticas
+        $sum_facturacion_mensual = 0;
+        $sum_dotacion = 0;
+        $sum_dotacion_sum = 0;
+        $kpi_by_kpi_sum = 0;
+        $kpi_by_kpi = 0;
+        $sum_gasto_12_meses_moviles = 0;
+
         foreach($dataPoints as $item){
-            $counter +=1;
+            //Estadísticas
+            $sum_facturacion_mensual += $item['facturacion_mensual'];
+            $sum_dotacion_sum += $item['dotacion'];
+            $kpi_by_kpi_sum += $item['kpi'];
+            $sum_gasto_12_meses_moviles += $item['gasto_12_meses_moviles'];
+
+            //Porcentajes de Gŕafica
             switch ($item['criticidad']) {
                 case '1':
                     $suma_criticidad_1 +=1;
@@ -328,8 +361,12 @@ class ContratoController extends Controller
                     $suma_criticidad_4 +=1;
                     break;
             }
+            $counter +=1;
 
         }
+
+        $kpi_by_kpi = $kpi_by_kpi_sum/$counter;
+        $sum_dotacion = $sum_dotacion_sum/$counter;
 
 
         $porcentajes = collect([
@@ -343,7 +380,18 @@ class ContratoController extends Controller
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
         $faenas = Faena::pluck('nombre_faena', 'id');
 
+        
+
         return view('contrato.detalles')
+            //Estadisticas
+            ->with('sum_facturacion_mensual', $sum_facturacion_mensual)
+            ->with('sum_dotacion', $sum_dotacion)
+            ->with('kpi_by_kpi', $kpi_by_kpi)
+            ->with('sum_gasto_12_meses_moviles', $sum_gasto_12_meses_moviles)
+
+
+            ->with('axis_x', $axis_x)
+            ->with('axis_y', $axis_y)
             ->with('porcentajes', $porcentajes)
             ->with('dataPoints', $dataPoints)
             ->with('contratos', $contratos)
@@ -358,6 +406,35 @@ class ContratoController extends Controller
         $dataPoints = collect();
         $dataPoints_aux = collect();
 
+        // Porcentajes fijos de cada eje
+        $axis_x = 50;
+        $axis_y = 50;
+
+        foreach($contratos as $contrato){
+            //TODO verificar que porcentaje corresponde a cada uno
+            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
+            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
+
+            //Calculamos criticidad para cada contrato
+            $criticidad = 0;
+            if($porcentaje_x >= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 1;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 2;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 3;
+            else if($porcentaje_x >= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 4;
+
+
+            $dataPoints->push([
+                "transversal" => $contrato->detalle_contrato[0]->transversal,
+                "faena" => $contrato->faena->nombre_faena,
+                "tipo_contrato" => $contrato->tipo_contrato_general,
+                "criticidad" => $criticidad,
+                "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
+                "x" => $porcentaje_x, 
+                "y" => $porcentaje_y,
+            ]);
+        }
+        
+        /*
         foreach($contratos as $contrato){
             //TODO verificar que porcentaje corresponde a cada uno
             $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
@@ -373,6 +450,7 @@ class ContratoController extends Controller
                 "y" => $porcentaje_y,
             ]);
         }
+        */
 
 
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
@@ -380,7 +458,8 @@ class ContratoController extends Controller
 
         return view('contrato.plan')
             ->with('dataPoints', $dataPoints)
-
+            ->with('axis_x', $axis_x)
+            ->with('axis_y', $axis_y)
             ->with('contratos', $contratos)
             ->with('faenas', $faenas)
             ->with('servicios_bienes' , $servicios_bienes);

@@ -35,9 +35,10 @@
                                             <div class="dropdown">
                                                 <select class="form-control " id="criticidad"  >
                                                     <option value="{{null}}">Todos los contratos</option>
-                                                    <option value="Alta">Alta</option>
-                                                    <option value="Media">Media</option>
-                                                    <option value="Baja">Baja</option>
+                                                    <option value="1">Alta criticidad</option>
+                                                    <option value="2">Criticidad por admin</option>
+                                                    <option value="3">Baja criticidad</option>
+                                                    <option value="4">Criticidad por impacto</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -130,6 +131,35 @@
                     </div>
                     <div class="card-body">
                         <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+                            <div class="row mt-4" id="form_filtros">
+
+                                <div class="col-lg-6 col-md-12">
+                                    <form class="form-horizontal" >
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-label">Asintota X</label>
+                                            
+                                            <div class="col-md-9">
+                                                <input name="contrato_sap" id='axis_x' type="number" min="0"  class="form-control" value="{{$axis_x}}" required>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12">
+                                    <form class="form-horizontal" >
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-label">Asintota Y</label>
+                                            
+                                            <div class="col-md-9">
+                                                <input name="contrato_sap" id='axis_y' type="number" min="0" class="form-control" value="{{$axis_y}}"  required>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,6 +177,8 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
+
+
 
         var dataPoints = {!! json_encode($dataPoints) !!};
         
@@ -192,7 +224,7 @@
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             exportEnabled: true,
-            theme: "dark2", 
+            theme: "light", 
             title:{
                 text: "Plan de Contratos"
             },
@@ -217,6 +249,20 @@
                 dockInsidePlotArea: true
             },
 
+            annotation: {
+                annotations: [{
+                    type: 'line',
+                    mode: 'horizontal',
+                    scaleID: 'y-axis-0',
+                    value: 5,
+                    borderColor: 'rgb(75, 192, 192)',
+                    borderWidth: 10,
+                    label: {
+                        enabled: true,
+                        content: 'Test label'
+                    }
+                }]
+                },
 
             data: [
                 {
