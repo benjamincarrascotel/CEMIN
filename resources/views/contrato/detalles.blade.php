@@ -330,7 +330,7 @@
 
             changeH1Text("sum_facturacion_mensual", sum_facturacion_mensual.toFixed(2));
             changeH1Text("sum_dotacion", sum_dotacion);
-            changeH1Text("kpi_by_kpi", kpi_by_kpi);
+            changeH1Text("kpi_by_kpi", kpi_by_kpi.toFixed(2));
             changeH1Text("sum_gasto_12_meses_moviles", sum_gasto_12_meses_moviles);
             
             if(dataPoints_aux.length > 0){
