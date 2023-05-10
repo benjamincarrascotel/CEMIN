@@ -18,6 +18,7 @@ use App\Models\AbastecimientoUser;
 use App\Models\AccionContrato;
 use App\Models\TipoContrato;
 use App\Models\FaseContrato;
+use App\Models\FaseProyectadaContrato;
 
 use Carbon\Carbon;
 use Validator;
@@ -433,25 +434,6 @@ class ContratoController extends Controller
                 "y" => $porcentaje_y,
             ]);
         }
-        
-        /*
-        foreach($contratos as $contrato){
-            //TODO verificar que porcentaje corresponde a cada uno
-            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
-            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
-
-            $dataPoints->push([
-                "transversal" => $contrato->detalle_contrato[0]->transversal,
-                "faena" => $contrato->faena->nombre_faena,
-                "tipo_contrato" => $contrato->tipo_contrato_general,
-                "criticidad" => $contrato->detalle_contrato[0]->criticidad_ops,
-                "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
-                "x" => $porcentaje_x, 
-                "y" => $porcentaje_y,
-            ]);
-        }
-        */
-
 
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
         $faenas = Faena::pluck('nombre_faena', 'id');
@@ -592,6 +574,45 @@ class ContratoController extends Controller
         flash('Cambio de fase realizado con éxito', 'success');
 
         return redirect()->route('contrato.show', $id);
+    }
+
+    public function create_fase_proyectada(){
+        $contratos = Contrato::where('fase_proyectada_flag', null)->get();
+        $selectedID = 0;
+        return view('fases.create_fase_proyectada', compact('selectedID', 'contratos'));
+    }
+
+    public function store_fase_proyectada(Request $request){
+        $input = $request->all();
+
+        //TODO Agregar Validator
+        $fase_contrato = FaseProyectadaContrato::create([
+            'contrato_id' => $input['contrato_id'],
+            'solicitud_de_base' => $input['solicitud_de_base'], //1
+            'envio_bases_primera_revision' => $input['envio_bases_primera_revision'], //2
+            'primera_revision_bases_por_abastecimiento' => $input['primera_revision_bases_por_abastecimiento'], //3
+            'envio_bases_segunda_revision' => $input['envio_bases_segunda_revision'], //4
+            'segunda_revision_bases_por_abastecimiento' => $input['segunda_revision_bases_por_abastecimiento'], //5
+            'recopilacion_de_informacion' => $input['recopilacion_de_informacion'], //6
+            'invitacion_a_oferentes' => $input['invitacion_a_oferentes'], //7
+            'visita_a_terreno' => $input['visita_a_terreno'], //8
+            'preguntas_y_consultas_proponente' => $input['preguntas_y_consultas_proponente'], //9
+            'respuestas_del_mandante' => $input['respuestas_del_mandante'], //10
+            'recepcion_de_ofertas_tecnicas_economicas' => $input['recepcion_de_ofertas_tecnicas_economicas'], //11
+            'evaluacion_ofertas_tecnicas' => $input['evaluacion_ofertas_tecnicas'], //12
+            'evaluacion_ofertas_economicas' => $input['evaluacion_ofertas_economicas'], //13
+            'comite_de_inversiones' => $input['comite_de_inversiones'], //14
+            'adjudicacion' => $input['adjudicacion'], //15
+        ]);
+
+        $contrato = Contrato::where('id', $input['contrato_id'])->first();
+        $contrato->fase_proyectada_flag = true;
+        $contrato->save();
+
+        
+        flash('Creación de fases proyectadas realizada con éxito', 'success');
+
+        return redirect()->route('superadmin.index');
     }
 
     /**
