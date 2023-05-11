@@ -31,7 +31,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/contrato/cronograma', 'ContratoController@cronograma')->name('contrato.cronograma');
         Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
 
-
         //FASES CONTRATO
 
         Route::get('/contrato/create_fase_proyectada', 'ContratoController@create_fase_proyectada')->name('fase.create_fase_proyectada');

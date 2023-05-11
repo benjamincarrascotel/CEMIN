@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FaseProyectadaContrato extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     public $table = 'fase_proyectada_contratos';
 

@@ -508,10 +508,12 @@ class ContratoController extends Controller
     {
         $contrato = Contrato::where('id', $id)->first();
         $fases_contrato = $contrato->fase_contrato[0];
+        $fases_proyectadas_contrato = $contrato->fase_proyectada_contrato[0];
         //dd($fases_contrato);
         $fase_actual = $contrato->estado_contrato;
         return view('contrato.show')
             ->with('fases_contrato', $fases_contrato)
+            ->with('fases_proyectadas_contrato', $fases_proyectadas_contrato)
             ->with('fase_actual', $fase_actual)
             ->with('contrato', $contrato);
     }
@@ -565,7 +567,7 @@ class ContratoController extends Controller
 
 
         $fases_contrato = FaseContrato::where('contrato_id', $id)->first();
-        $fases_contrato[$nombre_fase] = Carbon::now();
+        $fases_contrato[$nombre_fase] = $input['fecha'];
         $fases_contrato->save();
 
         $contrato->estado_contrato = $siguiente_fase_id;

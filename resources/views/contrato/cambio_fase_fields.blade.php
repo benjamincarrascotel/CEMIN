@@ -4,7 +4,7 @@
     @if($fase_actual != 15 && $fase_actual != 16 && $fase_actual != 17)
 
         <label for="siguiente_fase_id" class="col-sm-2 col-form-label">Siguiente Fase: </label>
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <select class="form-control block mt-1 w-full" name="siguiente_fase_id" id="siguiente_fase_id" > 
                 @switch($fase_actual)
                     @case("0")
@@ -93,9 +93,11 @@
 
             </select>
         </div>
-        <div class="mt-1 col-sm-2">
+        <div class="mt-1 mb-3 col-sm-3">
+            <input name="fecha" id='fecha' type="date" class="form-control" style="width:10vw"  required>
+        </div>
+        <div class="mt-1 col-sm-3">
             <input type="submit" class="btn btn-success" value="Cambiar de Fase" />
-
         </div>
     @elseif($fase_actual == 16 && $fase_actual != 17)
         <h1>Contrato en Fase: <b>STAND BY   /    Fecha: {{Carbon\Carbon::parse($fases_contrato->stand_by)->format('d-m-Y')}}</b> </h1>
@@ -104,12 +106,3 @@
 
     @endif
 </div>
-<!--
-<div class="mb-3 row">
-    <label for="comentario" class="col-sm-2 col-form-label">Comentario </label>
-    <div class="col-sm-10">
-        <textarea class="form-control mb-4 " name='comentario' id="comentario" placeholder="Comentario" rows="3" maxlength="249" ></textarea>
-
-    </div>
-</div>
--->

@@ -49,7 +49,6 @@ class Contrato extends Model
     public function fase_contrato(){
         return $this->hasMany('App\Models\FaseContrato','contrato_id','id');
     }
-
     public function fase_proyectada_contrato(){
         return $this->hasMany('App\Models\FaseProyectadaContrato','contrato_id','id');
     }
