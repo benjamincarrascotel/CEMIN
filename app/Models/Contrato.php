@@ -76,6 +76,7 @@ class Contrato extends Model
         'estado_contrato',
         'estatus',
         'tipo_renovacion',
+        'fase_proyectada_flag',
 
     ];
 

@@ -225,6 +225,7 @@ class ContratoController extends Controller
             'estado_contrato' => 0, //"Estado dummy"
             'tipo_renovacion' => $input['tipo_renovacion'], 
             'estatus' => 0, //"SEMAFORO"
+            'fase_proyectada_flag' => 1,
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -266,8 +267,9 @@ class ContratoController extends Controller
         flash('Contrato creado con éxito', 'success');
 
         
-        return redirect()->intended('/superadmin');
-
+        return view('fases.create_fase_proyectada')
+                    ->with('selectedID', $contrato->id)
+                    ->with('contratos', [$contrato]);
 
     }
 
