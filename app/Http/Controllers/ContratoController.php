@@ -225,7 +225,6 @@ class ContratoController extends Controller
             'estado_contrato' => 0, //"Estado dummy"
             'tipo_renovacion' => $input['tipo_renovacion'], 
             'estatus' => 0, //"SEMAFORO"
-            'fase_proyectada_flag' => 1,
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -475,59 +474,58 @@ class ContratoController extends Controller
         $axis_y = 50;
 
         foreach($contratos as $contrato){
-            //TODO verificar que porcentaje corresponde a cada uno
-            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
-            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
 
-            //Calculamos criticidad para cada contrato
-            $criticidad = 0;
-            if($porcentaje_x >= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 1;
-            else if($porcentaje_x <= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 2;
-            else if($porcentaje_x <= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 3;
-            else if($porcentaje_x >= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 4;
+            if(count($contrato->fase_proyectada_contrato) != 0){
 
+                //TODO verificar que porcentaje corresponde a cada uno
+                $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
+                $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
 
+                //Calculamos criticidad para cada contrato
+                $criticidad = 0;
+                if($porcentaje_x >= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 1;
+                else if($porcentaje_x <= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 2;
+                else if($porcentaje_x <= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 3;
+                else if($porcentaje_x >= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 4;
 
-
-            // Calcular arreglos de actividad fechas
-
-            if(isset($contrato->fase_proyectada_contrato)){
+                // Calcular arreglos de actividad fechas
                 $fecha_proyectada_inicio = Carbon::parse($contrato->fase_proyectada_contrato[0]->solicitud_de_base)->format('m');
                 $fecha_proyectada_termino = Carbon::parse($contrato->fase_proyectada_contrato[0]->adjudicacion)->format('m');
-            }
+                
 
-            //TODO Corregir con fechas correspondientes
-            $fecha_real_inicio = Carbon::parse($contrato->detalle_contrato[0]->fecha_inicio)->format('m');
-            $fecha_real_termino = Carbon::parse($contrato->detalle_contrato[0]->fecha_termino)->format('m');
+                //TODO Corregir con fechas correspondientes
+                $fecha_real_inicio = Carbon::parse($contrato->detalle_contrato[0]->fecha_inicio)->format('m');
+                $fecha_real_termino = Carbon::parse($contrato->detalle_contrato[0]->fecha_termino)->format('m');
 
-            //dd($fecha_proyectada_termino);
-            $datapoints_proyectada = ['No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo'];
-            $datapoints_real = ['No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo'];
+                //dd($fecha_proyectada_termino);
+                $datapoints_proyectada = ['No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo'];
+                $datapoints_real = ['No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo','No activo'];
 
-            if($fecha_proyectada_termino >= $fecha_proyectada_inicio){
-                for($i= (int)$fecha_proyectada_inicio -1; $i < (int)$fecha_proyectada_termino; $i++){
-                    $datapoints_proyectada[$i] = 'Activo';
+                if($fecha_proyectada_termino >= $fecha_proyectada_inicio){
+                    for($i= (int)$fecha_proyectada_inicio -1; $i < (int)$fecha_proyectada_termino; $i++){
+                        $datapoints_proyectada[$i] = 'Activo';
+                    }
+                } //TODO definir que hacer en caso de que las fechas no estén ordenadas cronologicamente
+
+                if($fecha_real_termino >= $fecha_real_inicio){
+                    for($i= (int)$fecha_real_inicio -1; $i < (int)$fecha_real_termino; $i++){
+                        $datapoints_real[$i] = 'Activo';
+                    }
                 }
-            } //TODO definir que hacer en caso de que las fechas no estén ordenadas cronologicamente
 
-            if($fecha_real_termino >= $fecha_real_inicio){
-                for($i= (int)$fecha_real_inicio -1; $i < (int)$fecha_real_termino; $i++){
-                    $datapoints_real[$i] = 'Activo';
-                }
+
+                $dataPoints->push([
+                    "id" => $contrato->id,
+                    "proyectada" => $datapoints_proyectada,
+                    "real" => $datapoints_real,
+
+                    "transversal" => $contrato->detalle_contrato[0]->transversal,
+                    "faena" => $contrato->faena->nombre_faena,
+                    "tipo_contrato" => $contrato->tipo_contrato_general,
+                    "criticidad" => $criticidad,
+                    "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
+                ]);
             }
-
-
-            $dataPoints->push([
-                "id" => $contrato->id,
-                "proyectada" => $datapoints_proyectada,
-                "real" => $datapoints_real,
-
-                "transversal" => $contrato->detalle_contrato[0]->transversal,
-                "faena" => $contrato->faena->nombre_faena,
-                "tipo_contrato" => $contrato->tipo_contrato_general,
-                "criticidad" => $criticidad,
-                "servicio_bien" => $contrato->servicio_bien->nombre_servicio_bien,
-            ]);
         }
 
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
