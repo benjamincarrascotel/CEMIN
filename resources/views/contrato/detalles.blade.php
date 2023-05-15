@@ -324,7 +324,15 @@
             changeH1Text("kpi_by_kpi", kpi_by_kpi.toFixed(2));
             changeH1Text("sum_gasto_12_meses_moviles", sum_gasto_12_meses_moviles/1000000 + " M");
             
-            if(dataPoints_aux.length > 0){
+            if(dataPoints_aux.length == 0){
+                chart.options.data[0].dataPoints = [
+                    {"y" : 0, "label" : "Alta criticidad", "cant" : 0},
+                    {"y" : 0, "label" : "Criticidad por admin", "cant" : 0},
+                    {"y" : 0, "label" : "Baja criticidad", "cant" : 0},
+                    {"y" : 0, "label" : "Criticidad por impacto", "cant" : 0}
+                ];
+                chart.render();
+            }else{
                 chart.options.data[0].dataPoints = porcentajes;
                 chart.render();
             }
