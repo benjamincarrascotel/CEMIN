@@ -132,7 +132,6 @@
                     <div class="card-body">
                         <!-- Row -->
 						<div class="row">
-							<div class="col-sm-12 col-md-6">
 								<div class="card" style="height: 100%">
 									<div class="card-header">
 										<div class="card-title">Estadísticas</div>
@@ -145,52 +144,47 @@
 
                                                 <div class="card overflow-hidden bg-primary text-white">
                                                     <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-2 fs-18">
-                                                                    Suma de Facturación Mensual
-                                                                </div>
-                                                                <h1 id="sum_facturacion_mensual" class="font-weight-bold mb-1">{{round($sum_facturacion_mensual, 2)}}</h1>
-                                                            </div>
+                                                        
+                                                        <div class="mb-2 fs-18">
+                                                            Suma Facturación Mensual
                                                         </div>
+                                                        <h1 id="sum_facturacion_mensual" class="font-weight-bold mb-1">{{round($sum_facturacion_mensual)/1000000}} M</h1>
+                                                            
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
                                                 <div class="card overflow-hidden bg-danger text-white">
                                                     <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-2 fs-18">
-                                                                    Suma % Dotación
-                                                                </div>
-                                                                <h1 id="sum_dotacion" class="font-weight-bold mb-1">{{$sum_dotacion}} %</h1>
-                                                            </div>
+                                                        <div class="mb-2 fs-18">
+                                                            Suma % Dotación
                                                         </div>
+                                                        <h1 id="sum_dotacion" class="font-weight-bold mb-1">{{$sum_dotacion}} %</h1>
+                                                            
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="card overflow-hidden bg-success text-white">
                                                     <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-2 fs-18">
-                                                                    KPI by KPI
-                                                                </div>
-                                                                <h1 id="kpi_by_kpi" class="font-weight-bold mb-1">{{$kpi_by_kpi}}</h1>
-                                                            </div>
+                                                
+                                                        <div class="mb-2 fs-18">
+                                                            KPI by KPI
                                                         </div>
+                                                        <h1 id="kpi_by_kpi" class="font-weight-bold mb-1">{{round($kpi_by_kpi, 2)}}</h1>
+                                                            
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
                                                 <div class="card overflow-hidden bg-warning text-white">
                                                     <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-2 fs-18">
-                                                                    Suma de gasto 12 Meses Móviles
-                                                                </div>
-                                                                <h1 id="sum_gasto_12_meses_moviles" class="font-weight-bold mb-1">{{$sum_gasto_12_meses_moviles}}</h1>
-                                                            </div>
+                                                         
+                                                        <div class="mb-2 fs-18">
+                                                            Gasto 12 Meses Móviles
                                                         </div>
+                                                        <h1 id="sum_gasto_12_meses_moviles" class="font-weight-bold mb-1">{{$sum_gasto_12_meses_moviles/1000000}} M</h1>
+                                                            
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,17 +192,14 @@
 
 									</div>
 								</div>
-							</div><!-- col-6 -->
-							<div class="col-sm-12 col-md-6">
 								<div class="card" style="height: 100%">
 									<div class="card-header">
 										<div class="card-title">Gráfica de torta</div>
 									</div>
 									<div class="card-body">
-                                            <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+                                            <div id="chartContainer" style="height: 600px; width: 100%;"></div>
 									</div>
 								</div>
-							</div><!-- col-6 -->
 						</div>
 						<!-- /Row -->
                     </div>
@@ -320,18 +311,18 @@
             
 
             const porcentajes = [
-                {"y" : suma_criticidad_1/counter*100, "label" : "Alta criticidad"},
-                {"y" : suma_criticidad_2/counter*100, "label" : "Criticidad por admin"},
-                {"y" : suma_criticidad_3/counter*100, "label" : "Baja criticidad"},
-                {"y" : suma_criticidad_4/counter*100, "label" : "Criticidad por impacto"}
+                {"y" : (suma_criticidad_1/counter*100).toFixed(2), "label" : "Alta criticidad", "cant" : suma_criticidad_1},
+                {"y" : (suma_criticidad_2/counter*100).toFixed(2), "label" : "Criticidad por admin", "cant" : suma_criticidad_2},
+                {"y" : (suma_criticidad_3/counter*100).toFixed(2), "label" : "Baja criticidad", "cant" : suma_criticidad_3},
+                {"y" : (suma_criticidad_4/counter*100).toFixed(2), "label" : "Criticidad por impacto", "cant" : suma_criticidad_4}
             ];
 
             console.log(porcentajes);
 
-            changeH1Text("sum_facturacion_mensual", sum_facturacion_mensual.toFixed(2));
+            changeH1Text("sum_facturacion_mensual", sum_facturacion_mensual.toFixed(0)/1000000 + " M");
             changeH1Text("sum_dotacion", sum_dotacion);
             changeH1Text("kpi_by_kpi", kpi_by_kpi.toFixed(2));
-            changeH1Text("sum_gasto_12_meses_moviles", sum_gasto_12_meses_moviles);
+            changeH1Text("sum_gasto_12_meses_moviles", sum_gasto_12_meses_moviles/1000000 + " M");
             
             if(dataPoints_aux.length > 0){
                 chart.options.data[0].dataPoints = porcentajes;
@@ -363,7 +354,8 @@
             },
 
             legend:{
-                verticalAlign: "top",
+                verticalAlign: "center",
+                horizontalAlign: "right",
                 fontSize: 16,
                 dockInsidePlotArea: true
             },
@@ -372,8 +364,14 @@
             data: [{
                 type: "pie",
                 startAngle: 40,
-                toolTipContent: "<b>{label}</b>: {y}%",
-                indexLabel: "{label} - {y}%",
+                toolTipContent: "<b>{label}</b>: ({cant}) {y}%",
+
+                showInLegend: "true",
+                legendText: "{label}: {y}% ({cant})",
+                indexLabelFontSize: 16,
+
+                indexLabelPlacement: "inside",
+                indexLabel: " ",
                 dataPoints: porcentajes
             }]
         });

@@ -372,10 +372,10 @@ class ContratoController extends Controller
 
 
         $porcentajes = collect([
-            ["y" => $suma_criticidad_1/$counter*100, "label" => "Alta criticidad"],
-            ["y" => $suma_criticidad_2/$counter*100, "label" => "Criticidad por admin"],
-            ["y" => $suma_criticidad_3/$counter*100, "label" => "Baja criticidad"],
-            ["y" => $suma_criticidad_4/$counter*100, "label" => "Criticidad por impacto"]
+            ["y" => round($suma_criticidad_1/$counter*100, 2), "label" => "Alta criticidad", "cant" => $suma_criticidad_1],
+            ["y" => round($suma_criticidad_2/$counter*100, 2), "label" => "Criticidad por admin", "cant" => $suma_criticidad_2],
+            ["y" => round($suma_criticidad_3/$counter*100, 2), "label" => "Baja criticidad", "cant" => $suma_criticidad_3],
+            ["y" => round($suma_criticidad_4/$counter*100, 2), "label" => "Criticidad por impacto", "cant" => $suma_criticidad_4]
         ]);
 
 

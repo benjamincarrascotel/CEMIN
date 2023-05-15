@@ -2,7 +2,7 @@
 
 @push('cards')
     @section('card_title')
-        Subir Excel
+        Carga Masiva de Contratos
     @overwrite
     @section('card_content')
         <form id="excel" action="{{ route('contrato.excel') }}" method="POST" enctype="multipart/form-data">
