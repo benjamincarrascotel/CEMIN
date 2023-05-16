@@ -338,6 +338,8 @@
             }
         });
 
+        //TODO corregir el tooltip cuando muestra otra categoria de criticidad que no es
+
 
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
