@@ -279,7 +279,9 @@
             </span>
         @overwrite
         
-        @section('card_content')        
+        @section('card_content')       
+        
+        @if($fases_proyectadas_contrato)
        
         <div class="row">
             <div class="card">
@@ -1134,6 +1136,11 @@
                 </div>
             </div>
         </div>
+
+        @else
+        <h1 style="position: center;">[ Fechas pendientes por ingresar... ]</h1>
+        @endif
+
 
         @overwrite
         @include('layouts.card')
