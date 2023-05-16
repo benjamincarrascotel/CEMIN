@@ -580,7 +580,12 @@ class ContratoController extends Controller
     {
         $contrato = Contrato::where('id', $id)->first();
         $fases_contrato = $contrato->fase_contrato[0];
-        $fases_proyectadas_contrato = $contrato->fase_proyectada_contrato[0];
+        if($contrato->fase_proyectada_flag){
+            $fases_proyectadas_contrato = $contrato->fase_proyectada_contrato[0];
+        }else{
+            $fases_proyectadas_contrato = null;
+        }
+        
         //dd($fases_contrato);
         $fase_actual = $contrato->estado_contrato;
         return view('contrato.show')
