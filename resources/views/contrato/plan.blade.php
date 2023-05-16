@@ -282,6 +282,34 @@
 
             });
 
+            //Aplicación de los filtros a dataPoints_aux
+
+            if($('#criticidad').val() != ""){
+                dataPoints_aux2 = dataPoints_aux2.filter(function (data){
+                    return data.criticidad == $('#criticidad').val();
+                });
+            }
+            if($('#faena').val() != ""){
+                dataPoints_aux2 = dataPoints_aux2.filter(function (data){
+                    return data.faena == $('#faena').val();
+                });
+            }
+            if($('#servicio_bien').val() != ""){
+                dataPoints_aux2 = dataPoints_aux2.filter(function (data){
+                    return data.servicio_bien == $('#servicio_bien').val();
+                });
+            }
+            if($('#tipo_contrato').val() != ""){
+                dataPoints_aux2 = dataPoints_aux2.filter(function (data){
+                    return data.tipo_contrato == $('#tipo_contrato').val();
+                });
+            }
+            if($('#transversal').val() != ""){
+                dataPoints_aux2 = dataPoints_aux2.filter(function (data){
+                    return data.transversal == $('#transversal').val();
+                });
+            }
+
             chart.options.data[0].dataPoints = dataPoints_aux2;
             chart.render();
         });
