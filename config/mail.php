@@ -5,7 +5,7 @@ return [
     'port' => env('MAIL_PORT', 587),
     'from' => [
         'address' => 'gac.mantenciones@gmail.com',
-        'name' => env('MAIL_FROM_NAME', 'Grupo Automotriz Cordillera')],
+        'name' => env('MAIL_FROM_NAME', 'MOS')],
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
     'username' => env('MAIL_USERNAME'),
     'password' => env('MAIL_PASSWORD'),

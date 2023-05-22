@@ -20,6 +20,11 @@ use App\Models\TipoContrato;
 use App\Models\FaseContrato;
 use App\Models\FaseProyectadaContrato;
 
+use App\Models\UserContratoMails;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\AlertasContrato;
+
 use Carbon\Carbon;
 use Validator;
 
@@ -29,6 +34,28 @@ use App\Imports\ImportExcel;
 
 class ContratoController extends Controller
 {
+
+
+    public $identificador_estados_user_type = [ // Según el estado en el que estoy
+        '0'=>['abastecimiento'],
+        '1'=>['administrador'],
+        '2'=>['abastecimiento'],
+        '3'=>['administrador'],
+        '4'=>['abastecimiento'],
+        '5'=>['abastecimiento'],
+        '6'=>['abastecimiento'],
+        '7'=>['administrador', 'abastecimiento'],
+        '8'=>['abastecimiento'],
+        '9'=>['administrador'],
+        '10'=>['abastecimiento'],
+        '11'=>['administrador'],
+        '12'=>['abastecimiento'],
+        '13'=>['abastecimiento'],
+        '14'=>['abastecimiento'],
+    ];
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -603,7 +630,7 @@ class ContratoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -695,6 +722,51 @@ class ContratoController extends Controller
 
         return redirect()->route('superadmin.index');
     }
+
+
+    public function enviar_alerta(Request $request)
+    {
+        $input = $request->all();
+        //dd($input);
+        $contrato = Contrato::find($input['id']);
+
+        $user_type = 0;
+        if($this->identificador_estados_user_type[$contrato->estado_contrato] == ['administrador']){
+            $user_type = 0;
+            $user_id = $contrato->admin_contrato_id;
+            $user_email = $contrato->admin_contrato->email;
+        }else if($this->identificador_estados_user_type[$contrato->estado_contrato] == ['abastecimiento']){
+            $user_type = 1;
+            $user_id = $contrato->abastecimiento_user_id;
+            $user_email = $contrato->abastecimiento_user->email;
+        }else{
+            $user_type = 2;
+        }
+
+        $mail_register = UserContratoMails::create([
+            'contrato_id' => $contrato->id,
+            'estado_contrato' => $contrato->estado_contrato+1,
+            'user_type' => $user_type,
+        ]);
+
+
+        $mail_info = new \stdClass();
+        $mail_info->contrato = $contrato;
+
+        if($user_type == 2){ //enviamos correos a ambos usuarios
+            Mail::to($contrato->admin_contrato->email)->send(new AlertasContrato($mail_info));
+            Mail::to($contrato->abastecimiento_user->email)->send(new AlertasContrato($mail_info));
+        }else if($user_type == 1){ // enviamos correo a abastecimiento
+            Mail::to($contrato->abastecimiento_user->email)->send(new AlertasContrato($mail_info));
+
+        }else{ //enviamos correo a admin de contrato
+            Mail::to($contrato->admin_contrato->email)->send(new AlertasContrato($mail_info));
+        }
+
+        flash('Proveedor registrado con éxito', 'success');
+        return redirect()->route('superadmin.index');
+    }
+    
 
     /**
      * Remove the specified resource from storage.

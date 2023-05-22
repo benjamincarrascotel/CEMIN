@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['superadmin']], function () {
 
+        //ALERTA
+        Route::post('/contrato/enviar_alerta', 'ContratoController@enviar_alerta')->name('contrato.enviar_alerta');
+
         //DASHBOARD
         Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');
         Route::get('/contrato/plan', 'ContratoController@plan')->name('contrato.plan');
@@ -32,7 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/contrato/kpis', 'ContratoController@kpis')->name('contrato.kpis');
 
         //FASES CONTRATO
-
         Route::get('/contrato/create_fase_proyectada', 'ContratoController@create_fase_proyectada')->name('fase.create_fase_proyectada');
         Route::post('/contrato/store_fase_proyectada', 'ContratoController@store_fase_proyectada')->name('fase.store_fase_proyectada');
         
@@ -43,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
         Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
+
 
 
         

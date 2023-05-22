@@ -26,36 +26,42 @@
         <table class='table data-table-global datatable' id='datatable'>
             <thead>
                 <tr>
-                    <th>Contrato</th>
-                    <th>Faena</th>
-                    <th>Área</th>
-                    <th>Centro</th>
+                    <th>Código SAP</th>
                     <th>Servicio / Bien</th>
-                    <th>Contrato SAP</th>
-                    <th>Admin</th>
-                    <th>Tipo Contrato</th>
-                    <th>Estado</th>
+                    <th>Proveedor</th>
+                    <th>Faena</th>
+                    <th>Administrador de Contrato</th>
+                    <th>Estado licitación actual</th>
+                    <th>Pasar a Siguiente Fase</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($contratos as $contrato)
                 <tr>
-                    <td>{{$contrato->id}}</td>
-                    <td>{{$contrato->faena->nombre_faena}}</td>
-                    <td>{{$contrato->area->nombre_area}}</td>
-                    <td>{{$contrato->centro->nombre_centro}}</td>
-                    <td>{{$contrato->servicio_bien->nombre_servicio_bien}}</td>
                     <td>{{$contrato->contrato_sap}}</td>
+                    <td>{{$contrato->servicio_bien->nombre_servicio_bien}}</td>
+
+                    <td>{{$contrato->proveedor->nombre}}</td>
+                    <td>{{$contrato->faena->nombre_faena}}</td>
                     <td>{{$contrato->admin_contrato->nombre}}</td>
-                    <!--TODO revisar por que retorna un arreglo en vez de un objeto -->
-                    <td>{{$contrato->detalle_contrato[0]->tipo_contrato->nombre_tipo}}</td>
-                    <td>{{$contrato->estado_contrato}}</td>
+                    <td>{{$alertas_info[$contrato->id]['estado_actual']}}</td>
+                    @if($contrato->estado_contrato != 15)
+                        @if($alertas_info[$contrato->id]['semaforo'] == 0)
+                            <td><span class="badge mt-2 fs-10 bg-success-transparent br-7 ms-auto">A TIEMPO</span></td>
+                        @elseif($alertas_info[$contrato->id]['semaforo'] == 1)
+                            <td><span class="badge mt-2 fs-10 bg-warning-transparent br-7 ms-auto">POR VENCER</span></td>
+                        @else
+                            <td><span class="badge mt-2 fs-10 bg-danger-transparent br-7 ms-auto">RETRASADO</span></td>
+                        @endif
+                    @else
+                        <td><span class="badge mt-2 fs-10 bg-success-transparent br-7 ms-auto">TERMINADA</span></td>
+                    @endif
 
                     <td>
                         <div class="btn-group" role="group">
-                            <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='fa fa-info'></i></a>
-                            <a class="btn btn-danger" href="" onclick="alert('Esta acción elimina el contrato.\nEs Irreversible')" title="Cancelar Contrato"><i class='fa fa-ban'></i></a>
+                            <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='mt-1 fa fa-info'></i></a>
+                            <button class="btn btn-warning" @if($alertas_info[$contrato->id]['semaforo'] == 0) disabled @endif href="javascript:void(0)" onclick="enviarAlerta({{$contrato->id}})" title="Enviar Alerta"><i class='fa fa-envelope'></i></button>
                             
     
                             {{-- <a class="btn btn-primary" href="{!! route('solicitud.edit', [$solicitud->id]) !!}"><i class='fas fa-edit'></i></a> --}}
@@ -80,5 +86,111 @@
     </div>
     -->
     @endsection
+
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="enviarAlertaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="enviarAlertaModal_title">Enviar Correo Electrónico de Alerta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="enviarAlertaForm" >
+                        @csrf
+                        <input type="hidden" id="id" name="id" />
+                        <div>
+                            <h4 id="enviarAlertaModal_pregunta">¿Desea enviar un E-MAIL de notificación a /nombre/ con correo /email/?</h4>
+                            <h5 id="enviarAlertaModal_estado_actual" class="mt-4">ESTADO LICITACIÓN ACTUAL: /estado/</h3>
+                            <h5 id="enviarAlertaModal_mails_cant" class="mt-4">MAILS ENVIADOS ANTERIORMENTE: /num/</h3>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Enviar E-MAIL</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function changeTitle(id, value)
+        {
+            var heading = document.getElementById(id);
+            if(value == 2){
+                heading.innerHTML = "ENVÍO DE NOTIFICACIÓN - RETRASADO"
+                heading.style.color = "red";
+            }else{
+                heading.innerHTML = "ENVÍO DE NOTIFICACIÓN - POR VENCER"
+                heading.style.color = "goldenrod";
+            }
+        }
+
+        function changeText(id, value)
+        {
+            var tag = document.getElementById(id);
+            tag.innerHTML = value;
+        }
+
+        function enviarAlerta(id){ //TODO obtener datos necesarios para la confirmacion, nombre e email usuario, estado licitacion actual, mails enviados anteriormente
+            /*
+            $.get('/contrato/'+id+'/alerta_info', function(info){
+                //$("#id").val(category.id);
+                console.log(info);
+                $("#enviarAlertaModal").modal('toggle');
+
+            });
+            */
+
+            var alertas_info = {!! json_encode($alertas_info) !!};
+
+            const alerta_info = alertas_info[id];
+            changeTitle("enviarAlertaModal_title", alerta_info.semaforo);
+            if(alerta_info.user_type != 2){
+                changeText("enviarAlertaModal_pregunta", "¿Desea enviar un E-MAIL de notificación al usuario <b>'"+alerta_info.nombre_usuario+"'</b> con correo <b>'"+alerta_info.email_usuario+"'</b> ?");
+                changeText("enviarAlertaModal_estado_actual", "ESTADO LICITACIÓN ACTUAL: <br> <b> '"+alerta_info.estado_actual+"'</b>");
+                changeText("enviarAlertaModal_mails_cant", "MAILS ENVIADOS ANTERIORMENTE: <b> "+alerta_info.mails_cant+"</b>");
+            }else{
+                changeText("enviarAlertaModal_pregunta", "¿Desea enviar un E-MAIL de notificación al usuario de <b>'Abastecimiento'</b> y al <b>'Administrador de Contrato'</b>?");
+                changeText("enviarAlertaModal_estado_actual", "ESTADO LICITACIÓN ACTUAL: <br> <b> '"+alerta_info.estado_actual+"'</b>");
+                changeText("enviarAlertaModal_mails_cant", "MAILS ENVIADOS ANTERIORMENTE: <b> "+alerta_info.mails_cant+"</b>");
+            }
+            
+
+            $("#id").val(id);
+
+            console.log(alerta_info);
+
+            $("#enviarAlertaModal").modal('toggle');
+
+        }
+
+        $("#enviarAlertaForm").submit(function(e){
+            e.preventDefault();
+            let id = $("#id").val();
+            //let name = $("#name2").val();
+            let _token = $("input[name=_token]").val();
+
+            $.ajax({
+                url:"{{route('contrato.enviar_alerta')}}",
+                type:"POST",
+                data:{
+                    id:id,
+                    //name:name,
+                    _token:_token
+                },
+                success:function(response){
+                    if(response.error){
+                        alert(response.error);
+                    }else{
+                        alert("Se ha enviado una alerta exitosamente.")
+                        location.reload();
+                    }
+                    
+                }
+            });
+        });
+    </script>
 
 @endsection
