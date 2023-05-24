@@ -25,8 +25,8 @@ class AlertasContrato extends Mailable
     public function build()
     {
         return $this->from('gac.mantenciones@gmail.com')
-                    ->subject('Alerta - Contrato #'.$this->alerta->contrato->servicio_bien->nombre_servicio_bien.'"')
-                    ->view('mails.alerta_mail');
+                    ->subject($this->alerta->subject)
+                    ->view('mails.alerta_contrato');
                     //->text('mails.cotizacion_plain')
                     
         //return $this->view('view.mails.alerta_mail');

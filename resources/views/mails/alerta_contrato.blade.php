@@ -56,23 +56,23 @@ a[x-apple-data-detectors] {
 	mso-hide:all;
 }
 .es-button-border:hover a.es-button, .es-button-border:hover button.es-button {
-	background:#3498db!important;
-	border-color:#3498db!important;
+	background:#db9334!important;
+	border-color:#db9334!important;
 }
 .es-button-border:hover {
-	border-color:#1f68b1 #1f68b1 #1f68b1 #1f68b1!important;
-	background:#3498db!important;
+	border-color:#b67929 #b67929 #b67929 #b67929!important;
+	background:#db9334!important;
 }
 [data-ogsb] .es-button {
 	border-width:0!important;
 	padding:10px 40px 10px 40px!important;
 }
 td .es-button-border:hover a.es-button-1 {
-	background:#2980d9!important;
-	border-color:#2980d9!important;
+	background:#db9334!important;
+	border-color:#db9334!important;
 }
 td .es-button-border-2:hover {
-	background:#2980d9!important;
+	background:#db9334!important;
 }
 [data-ogsb] .es-button.es-button-3 {
 	padding:10px 40px!important;
@@ -87,7 +87,7 @@ td .es-button-border-2:hover {
     box-shadow: 0 0 20px #00000026;
 }
 .styled-table thead tr {
-    background-color: #2980d9;
+    background-color: #db9334;
     color: #ffffff;
     text-align: left;
 }
@@ -110,8 +110,8 @@ td .es-button-border-2:hover {
 </style>
  </head>
  <body style="width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;padding:0;Margin:0">
-  <div class="es-wrapper-color" style="background-color:#2980D9">
-   <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top;background-color:#2980D9">
+  <div class="es-wrapper-color" style="background-color:#db9334">
+   <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top;background-color:#db9334">
      <tr style="border-collapse:collapse">
       <td valign="top" style="padding:0;Margin:0">
        <table cellpadding="0" cellspacing="0" class="es-content" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
@@ -147,7 +147,7 @@ td .es-button-border-2:hover {
                      <tr style="border-collapse:collapse">
                         
                       <td align="center" style="padding:0;Margin:0;font-size:0">
-                        <a target="_blank" href="https://viewstripo.email" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#2980D9;font-size:14px">
+                        <a target="_blank" href="https://viewstripo.email" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#db9334;font-size:14px">
                             
                            
                         </a>
@@ -169,8 +169,8 @@ td .es-button-border-2:hover {
                                 
                                     <tr style="border-collapse:collapse">
                                         <td style="padding:0;Margin:0;padding-bottom:5px;padding-top:20px">
-                                            <h3 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#2980d9">
-                                                Estimado Usuario, 
+                                            <h3 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#db9334">
+                                                Estimado {{$alerta->user_info['nombre']}}, 
                                             </h3>
                                         </td>
                                     </tr>
@@ -178,12 +178,77 @@ td .es-button-border-2:hover {
                                     <tr style="border-collapse:collapse">
                                         <td style="padding:0;Margin:0;padding-top:10px">
                                             <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px">
-                                                Se ha generado una alerta de retraso para el contrato "{{$alerta->contrato->servicio_bien->nombre_servicio_bien}}". 
+                                              @if($alerta->estado == 0)  
+                                                Esta es una notificación automática, ya que la fecha proyectada para la siguiente fase del proceso de licitación está <b>RETRASADA</b>. 
+                                              @else
+                                                Esta es una notificación automática, ya que la fecha proyectada para la siguiente fase del proceso de licitación está <b>POR VENCER</b>. 
+                                              @endif
                                             </p>
                                         </td>
                                     </tr>
 
-                                    
+                                    <tr style="border-collapse:collapse">
+                                      <table class="styled-table" >
+                                          <thead>
+                                              <tr>
+                                                  <th style="width:400px">Datos de la Licitación:</th>
+                                                  <th style="width:400px"></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr class="active-row">
+                                                  <td>Faena:</th>
+                                                  <td>{{$alerta->contrato->faena->nombre_faena}}</td>
+                                              </tr>
+                                              <tr class="active-row">
+                                                  <td>Servicio / Bien:</td>
+                                                  <td>{{$alerta->contrato->servicio_bien->nombre_servicio_bien}}</td>
+                                              </tr>
+                                              <tr class="active-row">
+                                                  <td>Descripción:</td>
+                                                  <td>{{$alerta->contrato->descripcion}}</td>
+                                              </tr>
+                                              <tr class="active-row">
+                                                  <td>Gestionador Abastecimiento:</td>
+                                                  <td>{{$alerta->contrato->abastecimiento_user->nombre}}</td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                    </tr>
+
+                                    <tr style="border-collapse:collapse">
+                                      <table class="styled-table" >
+                                        <thead>
+                                          <tr>
+                                              <th style="width:400px">Datos de Fases:</th>
+                                              <th style="width:400px"></th>
+                                          </tr>
+                                      </thead>
+                                          <tbody>
+                                              <tr class="active-row">
+                                                  <td>Fase Siguiente:</th>
+                                                  <td>{{$alerta->fase_siguiente}}</td>
+                                              </tr>
+                                              <tr class="active-row">
+                                                  <td>Fecha Proyectada:</td>
+                                                  <td>{{$alerta->fecha_proyectada}}</td>
+                                              </tr>
+                                              <tr class="active-row">
+                                                  <td>Fase Actual Licitación:</td>
+                                                  <td>{{$alerta->fase_actual}}</td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                    </tr>
+
+                                    <tr>
+                                      @if($alerta->estado == 0)
+                                        <p>Agradeceremos compartir la documentación necesaria para justificar el paso a la siguiente Fase del proceso de Licitación con urgencia y así no retrasar el proceso.</p>
+                                      @else
+                                        <p>Agradeceremos compartir la documentación necesaria para justificar el paso a la siguiente Fase del proceso de Licitación.</p>
+                                      @endif
+                                    </tr>
+
 
 
                                     <tr style="border-collapse:collapse">
@@ -196,8 +261,9 @@ td .es-button-border-2:hover {
                                                                 <th style="width:600px">Atte,</th>
                                                             </tr>
                                                             <tr>
-                                                                <th style="width:600px">MOS</th>
+                                                                <th style="width:600px">Gerencia de Supply Chain</th>
                                                             </tr>
+                                                            <!-- TODO colocar logo -->
                                                         </tbody>
                                                     </table>
                                                 </tr>

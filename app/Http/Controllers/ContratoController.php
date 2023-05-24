@@ -35,6 +35,26 @@ use App\Imports\ImportExcel;
 class ContratoController extends Controller
 {
 
+    public $identificador_estados = [
+        '0'=>'creado',
+        '1'=>'solicitud_de_base',
+        '2'=>'envio_bases_primera_revision',
+        '3'=>'primera_revision_bases_por_abastecimiento',
+        '4'=>'envio_bases_segunda_revision',
+        '5'=>'segunda_revision_bases_por_abastecimiento',
+        '6'=>'recopilacion_de_informacion',
+        '7'=>'invitacion_a_oferentes',
+        '8'=>'visita_a_terreno',
+        '9'=>'preguntas_y_consultas_proponente',
+        '10'=>'respuestas_del_mandante',
+        '11'=>'recepcion_de_ofertas_tecnicas_economicas',
+        '12'=>'evaluacion_ofertas_tecnicas',
+        '13'=>'evaluacion_ofertas_economicas',
+        '14'=>'comite_de_inversiones',
+        '15'=>'adjudicacion',
+        '16'=>'stand_by',
+        '17'=>'adjudicacion_directa',
+    ];
 
     public $identificador_estados_user_type = [ // Según el estado en el que estoy
         '0'=>['abastecimiento'],
@@ -52,6 +72,27 @@ class ContratoController extends Controller
         '12'=>['abastecimiento'],
         '13'=>['abastecimiento'],
         '14'=>['abastecimiento'],
+    ];
+
+    public $identificador_estados_nombres = [
+        '0'=>'Creado',
+        '1'=>'Solicitud de base',
+        '2'=>'Envio bases primera revisión',
+        '3'=>'Primera revisión bases por abastecimiento',
+        '4'=>'Envío bases segunda revisión',
+        '5'=>'Segunda revisión bases por abastecimiento',
+        '6'=>'Recopilación de información',
+        '7'=>'Invitación a oferentes',
+        '8'=>'Visita a terreno',
+        '9'=>'Preguntas y consultas proponente',
+        '10'=>'Respuestas del mandante',
+        '11'=>'Recepción de ofertas técnicas económicas',
+        '12'=>'Evaluación ofertas técnicas',
+        '13'=>'Evaluación ofertas económicas',
+        '14'=>'Comité de inversiones',
+        '15'=>'Adjudicación',
+        '16'=>'Stand By',
+        '17'=>'Adjudicación directa',
     ];
 
 
@@ -733,12 +774,8 @@ class ContratoController extends Controller
         $user_type = 0;
         if($this->identificador_estados_user_type[$contrato->estado_contrato] == ['administrador']){
             $user_type = 0;
-            $user_id = $contrato->admin_contrato_id;
-            $user_email = $contrato->admin_contrato->email;
         }else if($this->identificador_estados_user_type[$contrato->estado_contrato] == ['abastecimiento']){
             $user_type = 1;
-            $user_id = $contrato->abastecimiento_user_id;
-            $user_email = $contrato->abastecimiento_user->email;
         }else{
             $user_type = 2;
         }
@@ -752,18 +789,67 @@ class ContratoController extends Controller
 
         $mail_info = new \stdClass();
         $mail_info->contrato = $contrato;
+        //Fase Actual
+        $mail_info->fase_actual = $this->identificador_estados_nombres[$contrato->estado_contrato];
+        //Fase Siguiente
+        $mail_info->fase_siguiente = $this->identificador_estados_nombres[$contrato->estado_contrato +1];
+        //Fecha Siguiente Fase Proyectada 
+        $mail_info->fecha_proyectada = Carbon::parse($contrato->fase_proyectada_contrato[0][$this->identificador_estados[$contrato->estado_contrato +1]])->format('d-m-Y');
+        //RETRASADO o POR VENCER
+        $fase_sig_proyectada = Carbon::parse(FaseProyectadaContrato::where('contrato_id', $contrato->id)->value($this->identificador_estados[$contrato->estado_contrato+1]));
+        $fecha_actual = Carbon::now();
 
+        //Verificamos casos
+        $diferencia = $fecha_actual->diffInDays($fase_sig_proyectada, false);
+
+        if($diferencia > 0){
+            $mail_info->estado = 1;
+            $mail_info->subject = 'Proceso de Licitación - Contrato '.$contrato->servicio_bien->nombre_servicio_bien.' / '.$contrato->faena->nombre_faena.' - FASE SIGUIENTE "POR VENCER".';
+
+        }else if($diferencia <= 0){
+            $mail_info->estado = 0;
+            $mail_info->subject = 'Proceso de Licitación - Contrato '.$contrato->servicio_bien->nombre_servicio_bien.' / '.$contrato->faena->nombre_faena.' - FASE SIGUIENTE "RETRASADA".';
+
+        }
+
+        $user_info = collect();
         if($user_type == 2){ //enviamos correos a ambos usuarios
-            Mail::to($contrato->admin_contrato->email)->send(new AlertasContrato($mail_info));
-            Mail::to($contrato->abastecimiento_user->email)->send(new AlertasContrato($mail_info));
+            //User info
+            $user_info = [
+                'nombre' => $contrato->admin_contrato->nombre,
+                'email' => $contrato->admin_contrato->email
+            ];
+            $mail_info->user_info = $user_info;
+            Mail::to($mail_info->user_info['email'])->send(new AlertasContrato($mail_info));
+
+            //User info
+            $user_info = [
+                'nombre' => $contrato->abastecimiento_user->nombre,
+                'email' => $contrato->abastecimiento_user->email
+            ];
+            $mail_info->user_info = $user_info;
+            Mail::to($mail_info->user_info['email'])->send(new AlertasContrato($mail_info));
+
         }else if($user_type == 1){ // enviamos correo a abastecimiento
+            //User info
+            $user_info = [
+                'nombre' => $contrato->abastecimiento_user->nombre,
+                'email' => $contrato->abastecimiento_user->email
+            ];
+            $mail_info->user_info = $user_info;
             Mail::to($contrato->abastecimiento_user->email)->send(new AlertasContrato($mail_info));
 
         }else{ //enviamos correo a admin de contrato
+            //User info
+            $user_info = [
+                'nombre' => $contrato->admin_contrato->nombre,
+                'email' => $contrato->admin_contrato->email
+            ];
+            $mail_info->user_info = $user_info;
             Mail::to($contrato->admin_contrato->email)->send(new AlertasContrato($mail_info));
         }
 
-        flash('Proveedor registrado con éxito', 'success');
+        flash('Alerta enviada con éxito', 'success');
         return redirect()->route('superadmin.index');
     }
     
