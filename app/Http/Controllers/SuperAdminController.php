@@ -103,7 +103,7 @@ class SuperAdminController extends Controller
                 //dd($diferencia);
                 if($diferencia > 3){
                     $alerta_info->put('semaforo',  0);
-                }else if( $diferencia > 0){
+                }else if( $diferencia >= 0){
                     $alerta_info->put('semaforo',  1);
                 }else{
                     $alerta_info->put('semaforo',  2);

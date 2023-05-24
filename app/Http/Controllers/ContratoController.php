@@ -802,11 +802,11 @@ class ContratoController extends Controller
         //Verificamos casos
         $diferencia = $fecha_actual->diffInDays($fase_sig_proyectada, false);
 
-        if($diferencia > 0){
+        if($diferencia >= 0){
             $mail_info->estado = 1;
             $mail_info->subject = 'Proceso de Licitación - Contrato '.$contrato->servicio_bien->nombre_servicio_bien.' / '.$contrato->faena->nombre_faena.' - FASE SIGUIENTE "POR VENCER".';
 
-        }else if($diferencia <= 0){
+        }else if($diferencia < 0){
             $mail_info->estado = 0;
             $mail_info->subject = 'Proceso de Licitación - Contrato '.$contrato->servicio_bien->nombre_servicio_bien.' / '.$contrato->faena->nombre_faena.' - FASE SIGUIENTE "RETRASADA".';
 
@@ -848,6 +848,16 @@ class ContratoController extends Controller
             $mail_info->user_info = $user_info;
             Mail::to($contrato->admin_contrato->email)->send(new AlertasContrato($mail_info));
         }
+
+        //Correo de respaldo
+        $user_info = [
+            'nombre' => 'RESPALDO',
+            'email' => 'mos.cemin@gmail.com'
+        ];
+        $mail_info->user_info = $user_info;
+
+        Mail::to('mos.cemin@gmail.com')->send(new AlertasContrato($mail_info));
+
 
         flash('Alerta enviada con éxito', 'success');
         return redirect()->route('superadmin.index');
