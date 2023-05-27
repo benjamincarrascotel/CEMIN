@@ -7,7 +7,7 @@
                 <h1 class="card-title" style="width: 100%">
                     Formulario Creación - Modificación Acreedores
                 </h1>
-                <img src="{{asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" style="margin-left:60%; width:50%; " alt="CEMIN logo">
+                <img src="{{asset('assets/images/brand/logoCEMIN.png')}}" class="header-brand-img desktop-lgo" style="margin-left:60%; width:50%; " alt="CEMIN logo">
 
             @overwrite
                 
