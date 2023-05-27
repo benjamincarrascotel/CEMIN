@@ -14,14 +14,14 @@
 										</a>
 									</div>
 									
-									<div class="d-flex order-lg-2 ms-auto main-header-end">
+									<div class="d-flex order-lg-2 ms-auto main-header-end" >
 										<button  class="navbar-toggler navresponsive-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="true" aria-label="Toggle navigation">
 											<i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
 										</button>
 										<div class="navbar navbar-expand-lg navbar-collapse responsive-navbar p-0">
 											<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 												<div class="d-flex order-lg-2">
-													
+													<!--
 													<div class="dropdown d-flex">
 														<a class="nav-link icon theme-layout nav-link-bg layout-setting">
 															<span class="light-layout">
@@ -30,9 +30,12 @@
 																</svg>
 															</span>
 															<span class="dark-layout"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24" height="24" viewBox="0 0 24 24">
-																<path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z"/></svg></span>
+																<path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z"/></svg>
+															</span>
 														</a>
-													</div><!-- Theme-Layout -->
+													</div>
+													 -->
+													<!-- Theme-Layout -->
 													<div class="dropdown  header-fullscreen d-flex" >
 														<a  class="nav-link icon full-screen-link p-0"  id="fullscreen-button">
 															<svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"/></svg>

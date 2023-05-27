@@ -2,7 +2,7 @@
 
 @push('cards')
     @section('card_title')
-        Cargar fechas proyectadas del Contrato
+        Fechas programadas de la Licitación
         
     @overwrite
 
