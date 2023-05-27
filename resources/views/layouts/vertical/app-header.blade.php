@@ -3,9 +3,9 @@
 							<div class="container-fluid">
 								<div class="d-flex">
 									<a class="header-brand" href="{{url('index')}}">
-										<img src="{{asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" alt="Azea logo">
+										<img src="{{asset('assets/images/brand/logoCEMIN.png')}}" class="header-brand-img desktop-lgo" alt="Azea logo">
 										<img src="{{asset('assets/images/brand/logo1.png')}}" class="header-brand-img dark-logo" alt="Azea logo">
-										<img src="{{asset('assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="Azea logo">
+										<img src="{{asset('assets/images/brand/faviconCEMIN.png')}}" class="header-brand-img mobile-logo" alt="Azea logo">
 										<img src="{{asset('assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="Azea logo">
 									</a>
 									<div class="app-sidebar__toggle d-flex" data-bs-toggle="sidebar">
