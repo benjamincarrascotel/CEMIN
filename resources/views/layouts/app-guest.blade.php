@@ -21,11 +21,24 @@
         <!-- Custom styles for this template-->
         @include('layouts.vertical.styles')
 
+		<style>
+			.scrollbar {
+				background-color: #F5F5F5;
+				float: left;
+				height: 300px;
+				margin-bottom: 25px;
+				margin-left: 22px;
+				margin-top: 40px;
+				width: 65px;
+				overflow-y: scroll;
+			}
+		</style>
+
     </head>
 
     <body id="page-top">
         <!-- Page Wrapper -->
-        <div id="wrapper" style="background-image:url({{asset('assets/images/brand/fondo-login.png')}}); position: fixed;width: 100%;height: 100%;">
+        <div id="wrapper" class="scrollbar" style="background-color: #f8f9fc; position: fixed;width: 100%;height: 100%;">
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="align-self-center d-flex flex-column">
                 <!-- Main Content -->
@@ -58,4 +71,6 @@
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 -->
     @stack('custom_scripts')
+
+	
 </html>

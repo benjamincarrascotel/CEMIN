@@ -2,14 +2,14 @@
 
 @section('content')
         <div class="page">
-            <div class="page-content">
+            <div class="page-content" style="padding-left:60%;padding-top:10%;">
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">
                             <div class="row justify-content-center">
-                                <div class="col-lg-6 col-xl-4 col-md-7 col-sm-12 col-xs-12 ">
+                                <div class=" col-md-7 col-sm-12 col-xs-12 ">
                                     <div class="text-center mb-5 mt-0">
-                                        <img src="{{asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" alt="Azea logo">
+                                        <img src="{{asset('assets/images/brand/LogoMOS.png')}}" class="desktop-lgo" alt="MOS logo">
                                     </div>
                                     <div class="card-group mb-0">
                                         <div class="card bg-primary text-white br-7 p-2">

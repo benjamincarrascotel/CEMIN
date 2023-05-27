@@ -21,6 +21,28 @@ class Proveedor extends Model
     protected $fillable = [
         'nombre',
         'codigo',
+        'rut',
+        'giro',
+        'natural_organizacion',
+        'direccion_com',
+        'comuna_com',
+        'region_com',
+        'email_com',
+        'telefono_com',
+        'persona_contacto_com',
+        'direccion_log',
+        'comuna_log',
+        'region_log',
+        'email_log',
+        'telefono_log',
+        'persona_contacto_log',
+        'nro_cuenta',
+        'tipo_cuenta',
+        'banco',
+        'moneda',
+        'email_pago',
+        'cheque_checkbox',
+        'vale_vista_checkbox',
 
 
     ];

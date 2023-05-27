@@ -30,7 +30,7 @@
                             <div class="tabs-menu ">
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs shop-des-tabs">
-                                    <li class=""><a href="#tab1" class="active" data-bs-toggle="tab">Description General</a></li>
+                                    <li class=""><a href="#tab1" class="active" data-bs-toggle="tab">Descripción General</a></li>
                                     <li class=""><a href="#tab2" data-bs-toggle="tab">Detalles</a></li>
                                 </ul>
                             </div>

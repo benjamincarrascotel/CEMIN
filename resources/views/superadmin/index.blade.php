@@ -105,7 +105,7 @@
                             <h5 id="enviarAlertaModal_mails_cant" class="mt-4">MAILS ENVIADOS ANTERIORMENTE: /num/</h3>
                         </div>
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">Enviar E-MAIL</button>
+                            <button id="enviar" type="submit" class="btn btn-primary">Enviar E-MAIL</button>
                         </div>
                     </form>
                 </div>
@@ -133,7 +133,7 @@
             tag.innerHTML = value;
         }
 
-        function enviarAlerta(id){ //TODO obtener datos necesarios para la confirmacion, nombre e email usuario, estado licitacion actual, mails enviados anteriormente
+        function enviarAlerta(id){
             /*
             $.get('/contrato/'+id+'/alerta_info', function(info){
                 //$("#id").val(category.id);
@@ -171,6 +171,10 @@
             let id = $("#id").val();
             //let name = $("#name2").val();
             let _token = $("input[name=_token]").val();
+
+            //Desactivamos botón "enviar"
+            $("#enviar").prepend('<i class="fa fa-spinner fa-spin px-1"></i>');
+            $("#enviar").attr("disabled", 'disabled');
 
             $.ajax({
                 url:"{{route('contrato.enviar_alerta')}}",

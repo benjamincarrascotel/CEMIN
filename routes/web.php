@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
+// PROVEEDOR
+Route::get('/proveedor/create', 'ProveedorController@create')->name('proveedor.create');
+Route::post('/proveedor/store', 'ProveedorController@store')->name('proveedor.store');
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'HomeController@index')->name('index');
@@ -45,6 +49,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
         Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
+
+        //PROVEEDOR
+        Route::get('/proveedor/index', 'ProveedorController@index')->name('proveedor.index');
+
+        Route::get('/proveedor/{id}', 'ProveedorController@show')->name('proveedor.show');
+
+
 
 
 
