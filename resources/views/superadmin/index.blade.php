@@ -12,7 +12,7 @@
 
     @push('cards')
         @section('card_title')
-            Todos los contratos
+            Todas las Licitaciones
             <!--
             <span title="TOOL TIP DE AYUDA PARA ESTA TABLA.">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +61,7 @@
                     <td>
                         <div class="btn-group" role="group">
                             <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='mt-1 fa fa-info'></i></a>
-                            <button class="btn btn-warning" @if($alertas_info[$contrato->id]['semaforo'] == 0) disabled @endif href="javascript:void(0)" onclick="enviarAlerta({{$contrato->id}})" title="Enviar Alerta"><i class='fa fa-envelope'></i></button>
+                            <button class="btn btn-danger" @if($alertas_info[$contrato->id]['semaforo'] == 0) disabled @endif href="javascript:void(0)" onclick="enviarAlerta({{$contrato->id}})" title="Enviar Alerta"><i class='fa fa-envelope'></i></button>
                             
     
                             {{-- <a class="btn btn-primary" href="{!! route('solicitud.edit', [$solicitud->id]) !!}"><i class='fas fa-edit'></i></a> --}}
