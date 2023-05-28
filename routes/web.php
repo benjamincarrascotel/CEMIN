@@ -18,6 +18,8 @@ Auth::routes(['register' => false]);
 // PROVEEDOR
 Route::get('/proveedor/create', 'ProveedorController@create')->name('proveedor.create');
 Route::post('/proveedor/store', 'ProveedorController@store')->name('proveedor.store');
+Route::post('/proveedor/store2', 'ProveedorController@store2')->name('proveedor.store2');
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -25,6 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/superadmin', 'SuperAdminController@index')->middleware(['superadmin'])->name('superadmin.index');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    //PROVEEDOR
+    Route::get('/proveedor/index', 'ProveedorController@index')->name('proveedor.index');
+    Route::get('/proveedor/{id}', 'ProveedorController@show')->name('proveedor.show');
 
     Route::group(['middleware' => ['superadmin']], function () {
 
@@ -49,11 +55,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
         Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
-
-        //PROVEEDOR
-        Route::get('/proveedor/index', 'ProveedorController@index')->name('proveedor.index');
-
-        Route::get('/proveedor/{id}', 'ProveedorController@show')->name('proveedor.show');
 
 
 

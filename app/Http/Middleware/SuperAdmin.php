@@ -22,7 +22,7 @@ class SuperAdmin
             return $next($request);      
         }
         else if($user->admin){
-            return redirect('/admin');
+            return redirect('/proveedor/index');
         }
         else{
             return redirect('/login');

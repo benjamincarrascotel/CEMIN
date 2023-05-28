@@ -44,6 +44,16 @@ class Proveedor extends Model
         'cheque_checkbox',
         'vale_vista_checkbox',
 
+        'sociedad_a_facturar',
+        'nombre_solicitante',
+        'cargo_solicitante',
+        'departamento_solicitante',
+        'jefatura_solicitante',
+        'condiciones_pago',
+        'tipo_documento',
+        'descripcion',
+        'fecha_solicitud',
+
 
     ];
 

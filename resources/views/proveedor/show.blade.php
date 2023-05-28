@@ -182,6 +182,31 @@
         @include('layouts.card')
     @endpush
 
+
+    @push('cards')
+        @section('card_title')
+             Datos Obligatorios (Uso Interno)           
+        @overwrite
+
+        @section('card_content')
+            <form id="store" class="container-fluid" action="{!! route('proveedor.store2') !!}" method="post">
+                @csrf
+                @include('proveedor.fields2')
+                <input type="submit" class="btn btn-primary" form="store" value="Guardar" />
+                <a class="btn btn-dark" href="{{route('proveedor.index')}}" >Cancelar</a>
+            </form>
+        @overwrite
+
+        @include('layouts.card')
+    @endpush
+
+
+
+
+
+
+
+
     @section('down_cards')
     
     @endsection

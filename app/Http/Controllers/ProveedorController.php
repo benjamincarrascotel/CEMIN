@@ -73,6 +73,30 @@ class ProveedorController extends Controller
         return redirect()->route('proveedor.create');
     }
 
+    public function store2(Request $request)
+    {
+        $input = $request->all();
+
+        
+        //dd($input);
+
+
+        // Verificamos si existe y actualizamos o creamos nuevo registro
+        $data = $request->except('_token');
+        $existente = Proveedor::where('id', $input['id'])->first();
+        $actualizado_flag = 0;
+        if($existente === null){
+            //
+        }else{
+            $actualizado_flag = 1;
+            $existente->update($data);
+        }
+
+        flash("Datos de Proveedor actualizados con éxito.", 'success');
+
+        return redirect()->route('proveedor.index');
+    }
+
     /**
      * Display the specified resource.
      *

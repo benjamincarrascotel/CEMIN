@@ -2,7 +2,7 @@
 
 @section('content')
         <div class="page">
-            <div class="page-content" style="padding-left:60%;padding-top:10%;">
+            <div class="page-content" style="padding-left:57%;padding-top:0%;">
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">
@@ -15,8 +15,7 @@
                                         <div class="card bg-primary text-white br-7 p-2">
                                             <div class="card-body mb-0">
                                                 <div class="text-center mb-3">
-                                                    <h1 class="mb-2">Log In</h1>
-                                                    <a href="javascript:void(0);" class="text-white">Welcome Back !</a>
+                                                    <h2 class="mb-2">Plataforma Gestión de Contratos y Mantenimiento</h2>
                                                 </div>
                                         <!--
                                             <hr class="hrregister3">
@@ -44,17 +43,19 @@
                                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                                         </div>
                                                     </div>
+                                                    <!--
                                                     <div class="form-group">
                                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="remember">
                                                             {{ __('Recuérdame') }}
                                                         </label>
                                                     </div>
+                                                    -->
                                                     
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <button type="submit" class="btn btn-white text-primary btn-block d-grid px-4 font-weight-bold">
-                                                                {{ __('Log In') }}
+                                                                {{ __('INICIAR SESIÓN') }}
                                                             </button>
                                                         </div>
                                                     </div>

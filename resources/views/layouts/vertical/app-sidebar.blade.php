@@ -14,9 +14,10 @@
 	</div>
 
 	<ul class="side-menu app-sidebar3">
-		<li class="side-item side-item-category">Dashboard</li>
 
 		@if(auth()->user()->superadmin)
+		<li class="side-item side-item-category">Dashboard</li>
+
 			<!-- DETALLES -->
 			<li class="slide">
 				<a class="side-menu__item"  href="{{route('contrato.detalles')}}">
@@ -58,10 +59,12 @@
 			</li>
 			 -->
 		@elseif(auth()->user()->admin)
+		<!--
 			<li class="slide">
 				<a class="side-menu__item"  href="{{route('admin.index')}}">
 				<span class="side-menu__label">Dashboard Admin</span></a>
 			</li>
+		-->
 		@endif
 
 		

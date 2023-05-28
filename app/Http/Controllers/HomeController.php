@@ -14,7 +14,7 @@ class HomeController extends Controller
             return redirect()->route('superadmin.index');
         }
         else if(auth()->user()->admin)
-            return redirect()->route('admin.index');
+            return redirect()->route('proveedor.index');
             // return view('jefe_local.index');
         else 
             return redirect()->route('superadmin.index');
