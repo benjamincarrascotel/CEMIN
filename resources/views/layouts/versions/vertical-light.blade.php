@@ -17,7 +17,15 @@
 
 	</head>
 
-	<body class="app sidebar-mini">
+	<style>
+		.color-header .header-icon {
+			fill: #212529!important;
+		}
+
+	</style>
+
+	<!--TODO dark-menu -->
+	<body class="app sidebar-mini dark-menu color-header">
 
         <!---Global-loader-->
         <div id="global-loader" >
