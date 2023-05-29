@@ -67,10 +67,8 @@ class ProveedorController extends Controller
             $existente->update($data);
         }
 
-        //TODO agregar mensaje de confimación
-        flash("Proveedor registrado con éxito.", 'success');
-
-        return redirect()->route('proveedor.create');
+        return view('proveedor.created_success')->with('nombre', $existente['nombre']);
+        //return redirect()->route('proveedor.create');
     }
 
     public function store2(Request $request)

@@ -89,6 +89,12 @@ class SuperAdminController extends Controller
 
         $alertas_info = collect();
 
+        // Contadores
+        $a_tiempo_sum = 0;
+        $por_vencer_sum = 0;
+        $retrasadas_sum = 0;
+
+
         foreach($contratos as $contrato){
             $alerta_info = collect();
             // Cálculo de semaforo
@@ -103,10 +109,13 @@ class SuperAdminController extends Controller
                 //dd($diferencia);
                 if($diferencia > 3){
                     $alerta_info->put('semaforo',  0);
+                    $a_tiempo_sum +=1 ;
                 }else if( $diferencia >= 0){
                     $alerta_info->put('semaforo',  1);
+                    $por_vencer_sum += 1;
                 }else{
                     $alerta_info->put('semaforo',  2);
+                    $retrasadas_sum += 1;
                 }
 
                 // Cálculo de cant alertas enviadas
@@ -138,6 +147,9 @@ class SuperAdminController extends Controller
         //dd($alertas_info);
 
         return view('superadmin.index')
+            ->with('a_tiempo_sum', $a_tiempo_sum)
+            ->with('por_vencer_sum', $por_vencer_sum)
+            ->with('retrasadas_sum', $retrasadas_sum)
 
             ->with('alertas_info', $alertas_info)
             ->with('contratos', $contratos);
