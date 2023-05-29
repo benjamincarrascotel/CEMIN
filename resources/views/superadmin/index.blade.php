@@ -5,7 +5,7 @@
     @section('title')
     &nbsp;
     <h3>
-        Bienvenido SuperAdmin {{auth()->user()->name}}
+        Bienvenido {{auth()->user()->name}}
     </h3>
     &nbsp;
     @endsection
@@ -250,15 +250,17 @@
                 },
                 success:function(response){
                     if(response.error){
-                        alert(response.error);
+                        alert("Ha ocurrido un error: " + response.error);
                     }else{
-                        alert("Se ha enviado una alerta exitosamente.")
-                        location.reload();
+                        //alert("Se ha enviado una alerta exitosamente.");
+                        //location.reload();
+                        window.location.href = "/superadmin/1";
                     }
                     
                 }
             });
         });
+        
     </script>
 
 @endsection

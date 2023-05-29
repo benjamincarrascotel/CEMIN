@@ -35,7 +35,7 @@
             @csrf
             @include('contrato.fields')
             <input type="submit" class="btn btn-primary" form="store" value="Guardar" />
-            <a class="btn btn-dark" href="{{route('superadmin.index')}}" >Cancelar</a>
+            <a class="btn btn-dark" href="{{route('superadmin.index', [0])}}" >Cancelar</a>
         </form>
     @overwrite
 

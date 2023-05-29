@@ -20,9 +20,9 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="rut" class="col-sm-2 col-form-label">Ingrese su Rut sin digito verificador</label>
+    <label for="rut" class="col-sm-2 col-form-label">Ingrese su Rut<br>(sin puntos ni dígito verificador)</label>
     <div class="col-sm-10">
-        <input name="rut" id='rut' type="text" class="form-control"  required>
+        <input name="rut" id='rut' type="text" class="form-control" required>
     </div>
 </div>
 

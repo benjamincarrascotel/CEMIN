@@ -73,7 +73,7 @@ class SuperAdminController extends Controller
     ];
 
 
-    public function index()
+    public function index($flag)
     {
         $contratos = Contrato::with('clasificacion')
             ->with('faena')
@@ -143,6 +143,8 @@ class SuperAdminController extends Controller
             $alertas_info->put($contrato->id, $alerta_info);
 
         }
+
+        if($flag)flash('Correo electrónico de alerta enviado.', 'success');
 
         //dd($alertas_info);
 

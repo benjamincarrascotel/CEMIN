@@ -761,7 +761,7 @@ class ContratoController extends Controller
         
         flash('Creación de fases proyectadas realizada con éxito', 'success');
 
-        return redirect()->route('superadmin.index');
+        return redirect()->route('superadmin.index', [0]);
     }
 
 
@@ -858,9 +858,7 @@ class ContratoController extends Controller
 
         Mail::to('mos.cemin@gmail.com')->send(new AlertasContrato($mail_info));
 
-
-        flash('Alerta enviada con éxito', 'success');
-        return redirect()->route('superadmin.index');
+        return redirect()->route('superadmin.index', [0]);
     }
     
 

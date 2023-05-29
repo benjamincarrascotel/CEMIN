@@ -11,7 +11,9 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                <!--
                 <th>Acción</th>
+                -->
             </tr>
         </thead>
         <tbody>
@@ -22,8 +24,10 @@
                 <td>{{$usuario->email}}</td>
                 <td>
                     <div class="btn-group" role="group">
+                        <!--
                         <a class="btn btn-primary" href="{!! route('usuarios.show', [$usuario->id]) !!}"><i class='fas fa-info'></i> Ver</a>
                         <a class="btn btn-primary" href="{!! route('usuarios.edit', [$usuario->id]) !!}"><i class='fas fa-edit'></i>Editar</a>
+                        -->
                     </div>
                 </td>
             </tr>
