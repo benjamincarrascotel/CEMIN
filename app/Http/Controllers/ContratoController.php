@@ -293,6 +293,7 @@ class ContratoController extends Controller
             'estado_contrato' => 0, //"Estado dummy"
             'tipo_renovacion' => $input['tipo_renovacion'], 
             'estatus' => 0, //"SEMAFORO"
+            'fase_proyectada_flag' => 0, 
         ]);
 
         $fase_contrato = FaseContrato::create([
@@ -726,7 +727,7 @@ class ContratoController extends Controller
     }
 
     public function create_fase_proyectada(){
-        $contratos = Contrato::where('fase_proyectada_flag', null)->get();
+        $contratos = Contrato::where('fase_proyectada_flag', 0)->get();
         $selectedID = 0;
         return view('fases.create_fase_proyectada', compact('selectedID', 'contratos'));
     }
@@ -755,7 +756,7 @@ class ContratoController extends Controller
         ]);
 
         $contrato = Contrato::where('id', $input['contrato_id'])->first();
-        $contrato->fase_proyectada_flag = true;
+        $contrato->fase_proyectada_flag = 1;
         $contrato->save();
 
         

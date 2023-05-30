@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
+//ALERTA
+Route::post('/contrato/enviar_alerta', 'ContratoController@enviar_alerta')->middleware(['superadmin'])->name('contrato.enviar_alerta');
+
 // PROVEEDOR
 Route::get('/proveedor/create', 'ProveedorController@create')->name('proveedor.create');
 Route::post('/proveedor/store', 'ProveedorController@store')->name('proveedor.store');
@@ -33,9 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/proveedor/{id}', 'ProveedorController@show')->name('proveedor.show');
 
     Route::group(['middleware' => ['superadmin']], function () {
-
-        //ALERTA
-        Route::post('/contrato/enviar_alerta', 'ContratoController@enviar_alerta')->name('contrato.enviar_alerta');
 
         //DASHBOARD
         Route::get('/contrato/detalles', 'ContratoController@detalles')->name('contrato.detalles');

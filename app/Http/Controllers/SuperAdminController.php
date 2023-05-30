@@ -75,7 +75,7 @@ class SuperAdminController extends Controller
 
     public function index($flag)
     {
-        $contratos = Contrato::with('clasificacion')
+        $contratos_all = Contrato::with('clasificacion')
             ->with('faena')
             ->with('area')
             ->with('centro')
@@ -86,6 +86,15 @@ class SuperAdminController extends Controller
             ->with('detalle_contrato')
             ->with('fase_contrato')
             ->get();
+
+        $fases_proyectadas_contratos = FaseProyectadaContrato::pluck('id','contrato_id');
+
+        $contratos = collect();
+        foreach($contratos_all as $contrato){
+            if(in_array( $contrato['id'] , array_keys($fases_proyectadas_contratos->toArray()))){
+                $contratos->push($contrato);
+            }
+        }
 
         $alertas_info = collect();
 

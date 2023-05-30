@@ -61,13 +61,15 @@ class ProveedorController extends Controller
         $existente = Proveedor::where('rut', $input['rut'])->first();
         $actualizado_flag = 0;
         if($existente === null){
-            Proveedor::create($data);
+            $nuevo = Proveedor::create($data);
+            return view('proveedor.created_success')->with('nombre', $nuevo['nombre']);
+
         }else{
             $actualizado_flag = 1;
             $existente->update($data);
-        }
+            return view('proveedor.created_success')->with('nombre', $existente['nombre']);
 
-        return view('proveedor.created_success')->with('nombre', $existente['nombre']);
+        }        
         //return redirect()->route('proveedor.create');
     }
 
