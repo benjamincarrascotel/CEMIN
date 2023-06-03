@@ -41,6 +41,8 @@ class LoginController extends Controller
     //     $this->middleware('guest')->except('logout');
     // }
 
+    public $login_error = null;
+
     public function login(Request $request)
     {
         
@@ -71,13 +73,19 @@ class LoginController extends Controller
 
     public function auth_failure()
     {
-        // flash('Correo o contraseña incorrectos.')->error();
+        //flash('Correo o contraseña incorrectos.')->error();
+        $this->login_error = 'Los datos ingresados no coinciden con nuestros registros.';
         return $this->showLoginForm();
     }
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        if($this->login_error != null){
+            return view('auth.login')->with('login_error', $this->login_error);
+        }else{
+            $login_error = null;
+            return view('auth.login')->with('login_error', $login_error);
+        }
     }
 
 }

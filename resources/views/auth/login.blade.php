@@ -61,6 +61,10 @@
                                                     </div>
                                                     
                                                 </form>
+
+                                                @if($login_error != null)
+                                                    <p class="alert alert-danger mt-4">{{ $login_error }}</p>
+                                                @endif
                                                 
                                                 </div>
                                             </div>
@@ -70,6 +74,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
