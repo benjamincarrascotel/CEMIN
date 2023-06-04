@@ -172,14 +172,14 @@
     <div class="form-group row">
         <label class="col-md-2 form-label">Creación</label>
         <div >
-            <input disabled type="text" class="form-control" style="width: 15%" value="{{($proveedor->created_at)->format('d-m-Y')}}">
+            <input disabled type="text" class="form-control" style="width: 15%" value="{{$proveedor->created_at}}">
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-md-2 form-label">Modificación</label>
         <div >
-            <input disabled type="text" class="form-control" style="width: 15%"  value="{{($proveedor->updated_at)->format('d-m-Y')}}">
+            <input disabled type="text" class="form-control" style="width: 15%"  value="{{$proveedor->updated_at}}">
         </div>
     </div>
 
