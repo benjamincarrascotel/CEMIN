@@ -22,6 +22,8 @@ class Proveedor extends Model
         'nombre',
         'codigo',
         'rut',
+        'rut_dv',
+
         'giro',
         'natural_organizacion',
         'direccion_com',
@@ -53,6 +55,7 @@ class Proveedor extends Model
         'tipo_documento',
         'descripcion',
         'fecha_solicitud',
+
 
 
     ];

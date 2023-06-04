@@ -28,8 +28,9 @@ class ProveedorController extends Controller
     {
 
         $selectedID = 0;
+        $error = null;
         
-        return view('proveedor.create', compact('selectedID'));
+        return view('proveedor.create', compact('selectedID', 'error'));
 
     }
 
@@ -44,33 +45,44 @@ class ProveedorController extends Controller
     {
         $input = $request->all();
 
-        //Seteamos valores de checkboxes
-        if(!isset($input['cheque_checkbox'])){
-            $input['cheque_checkbox'] = 0;
-            $request['cheque_checkbox'] = 0;
-        }
-        if(!isset($input['vale_vista_checkbox'])){
-            $input['vale_vista_checkbox'] = 0;
-            $request['vale_vista_checkbox'] = 0;
-        }
-        //dd($input);
+        //dd(strlen($input['rut']));
+        if(strlen($input['rut'])>= 10){
+
+            $rut_parsed = explode('-',$input['rut']);
+            //Seteamos valores de checkboxes
+            if(!isset($input['cheque_checkbox'])){
+                $input['cheque_checkbox'] = 0;
+                $request['cheque_checkbox'] = 0;
+            }
+            if(!isset($input['vale_vista_checkbox'])){
+                $input['vale_vista_checkbox'] = 0;
+                $request['vale_vista_checkbox'] = 0;
+            }
+            //dd($input);
 
 
-        // Verificamos si existe y actualizamos o creamos nuevo registro
-        $data = $request->except('_token');
-        $existente = Proveedor::where('rut', $input['rut'])->first();
-        $actualizado_flag = 0;
-        if($existente === null){
-            $nuevo = Proveedor::create($data);
-            return view('proveedor.created_success')->with('nombre', $nuevo['nombre']);
+            // Verificamos si existe y actualizamos o creamos nuevo registro
+            $data = $request->except('_token');
+            $data['rut'] = $rut_parsed[0];
+            $data['rut_dv'] = $rut_parsed[1];
+            $existente = Proveedor::where('rut', $rut_parsed[0])->first();
+            $actualizado_flag = 0;
+            //dd($data);
+            if($existente === null){
+                $nuevo = Proveedor::create($data);
+                return view('proveedor.created_success')->with('nombre', $nuevo['nombre']);
 
+            }else{
+                $actualizado_flag = 1;
+                $existente->update($data);
+                return view('proveedor.created_success')->with('nombre', $existente['nombre']);
+
+            }        
+            
         }else{
-            $actualizado_flag = 1;
-            $existente->update($data);
-            return view('proveedor.created_success')->with('nombre', $existente['nombre']);
-
-        }        
-        //return redirect()->route('proveedor.create');
+            return view('proveedor.create')->with('error', "Error en el formato del rut.");
+        }
+        
     }
 
     public function store2(Request $request)

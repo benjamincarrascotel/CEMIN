@@ -2,7 +2,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Row -->
 <div class="row">
+    
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        @if($error != null)
+            <p class="alert alert-danger mt-4">{{ $error }}</p>
+        @endif
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Datos Obligatorios</h4>
@@ -19,9 +23,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-3 form-label">Rut <br> (Ej: 78.485.923-6)</label>
+                            <label class="col-md-3 form-label">Rut <br> (Ej: 78485923-6)</label>
                             <div class="col-md-9">
-                                <input id="rut" name="rut" type="text" class="form-control" placeholder="Ingresar RUT con puntos y guión" required>
+                                <input id="rut" name="rut" type="text" maxlength="10" class="form-control" oninput="checkRut(this)" placeholder="Ingresar RUT sin puntos ni guión" required>
                             </div>
                         </div>
 
@@ -234,7 +238,6 @@
                     </div>
                 </div>
 
-
                 <div class="row mt-8">
 
                     <h5 style="color:red;">
@@ -267,6 +270,27 @@
     </div>
     
 </div>
+
+<script>
+
+    var flag = 0;
+
+    function checkRut(rut) {
+        flag=1;
+        // Despejar Puntos
+        var valor = rut.value.replace('.','');
+        // Despejar Guión
+        valor = valor.replace('-','');
+        
+        // Aislar Cuerpo y Dígito Verificador
+        cuerpo = valor.slice(0,-1);
+        dv = valor.slice(-1).toUpperCase();
+        
+        // Formatear RUN
+        rut.value = cuerpo + '-'+ dv;
+
+    }
+</script>
 
 
 <script>
