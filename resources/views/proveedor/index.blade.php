@@ -29,7 +29,7 @@
             <tbody>
                 @foreach($proveedores as $proveedor)
                 <tr>
-                    <td>{{$proveedor->rut}}</td>
+                    <td>{{$proveedor->rut.'-'.$proveedor->rut_dv}}</td>
                     <td>{{$proveedor->nombre}}</td>
                     <td>{{$proveedor->region_com}}</td>
                     <td>{{$proveedor->email_com}}</td>

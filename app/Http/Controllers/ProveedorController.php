@@ -98,7 +98,8 @@ class ProveedorController extends Controller
         $existente = Proveedor::where('id', $input['id'])->first();
         $actualizado_flag = 0;
         if($existente === null){
-            //
+            flash("Error, proveedor no encontrado.", 'danger');
+            return redirect()->route('proveedor.index');
         }else{
             $actualizado_flag = 1;
             $existente->update($data);
@@ -106,7 +107,7 @@ class ProveedorController extends Controller
 
         flash("Datos de Proveedor actualizados con éxito.", 'success');
 
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.show', [$existente->id]);
     }
 
     /**

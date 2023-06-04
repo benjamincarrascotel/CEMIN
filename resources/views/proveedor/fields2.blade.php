@@ -162,6 +162,8 @@
         </div>
     </div>
 
+    <h4 style="color:red;">Para las fechas considerar formato internacional [MES/DIA/AÑO].</h4>
+
     <div class="form-group row">
         <label class="col-md-2 form-label">Fecha de solicitud</label>
         <div >
@@ -172,14 +174,14 @@
     <div class="form-group row">
         <label class="col-md-2 form-label">Creación</label>
         <div >
-            <input disabled type="text" class="form-control" style="width: 15%" value="{{$proveedor->created_at}}">
+            <input disabled type="text" class="form-control" style="width: 15%" value="{{Carbon\Carbon::parse($proveedor->created_at)->format('m-d-Y H:i:s')}}">
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-md-2 form-label">Modificación</label>
         <div >
-            <input disabled type="text" class="form-control" style="width: 15%"  value="{{$proveedor->updated_at}}">
+            <input disabled type="text" class="form-control" style="width: 15%"  value="{{Carbon\Carbon::parse($proveedor->updated_at)->format('m-d-Y H:i:s')}}">
         </div>
     </div>
 

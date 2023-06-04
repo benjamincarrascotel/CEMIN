@@ -54,7 +54,7 @@
                                         </li>
                                         <li class="row mb-5">
                                             <div class="col-sm-3 text-muted">RUT</div>
-                                            <div class="col-sm-9">{{$proveedor->rut}}</div>
+                                            <div class="col-sm-9">{{$proveedor->rut.'-'.$proveedor->rut_dv}}</div>
                                         </li>
                                         <li class="row mb-5">
                                             <div class="col-sm-3 text-muted">Giro</div>
