@@ -147,7 +147,7 @@
                                             <th>Fecha de inicio</th>
                                             <th>Fecha de término</th>
                                             <th>Inicio de licitación</th>
-                                            <th>Fecha de Adjudicación (Renovación)</th>
+                                            <th>Fecha de Adjudicación</th>
                                         </tr>
                                     </thead>
                                     <tbody>
