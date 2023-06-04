@@ -10,7 +10,7 @@
             @endif
             @foreach ($contratos as $key => $value)              
                 <option value="{{ $value->id }}" {{ ( $key == $selectedID) }}>                
-                    {{ $value->servicio_bien->nombre_servicio_bien }}                 
+                    {{ $value->servicio_bien->nombre_servicio_bien." - ".$value->proveedor->nombre }}                 
                 </option>
             @endforeach                   
         </select>
