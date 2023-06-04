@@ -148,7 +148,7 @@ td .es-button-border-2:hover {
                         
                       <td align="center" style="padding:0;Margin:0;font-size:0">
                         <a target="_blank" href="https://viewstripo.email" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#db9334;font-size:14px">
-                            
+                          <img class="adapt-img" src="{{$message->embed(public_path('storage/logo_mail.png'))}}" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="600">
                            
                         </a>
                       </td>
@@ -295,17 +295,18 @@ td .es-button-border-2:hover {
                      <tr style="border-collapse:collapse">
                       <td class="es-m-txt-c" align="left" style="padding:0;Margin:0;padding-top:5px;padding-bottom:10px">
                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#EFEFEF;font-size:14px">
-                            Para poder revisar esta solicitud, ingrese a la plataforma "https://URL_producción.com." &nbsp;
+                            Para poder revisar esta licitación, ingrese a la plataforma http://94.177.238.182/ . &nbsp;
                         </p>
                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#acacac;font-size:14px">
                             PD: Este es un correo generado automáticamente, por favor no responder.
                         </p>
                        </td>
+                       
+
                      </tr>
                    </table></td>
                  </tr>
                </table>
-               <!--
                <table class="es-right" cellspacing="0" cellpadding="0" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
                  <tr style="border-collapse:collapse">
                   <td align="left" style="padding:0;Margin:0;width:270px">
@@ -314,17 +315,15 @@ td .es-button-border-2:hover {
                       <td class="es-m-txt-c" align="right" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;font-size:0">
                        <table class="es-table-not-adapt es-social" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                          <tr style="border-collapse:collapse">
-                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Facebook" src="https://yhljcx.stripocdn.email/content/assets/img/social-icons/rounded-white/facebook-rounded-white.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Twitter" src="https://yhljcx.stripocdn.email/content/assets/img/social-icons/rounded-white/twitter-rounded-white.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Instagram" src="https://yhljcx.stripocdn.email/content/assets/img/social-icons/rounded-white/instagram-rounded-white.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                          <td valign="top" align="center" style="padding:0;Margin:0"><img title="Youtube" src="https://yhljcx.stripocdn.email/content/assets/img/social-icons/rounded-white/youtube-rounded-white.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px">
+                            <img title="logoMOS" src="{{$message->embed(public_path('assets/images/brand/LogoMOS.png'))}}" alt="Fb" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                          </td>                         
                          </tr>
                        </table></td>
                      </tr>
                    </table></td>
                  </tr>
                </table>
-               -->
             </td>
              </tr>
            </table></td>

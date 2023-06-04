@@ -74,7 +74,7 @@ class LoginController extends Controller
     public function auth_failure()
     {
         //flash('Correo o contraseña incorrectos.')->error();
-        $this->login_error = 'Los datos ingresados no coinciden con nuestros registros.';
+        $this->login_error = 'Contraseña inválida, por favor reintente.';
         return $this->showLoginForm();
     }
 

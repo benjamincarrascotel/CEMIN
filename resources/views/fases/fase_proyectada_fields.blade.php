@@ -2,9 +2,9 @@
 <div class="mb-3 row">
     <label for="contrato_id" class="col-sm-2 col-form-label">Contrato</label>
     <div class="col-sm-10">
-        <select id="contrato_id" class="form-control block mt-1 w-full" name="contrato_id">
+        <select id="contrato_id" class="form-control block mt-1 w-full" name="contrato_id" required>
             @if($selectedID == 0)    
-                <option value="0" >                
+                <option value={{null}} >                
                     Seleccione alguna de las opciones                 
                 </option>   
             @endif
