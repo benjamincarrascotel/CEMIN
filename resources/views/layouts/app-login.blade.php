@@ -25,7 +25,7 @@
 
     <body id="page-top">
         <!-- Page Wrapper -->
-        <div id="wrapper" style="background-image:url({{asset('assets/images/brand/fondo-login.png')}}); position: fixed;width: 100%;height: 100%;">
+        <div id="wrapper" style="background-image:url({{asset('assets/images/brand/fondo-login.png')}}); position: fixed;width: 100%;height: 100%; background-size: cover;">
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="align-self-center d-flex flex-column">
                 <!-- Main Content -->

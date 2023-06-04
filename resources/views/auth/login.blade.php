@@ -2,12 +2,12 @@
 
 @section('content')
         <div class="page">
-            <div class="page-content" style="padding-left:57%;padding-top:0%;">
+            <div class="page-content" style="padding-left:55%;padding-top:0%;">
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">
                             <div class="row justify-content-center">
-                                <div class=" col-md-7 col-sm-12 col-xs-12 ">
+                                <div class="col-sm-12 col-xs-12 ">
                                     <div class="text-center mb-5 mt-0">
                                         <img src="{{asset('assets/images/brand/LogoMOS.png')}}" class="desktop-lgo" alt="MOS logo">
                                     </div>
