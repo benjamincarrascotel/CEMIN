@@ -295,10 +295,7 @@ td .es-button-border-2:hover {
                      <tr style="border-collapse:collapse">
                       <td class="es-m-txt-c" align="left" style="padding:0;Margin:0;padding-top:5px;padding-bottom:10px">
                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#EFEFEF;font-size:14px">
-                            Para poder revisar esta licitación, ingrese a la plataforma http://94.177.238.182/ . &nbsp;
-                        </p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#acacac;font-size:14px">
-                            PD: Este es un correo generado automáticamente, por favor no responder.
+                            PD: Este es un correo generado automáticamente, por favor no responder. &nbsp;
                         </p>
                        </td>
                        

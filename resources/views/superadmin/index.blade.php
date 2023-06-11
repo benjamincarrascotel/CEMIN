@@ -82,60 +82,62 @@
         @overwrite
         
         @section('card_content')
-        <table class='table data-table-global datatable' id='datatable'>
-            <thead>
-                <tr>
-                    <th>Código SAP</th>
-                    <th>Servicio / Bien</th>
-                    <th>Proveedor</th>
-                    <th>Faena</th>
-                    <th>Administrador de Contrato</th>
-                    <th>Estado licitación actual</th>
-                    <th>Pasar a Siguiente Fase</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($contratos as $contrato)
-                <tr>
-                    <td>{{$contrato->contrato_sap}}</td>
-                    <td>{{$contrato->servicio_bien->nombre_servicio_bien}}</td>
+        <div class="table-responsive">
+            <table class='table data-table-global datatable' id='datatable'>
+                <thead>
+                    <tr>
+                        <th>Código SAP</th>
+                        <th>Servicio / Bien</th>
+                        <th>Proveedor</th>
+                        <th>Faena</th>
+                        <th>Administrador de Contrato</th>
+                        <th>Estado licitación actual</th>
+                        <th>Pasar a Siguiente Fase</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($contratos as $contrato)
+                    <tr>
+                        <td>{{$contrato->contrato_sap}}</td>
+                        <td>{{$contrato->servicio_bien->nombre_servicio_bien}}</td>
 
-                    <td>{{$contrato->proveedor->nombre}}</td>
-                    <td>{{$contrato->faena->nombre_faena}}</td>
-                    <td>{{$contrato->admin_contrato->nombre}}</td>
-                    <td>{{$alertas_info[$contrato->id]['estado_actual']}}</td>
+                        <td>{{$contrato->proveedor->nombre}}</td>
+                        <td>{{$contrato->faena->nombre_faena}}</td>
+                        <td>{{$contrato->admin_contrato->nombre}}</td>
+                        <td>{{$alertas_info[$contrato->id]['estado_actual']}}</td>
 
-                    @if($contrato->estado_contrato != 15 && $contrato->estado_contrato != 16 && $contrato->estado_contrato != 17)
-                        @if($alertas_info[$contrato->id]['semaforo'] == 0)
-                            <td><span class="badge mt-2 fs-10 bg-success-transparent br-7 ms-auto">A TIEMPO</span></td>
-                        @elseif($alertas_info[$contrato->id]['semaforo'] == 1)
-                            <td><span class="badge mt-2 fs-10 bg-warning-transparent br-7 ms-auto">POR VENCER</span></td>
+                        @if($contrato->estado_contrato != 15 && $contrato->estado_contrato != 16 && $contrato->estado_contrato != 17)
+                            @if($alertas_info[$contrato->id]['semaforo'] == 0)
+                                <td><span class="badge mt-2 fs-10 bg-success-transparent br-7 ms-auto">A TIEMPO</span></td>
+                            @elseif($alertas_info[$contrato->id]['semaforo'] == 1)
+                                <td><span class="badge mt-2 fs-10 bg-warning-transparent br-7 ms-auto">POR VENCER</span></td>
+                            @else
+                                <td><span class="badge mt-2 fs-10 bg-danger-transparent br-7 ms-auto">RETRASADO</span></td>
+                            @endif
+                        @elseif($contrato->estado_contrato != 16 && $contrato->estado_contrato != 17)
+                            <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">TERMINADA</span></td>
+                        @elseif($contrato->estado_contrato != 17)
+                            <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">STAND BY</span></td>
                         @else
-                            <td><span class="badge mt-2 fs-10 bg-danger-transparent br-7 ms-auto">RETRASADO</span></td>
+                            <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">ADJUDICACIÓN DIRECTA</span></td>
                         @endif
-                    @elseif($contrato->estado_contrato != 16 && $contrato->estado_contrato != 17)
-                        <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">TERMINADA</span></td>
-                    @elseif($contrato->estado_contrato != 17)
-                        <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">STAND BY</span></td>
-                    @else
-                        <td><span class="badge mt-2 fs-10 bg-info-transparent br-7 ms-auto">ADJUDICACIÓN DIRECTA</span></td>
-                    @endif
 
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='mt-1 fa fa-info'></i></a>
-                            <button class="btn btn-danger" @if($alertas_info[$contrato->id]['semaforo'] == 0) disabled @endif href="javascript:void(0)" onclick="enviarAlerta({{$contrato->id}})" title="Enviar Alerta"><i class='fa fa-envelope'></i></button>
-                            
-    
-                            {{-- <a class="btn btn-primary" href="{!! route('solicitud.edit', [$solicitud->id]) !!}"><i class='fas fa-edit'></i></a> --}}
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-    
-            </tbody>
-        </table>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary" href="{{route('contrato.show', [$contrato->id])}}" title="Mostrar Contrato"><i class='mt-1 fa fa-info'></i></a>
+                                <button class="btn btn-danger" @if($alertas_info[$contrato->id]['semaforo'] == 0) disabled @endif href="javascript:void(0)" onclick="enviarAlerta({{$contrato->id}})" title="Enviar Alerta"><i class='fa fa-envelope'></i></button>
+                                
+        
+                                {{-- <a class="btn btn-primary" href="{!! route('solicitud.edit', [$solicitud->id]) !!}"><i class='fas fa-edit'></i></a> --}}
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+        
+                </tbody>
+            </table>
+        </div>
         @overwrite
         @include('layouts.card')
     @endpush

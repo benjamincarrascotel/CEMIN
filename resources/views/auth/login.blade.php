@@ -2,7 +2,7 @@
 
 @section('content')
         <div class="page">
-            <div class="page-content" style="padding-left:55%;padding-top:0%;">
+            <div class="page-content full_screen">
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">

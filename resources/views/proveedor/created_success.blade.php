@@ -20,7 +20,9 @@
                 </div>
                 
                 <a class="btn btn-secondary" href="/proveedor/create" >Ir nuevamente al formulario</a>
+                <!--
                 <a class="btn btn-primary" href="/login" >Ir a "Iniciar Sesión"</a>
+                -->
 
             @overwrite
         

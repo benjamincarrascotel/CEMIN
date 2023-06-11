@@ -20,12 +20,36 @@
 
         <!-- Custom styles for this template-->
         @include('layouts.vertical.styles')
+        <style>
+            @media screen and (max-width: 1980px) {
+                .full_screen{
+                    padding-left:55%;
+                    padding-top:0%;
+                }
+
+                .wrapper{
+                    background-image: url({{asset('assets/images/brand/fondo-login.png')}}); 
+                    background-size:100% 100%; 
+                    background-repeat:no-repeat;
+                }
+            }
+            @media screen and (max-width: 900px) {
+                .full_screen{
+                    padding-left:0%;
+                    padding-top:0%;
+                }
+
+                .wrapper{
+                    background-image: url({{asset('assets/images/brand/fondo-login_old.png')}});
+                }
+            }
+        </style>
 
     </head>
 
     <body id="page-top">
         <!-- Page Wrapper -->
-        <div id="wrapper" style="background-image:url({{asset('assets/images/brand/fondo-login.png')}}); position: fixed;width: 100%;height: 100%; background-size: cover;">
+        <div class="wrapper" >
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="align-self-center d-flex flex-column">
                 <!-- Main Content -->

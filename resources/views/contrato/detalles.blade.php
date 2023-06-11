@@ -364,10 +364,7 @@
             },
 
             legend:{
-                verticalAlign: "center",
-                horizontalAlign: "right",
                 fontSize: 16,
-                dockInsidePlotArea: true
             },
 
 
