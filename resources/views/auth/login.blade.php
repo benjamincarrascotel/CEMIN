@@ -9,7 +9,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-sm-12 col-xs-12 ">
                                     <div class="text-center mb-5 mt-0">
-                                        <img src="{{asset('assets/images/brand/LogoMOS.png')}}" class="desktop-lgo" alt="MOS logo">
+                                        <img src="{{asset('assets/images/brand/LogoMOS.png')}}" alt="MOS logo">
                                     </div>
                                     <div class="card-group mb-0">
                                         <div class="card bg-primary text-white br-7 p-2">
