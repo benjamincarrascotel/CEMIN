@@ -1171,7 +1171,8 @@
                                 <div class="eventTime">
 
                                     <div class="DayDigit">
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+
                                     </div>
 
                                     <!-- Fecha -->
@@ -1232,7 +1233,13 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->solicitud_de_base)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->solicitud_de_base)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id.'/'.$contrato->fase_contrato_comprobante[0]->solicitud_de_base) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif
                                         @else
                                         <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
@@ -1300,9 +1307,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->envio_bases_primera_revision)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->envio_bases_primera_revision)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->envio_bases_primera_revision) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1368,9 +1381,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->primera_revision_bases_por_abastecimiento)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->primera_revision_bases_por_abastecimiento)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->primera_revision_bases_por_abastecimiento) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1436,9 +1455,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->envio_bases_segunda_revision)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->envio_bases_segunda_revision)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->envio_bases_segunda_revision) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1504,9 +1529,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->segunda_revision_bases_por_abastecimiento)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->segunda_revision_bases_por_abastecimiento)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->segunda_revision_bases_por_abastecimiento) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                        
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1572,9 +1603,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->recopilacion_de_informacion)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->recopilacion_de_informacion)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->recopilacion_de_informacion) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1640,9 +1677,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->invitacion_a_oferentes)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->invitacion_a_oferentes)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->invitacion_a_oferentes) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1708,9 +1751,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->visita_a_terreno)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->visita_a_terreno)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->visita_a_terreno) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1776,9 +1825,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->preguntas_y_consultas_proponente)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->preguntas_y_consultas_proponente)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->preguntas_y_consultas_proponente) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1844,9 +1899,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->respuestas_del_mandante)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->respuestas_del_mandante)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->respuestas_del_mandante) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1912,9 +1973,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->recepcion_de_ofertas_tecnicas_economicas)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->recepcion_de_ofertas_tecnicas_economicas)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->recepcion_de_ofertas_tecnicas_economicas) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -1980,7 +2047,13 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->evaluacion_ofertas_tecnicas)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->evaluacion_ofertas_tecnicas)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->evaluacion_ofertas_tecnicas) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
                                         <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
@@ -2048,9 +2121,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->evaluacion_ofertas_economicas)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->evaluacion_ofertas_economicas)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->evaluacion_ofertas_economicas) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -2117,9 +2196,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->comite_de_inversiones)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->comite_de_inversiones)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->comite_de_inversiones) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a" fill="#434343"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -2186,9 +2271,15 @@
 
                                     <div class="DayDigit">
                                         @if($fases_contrato->adjudicacion)
-                                        <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @if($contrato->fase_contrato_comprobante[0]->adjudicacion)
+                                                <a target="_blank" href="{{ Storage::url('contratos/'.$contrato->id."/".$contrato->fase_contrato_comprobante[0]->adjudicacion) }}">
+                                                    <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#eb970a"  class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                                </a>
+                                            @else
+                                                <svg width="70%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="mt-2 si-glyph si-glyph-checked"><path d="M3.432 6.189a1 1 0 0 1 1.415 0L6.968 8.31l6.179-6.179a.99.99 0 0 1 1.401.013l2.122 2.122a.991.991 0 0 1 .014 1.4l-9.022 9.021a.99.99 0 0 1-1.401-.014l-4.95-4.95a.998.998 0 0 1 0-1.413l2.121-2.121Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>
+                                            @endif                                            
                                         @else
-                                        <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
+                                            <svg width="100%" height="22" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class=" mt-2 si-glyph si-glyph-time-reload"><g fill="#434343" fill-rule="evenodd"><path d="M9.549 1.046c-3.859 0-6.819 3.192-7.166 6.985H1.059l1.892 1.952 2.065-1.952H3.677c.331-3.229 2.747-5.958 5.937-5.958 3.412 0 6.189 2.888 6.189 6.437 0 3.549-2.777 6.438-6.189 6.438-1.695 0-3.232-.713-4.35-1.865l-.821.826a7.364 7.364 0 0 0 5.106 2.065c4.092 0 7.419-3.349 7.419-7.464s-3.327-7.464-7.419-7.464Z" class="si-glyph-fill"/><path d="M9 3.99V9h3.96V8H9.97V3.99H9Z" class="si-glyph-fill"/></g></svg>
                                         @endif
                                     </div>
 
@@ -2247,7 +2338,7 @@
             </div>
         </div>
 
-        <form class="container-fluid" action="{!! route('fase.update', $contrato->id) !!}" method="post">
+        <form class="container-fluid" action="{!! route('fase.update', $contrato->id) !!}" method="post" enctype="multipart/form-data">
         @csrf
         @include('contrato.cambio_fase_fields')
         </form>

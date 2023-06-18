@@ -18,6 +18,7 @@ use App\Models\AbastecimientoUser;
 use App\Models\AccionContrato;
 use App\Models\TipoContrato;
 use App\Models\FaseContrato;
+use App\Models\FaseContratoComprobante;
 use App\Models\FaseProyectadaContrato;
 
 use App\Models\UserContratoMails;
@@ -30,6 +31,9 @@ use Validator;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportExcel;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class ContratoController extends Controller
@@ -648,6 +652,19 @@ class ContratoController extends Controller
     public function show($id)
     {
         $contrato = Contrato::where('id', $id)->first();
+
+        //Creamos la ruta pública primero
+        if(!File::exists('storage/contratos/'.$contrato->id)){
+            File::makeDirectory(public_path('storage/contratos/'.$contrato->id));
+        }
+
+        $fase_comprobantes = FaseContratoComprobante::where('contrato_id', $contrato->id)->first();
+        if(!$fase_comprobantes){
+            $fase_comprobantes = FaseContratoComprobante::create([
+                'contrato_id' => $contrato->id,
+            ]);
+        }
+
         $fases_contrato = $contrato->fase_contrato[0];
         if($contrato->fase_proyectada_flag){
             $fases_proyectadas_contrato = $contrato->fase_proyectada_contrato[0];
@@ -707,9 +724,35 @@ class ContratoController extends Controller
         ]);
 
         $input = $request->all();
+        
         $siguiente_fase_id = $input['siguiente_fase_id'];
         $nombre_fase = $fases[$siguiente_fase_id];
         $contrato = Contrato::where('id', $id)->first();
+
+        $file = $request->file('foto');
+
+        $fase_comprobantes = FaseContratoComprobante::where('contrato_id', $contrato->id)->first();
+        if(!$fase_comprobantes){
+            $fase_comprobantes = FaseContratoComprobante::create([
+                'contrato_id' => $contrato->id,
+            ]);
+        }
+
+        if($file){
+            $type = $request->file('foto')->guessExtension();
+            $nombre = $nombre_fase.'.'.$type;
+
+            Storage::makeDirectory('contratos/'.$contrato->id);
+
+            //$ruta = storage_path("app/solicituds/".$solicitud->id.'/'.$nombre);
+            //copy($file,$ruta);
+            $ruta = public_path("storage/contratos/".$contrato->id.'/'.$nombre);
+            copy($file, $ruta);
+
+            $fase_comprobantes[$nombre_fase] = $nombre;
+            $fase_comprobantes->save();
+        }
+        
 
 
         $fases_contrato = FaseContrato::where('contrato_id', $id)->first();
