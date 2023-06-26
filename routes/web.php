@@ -55,9 +55,18 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/contrato/{id}/fase/update', 'ContratoController@fase_update')->name('fase.update');
         Route::post('/contrato/excel', 'ContratoController@excel')->name('contrato.excel');
+        Route::post('/contrato/axis_update', 'ContratoController@axis_update')->name('contrato.axis_update');
+
+        //USERS
+        Route::get('/usuarios/destroy/{id}', 'UserController@destroy')->name('usuarios.destroy');
+        Route::get('/usuarios/{id}', 'UserController@create')->name('usuarios.create');
+        Route::post('/usuarios/store', 'UserController@store')->name('usuarios.store');
 
 
 
+        Route::resource('usuarios', 'UserController')->only([
+            'create', 'store', 'edit','update','index',
+        ]);
 
 
         
@@ -65,7 +74,5 @@ Route::group(['middleware' => ['auth']], function () {
     
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::resource('usuarios', 'UserController')->only([
-        'create', 'store', 'edit','update','index','show'
-    ]);
+    
 });

@@ -245,8 +245,9 @@ class UserController extends Controller
      * @param  \App\User $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $usuario)
+    public function destroy($id)
     {
+        $usuario = User::where('id', $id)->first();
         $usuario->delete();
 
         // $redis = LRedis::connection();

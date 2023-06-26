@@ -11,9 +11,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <!--
                 <th>Acción</th>
-                -->
             </tr>
         </thead>
         <tbody>
@@ -22,14 +20,17 @@
                 <td>{{$usuario->id}}</td>
                 <td>{{$usuario->name}}</td>
                 <td>{{$usuario->email}}</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <!--
-                        <a class="btn btn-primary" href="{!! route('usuarios.show', [$usuario->id]) !!}"><i class='fas fa-info'></i> Ver</a>
-                        <a class="btn btn-primary" href="{!! route('usuarios.edit', [$usuario->id]) !!}"><i class='fas fa-edit'></i>Editar</a>
-                        -->
-                    </div>
-                </td>
+                @if($usuario->superadmin)
+                    <td>
+                    </td>
+                @else
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-danger" id="delete" onClick="alert('El usuario ha sido eliminado.')" href="{!! route('usuarios.destroy', [$usuario->id]) !!}"><i class='fa fa-ban'></i>  Eliminar</a>
+                            
+                        </div>
+                    </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

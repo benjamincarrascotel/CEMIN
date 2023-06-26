@@ -20,6 +20,7 @@ use App\Models\TipoContrato;
 use App\Models\FaseContrato;
 use App\Models\FaseContratoComprobante;
 use App\Models\FaseProyectadaContrato;
+use App\Models\Axis;
 
 use App\Models\UserContratoMails;
 use Illuminate\Support\Facades\Mail;
@@ -358,8 +359,16 @@ class ContratoController extends Controller
         $estadisticas = collect();
 
         // Porcentajes fijos de cada eje
-        $axis_x = 50;
-        $axis_y = 50;
+        $axis = Axis::first();
+        if(! $axis){
+            $axis = Axis::create([
+                'axis_x' => 50,
+                'axis_y' => 50,
+            ]);
+        }
+
+        $axis_x = $axis->axis_x;
+        $axis_y = $axis->axis_y;
 
         foreach($contratos as $contrato){
             //TODO verificar que porcentaje corresponde a cada uno
@@ -482,8 +491,17 @@ class ContratoController extends Controller
         $dataPoints_aux = collect();
 
         // Porcentajes fijos de cada eje
-        $axis_x = 50;
-        $axis_y = 50;
+
+        $axis = Axis::first();
+        if(! $axis){
+            $axis = Axis::create([
+                'axis_x' => 50,
+                'axis_y' => 50,
+            ]);
+        }
+
+        $axis_x = $axis->axis_x;
+        $axis_y = $axis->axis_y;
 
         foreach($contratos as $contrato){
             //TODO verificar que porcentaje corresponde a cada uno
@@ -524,6 +542,36 @@ class ContratoController extends Controller
     public function fechas()
     {
         $contratos = Contrato::all();
+
+        $axis = Axis::first();
+        if(! $axis){
+            $axis = Axis::create([
+                'axis_x' => 50,
+                'axis_y' => 50,
+            ]);
+        }
+
+        $axis_x = $axis->axis_x;
+        $axis_y = $axis->axis_y;
+
+        foreach($contratos as $contrato){
+            //TODO verificar que porcentaje corresponde a cada uno
+            $porcentaje_x = $contrato->detalle_contrato[0]->porcentaje_1*100;
+            $porcentaje_y = $contrato->detalle_contrato[0]->porcentaje_2*100;
+
+            //Calculamos criticidad para cada contrato
+            $criticidad = 0;
+            if($porcentaje_x >= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 1;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y >= $axis_y) $criticidad = 2;
+            else if($porcentaje_x <= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 3;
+            else if($porcentaje_x >= $axis_x && $porcentaje_y <= $axis_y) $criticidad = 4;
+
+            $contrato->criticidad = $criticidad;
+
+        }
+
+
+
         $servicios_bienes = ServicioBien::orderBy('nombre_servicio_bien')->pluck('nombre_servicio_bien', 'id');
         $faenas = Faena::pluck('nombre_faena', 'id');
 
@@ -903,6 +951,24 @@ class ContratoController extends Controller
         Mail::to('mos.cemin@gmail.com')->send(new AlertasContrato($mail_info));
 
         return redirect()->route('superadmin.index', [0]);
+    }
+
+    public function axis_update(Request $request)
+    {
+        $input = $request->all();
+        $axis = Axis::first();
+        if(! $axis){
+            $axis = Axis::create([
+                'axis_x' => 50,
+                'axis_y' => 50,
+            ]);
+        }
+        $axis->axis_x = $input['axis_x'];
+        $axis->axis_y = $input['axis_y'];
+        $axis->save();
+
+        return redirect()->route('contrato.plan');
+
     }
     
 

@@ -35,9 +35,10 @@
                                             <div class="dropdown">
                                                 <select class="form-control " id="criticidad"  >
                                                     <option value="{{null}}">Todos los contratos</option>
-                                                    <option value="Alta">Alta</option>
-                                                    <option value="Media">Media</option>
-                                                    <option value="Baja">Baja</option>
+                                                    <option value="Alta criticidad">Alta criticidad</option>
+                                                    <option value="Criticidad por admin">Criticidad por admin</option>
+                                                    <option value="Baja criticidad">Baja criticidad</option>
+                                                    <option value="Criticidad por impacto">Criticidad por impacto</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -154,7 +155,26 @@
                                     @foreach($contratos as $contrato)
                                         <tr>
                                             <td>{{$contrato->contrato_sap}}</td>
-                                            <td>{{$contrato->detalle_contrato[0]->criticidad_ops}}</td>
+                                            @switch($contrato->criticidad)
+                                                @case(1)
+                                                    <td>Alta criticidad</td>
+
+                                                    @break
+                                                @case(2)
+                                                    <td>Criticidad por admin</td>
+
+                                                    @break
+                                                @case(3)
+                                                    <td>Baja criticidad</td>
+
+                                                    @break
+                                                @case(4)
+                                                    <td>Criticidad por impacto</td>
+
+                                                    @break
+                                                @default
+                                                    
+                                            @endswitch
                                             <td>{{$contrato->tipo_contrato_general}}</td>
                                             <td>{{$contrato->servicio_bien->nombre_servicio_bien}}</td>
                                             <td>{{$contrato->faena->nombre_faena}}</td>
