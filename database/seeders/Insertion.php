@@ -856,6 +856,10 @@ class Insertion extends Seeder
                     'nombre' => 'ENGIE ENERGIA CHILE S.A.',
                     'codigo' => '1003304',
                 ],
+                [
+                    'nombre' => 'INGENIERIA Y SOLUCIONES TECNOLOGICAS LTDA',
+                    'codigo' => '0000000',
+                ],
                 
             ]);
         }
