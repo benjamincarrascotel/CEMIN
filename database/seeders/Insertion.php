@@ -62,6 +62,7 @@ class Insertion extends Seeder
                 ['nombre' => 'Operaciones'],
                 ['nombre' => 'SHerrera'],
                 ['nombre' => 'TEscobedo'],
+                ['nombre' => 'Prevención'],
 
             ]);
         }
@@ -72,6 +73,7 @@ class Insertion extends Seeder
                 [        'nombre_tipo' => 'Asesoría',    ],
                 [        'nombre_tipo' => 'Inversión',    ],
                 [        'nombre_tipo' => 'Operación',    ],
+                [        'nombre_tipo' => 'Precio unitario',    ],
 
             ]);
         } 
@@ -111,6 +113,11 @@ class Insertion extends Seeder
                 [        'nombre_accion' => 'Licitar',    ],
                 [        'nombre_accion' => 'Negociar',    ],
                 [        'nombre_accion' => 'Renovar',    ],
+                [        'nombre_accion' => 'Adjudicar Directamente',    ],
+                [        'nombre_accion' => 'Eliminar',    ],
+                [        'nombre_accion' => 'Extender Contrato',    ],
+                [        'nombre_accion' => 'Suspender',    ],
+
 
             ]);
         }
